@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나음생활건강 - NAEUM LIFE</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0B4619', /* 전통 한방의 깊은 그린 */
+                        secondary: '#D4AF37', /* 신뢰와 고품격을 뜻하는 골드 */
+                        accent: '#1E293B', /* 차분한 네이비 그레이 */
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@600;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 scroll-smooth">
+
+    <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            
+            <a href="#" class="flex items-center gap-2.5">
+               <img src="logo.png" alt="나음생활건강 로고" class="h-16 w-auto">
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold text-primary tracking-tight leading-none">나음생활건강</span>
+                    <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase mt-1">naumlife.com</span>
+                </div>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                <a href="#about" class="hover:text-primary transition-colors">회사소개</a>
+                <a href="#business" class="hover:text-primary transition-colors">사업분야</a>
+                <a href="#products" class="hover:text-primary transition-colors">제품 및 서비스</a>
+                <a href="#news" class="hover:text-primary transition-colors">최신 소식</a>
+                <a href="#ceo" class="hover:text-primary transition-colors">대표소개</a>
+                <a href="#contact" class="bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-emerald-900 transition-all shadow-md hover:shadow-lg text-sm">문의하기</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-36 pb-28 md:pt-48 md:pb-40 text-white overflow-hidden bg-cover bg-center" 
+            style="background-image: linear-gradient(rgba(11, 70, 25, 0.82), rgba(15, 23, 42, 0.92)), url('https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1920&q=80');">
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+            <span class="text-secondary font-bold tracking-widest uppercase text-xs md:text-sm mb-4 bg-white/10 px-4 py-1.5 rounded-full border border-white/10">
+                Natural Wellness & Global Trade Partner
+            </span>
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6 max-w-4xl">
+                천년 한방의 도시 제천에서<br class="hidden md:block">
+                <span class="text-secondary">20년 무역 전문성</span>으로 건강을 잇다
+            </h1>
+            <p class="text-slate-300 text-sm md:text-lg max-w-2xl mb-10 font-light leading-relaxed">
+                제천의 풍부한 한방 원료 인프라와 글로벌 직소싱 네트워크를 결합하여, 성공적이고 안정적인 웰니스 비즈니스 솔루션을 제공합니다.
+            </p>
+            
+            <div class="mb-10 px-6 py-3 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 inline-flex items-center gap-2">
+                <i class="fa-solid fa-globe text-secondary"></i>
+                <span class="text-sm font-semibold tracking-wide text-slate-200">공식 웹사이트:</span>
+                <span class="text-sm font-bold text-secondary tracking-wider">www.naumlife.com</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="#contact" class="bg-secondary text-slate-900 font-bold px-8 py-4 rounded-xl hover:bg-yellow-400 transition-all text-center shadow-lg hover:scale-[1.02]">
+                    사업 제휴 및 파트너 문의
+                </a>
+                <a href="#business" class="bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium px-8 py-4 rounded-xl hover:bg-white/20 transition-all text-center">
+                    주요 사업 영역 보기
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold text-primary tracking-wider uppercase mb-2">ABOUT NAUM LIFE</h2>
+                <p class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">더 나은 내일을 위한 가치를 드립니다</p>
+                <div class="w-40 h-1.5 bg-secondary mx-auto mt-5 rounded-full"></div>
+            </div>
+
+            <!-- ── 회사 사명 & 격언 블록 ── -->
+            <div class="mb-20">
+
+                <!-- 두 격언 -->
+                <div class="grid md:grid-cols-2 gap-6 mb-14">
+                    <div style="background:linear-gradient(135deg,#0B4619 0%,#1a6b2e 100%);border-radius:24px;padding:36px 32px;position:relative;overflow:hidden;">
+                        <div style="position:absolute;right:-10px;top:-10px;font-size:80px;opacity:0.07;line-height:1;">❝</div>
+                        <p style="font-size:11px;font-weight:700;color:rgba(212,175,55,0.9);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">중국 경영 격언</p>
+                        <p style="font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,30px);font-weight:900;color:#fff;line-height:1.3;margin-bottom:14px;">没有最好<br><span style="color:#D4AF37;">只有更好</span></p>
+                        <p style="font-size:14px;color:rgba(255,255,255,0.75);font-weight:400;line-height:1.6;margin-bottom:16px;">최고란 없다, 오직 더 나은 것이 있을 뿐이다</p>
+                        <div style="width:40px;height:2px;background:#D4AF37;border-radius:4px;margin-bottom:14px;"></div>
+                        <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;">"완성"에 안주하지 않고 매일 1%씩 더 나아지는 것이 나음생활건강의 경영 원칙입니다.</p>
+                    </div>
+                    <div style="background:linear-gradient(135deg,#1E293B 0%,#0f2040 100%);border-radius:24px;padding:36px 32px;position:relative;overflow:hidden;">
+                        <div style="position:absolute;right:-10px;top:-10px;font-size:80px;opacity:0.07;line-height:1;">❝</div>
+                        <p style="font-size:11px;font-weight:700;color:rgba(212,175,55,0.9);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">대표 권영환의 신념</p>
+                        <p style="font-family:'Noto Serif KR',serif;font-size:clamp(18px,2.5vw,26px);font-weight:900;color:#fff;line-height:1.4;margin-bottom:14px;">멈추면 <span style="color:#D4AF37;">거기까지가</span><br>너의 인생이다</p>
+                        <div style="width:40px;height:2px;background:#D4AF37;border-radius:4px;margin-bottom:14px;"></div>
+                        <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;">중국 현지 15년, 무역 현장 20년. 단 한 번도 멈추지 않고 달려온 그 길이 오늘의 나음생활건강을 만들었습니다.</p>
+                    </div>
+                </div>
+
+                <!-- 사명 선언 -->
+                <div style="background:#f8faf4;border-radius:24px;padding:48px 40px;border:1px solid #d6e8d0;text-align:center;position:relative;overflow:hidden;margin-bottom:40px;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#0B4619,#D4AF37,#0B4619);"></div>
+                    <p style="font-size:11px;font-weight:700;color:#0B4619;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px;">OUR MISSION</p>
+                    <h3 style="font-family:'Noto Serif KR',serif;font-size:clamp(20px,3vw,30px);font-weight:900;color:#111;line-height:1.5;margin-bottom:20px;">
+                        "더 나은(나음) 건강, 더 나은 비즈니스,<br>더 나은 내일을 멈추지 않고 만들어 갑니다"
+                    </h3>
+                    <p style="font-size:14px;color:#555;max-width:680px;margin:0 auto;line-height:1.9;font-weight:300;">
+                        나음생활건강의 사명(社名) <strong style="color:#0B4619;">'나음'</strong>은 단순한 이름이 아닙니다.<br>
+                        <strong style="color:#0B4619;">'没有最好，只有更好'</strong> — 최고에 머물지 않고 끊임없이 더 나아지겠다는 다짐이며,<br>
+                        멈추지 않는 실행력으로 고객과 함께 성장하겠다는 약속입니다.
+                    </p>
+                </div>
+
+                <!-- 회사 소개 + 수치 -->
+                <div class="grid lg:grid-cols-5 gap-8 items-center">
+                    <!-- 소개 텍스트 -->
+                    <div class="lg:col-span-3">
+                        <p style="font-size:11px;font-weight:700;color:#0B4619;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">COMPANY STORY</p>
+                        <h3 style="font-family:'Noto Serif KR',serif;font-size:clamp(18px,2.5vw,24px);font-weight:900;color:#111;line-height:1.5;margin-bottom:16px;">
+                            제천의 청정 한방 인프라와<br>20년 중국 직소싱 노하우의 결합
+                        </h3>
+                        <p style="font-size:14px;color:#555;line-height:2;margin-bottom:16px;">
+                            중국 상해·광저우 현지에 15년간 거주하며 직접 발로 뛰어 쌓은 수입 무역 20년 노하우를, 약초의 고장 제천의 풍부한 한방 인프라와 결합하여 새로운 가치를 창출합니다.
+                        </p>
+                        <p style="font-size:14px;color:#555;line-height:2;margin-bottom:20px;">
+                            <strong style="color:#0B4619;">프리미엄 한방 저염 장아찌</strong>를 시작으로, 제천 특산 원료 기반의 건강식품과 중국 직소싱 무역 컨설팅까지 — 나음생활건강은 멈추지 않고 더 나은 방향으로 확장해 나갑니다.
+                        </p>
+                        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                            <span style="background:#e8f5e9;color:#0B4619;font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;border:1px solid #c6e8d0;">🌿 제천 바이오밸리 입주 기업</span>
+                            <span style="background:#e8f5e9;color:#0B4619;font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;border:1px solid #c6e8d0;">🏆 중국 무역 20년 경력</span>
+                            <span style="background:#e8f5e9;color:#0B4619;font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;border:1px solid #c6e8d0;">📦 무제한 카테고리 수입 가능</span>
+                        </div>
+                    </div>
+                    <!-- 수치 -->
+                    <div class="lg:col-span-2">
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                            <div style="background:#0B4619;color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
+                                <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">20<span style="font-size:16px;">년+</span></div>
+                                <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">중국 무역<br>실전 경력</div>
+                            </div>
+                            <div style="background:#1E293B;color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
+                                <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">17<span style="font-size:16px;">종</span></div>
+                                <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">장아찌<br>풀 라인업</div>
+                            </div>
+                            <div style="background:#1E293B;color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
+                                <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">15<span style="font-size:16px;">년</span></div>
+                                <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">중국 현지<br>거주 경험</div>
+                            </div>
+                            <div style="background:#0B4619;color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
+                                <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">∞</div>
+                                <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">수입 가능<br>카테고리</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 3가지 핵심 가치 카드 (기존) ── -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl font-bold mb-6">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">전통 한방의 가치</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-sm">
+                        약초의 고장 제천시의 우수한 한방 네트워크를 활용하여 신뢰할 수 있는 우수 원료만을 선별 및 공급합니다.
+                    </p>
+                </div>
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl font-bold mb-6">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">공장 직소싱 원가 절감</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-sm">
+                        중간 유통 단계를 완전히 생략하고 중국 GMP 인증 공장과의 직거래를 통해 압도적인 원가 경쟁력을 확보합니다.
+                    </p>
+                </div>
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl font-bold mb-6">
+                        <i class="fa-solid fa-file-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">수입 무역 리스크 제로</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-sm">
+                        20년 실전 현장 통관 경력으로 까다로운 식약처 검역, FTA 관세 절감 서류 준비 등 모든 리스크를 사전 차단합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="business" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold text-primary tracking-wider uppercase mb-2">OUR BUSINESS AREA</h2>
+                <p class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">"나음생활건강"의 4대 비즈니스 모델</p>
+                <div class="w-12 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
+                    <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-emerald-50 text-primary items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid fa-prescription-bottle-medical"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">건강식품(장아찌 등) 개발 및 유통</h3>
+                        <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
+                            엄선된 우수 원료를 지역 농가에서 직접 공수 가공하여 스마트스토어, 쿠팡, 크라우드 펀딩 등 다양한 온오프라인 채널에 유통합니다.
+                        </p>
+                        <span class="text-xs bg-emerald-100 text-primary px-3 py-1 rounded-full font-medium">B2C 유통</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
+                    <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-amber-50 text-secondary items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid fa-comments-dollar"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">중국 무역 전문 컨설팅/안전하고 신속한 수입대행</h3>
+                        <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
+                            HS코드 분류, FTA 원산지 증명, 수입 요건 분석 등 복잡한 실무를 지원하여 수입 초보 기업의 무역 실패 확률을 원천 차단합니다.
+                        </p>
+                        <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-medium">B2B 무역자문</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
+                    <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">한방 원료 소싱 에이전시</h3>
+                        <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
+                            제약사 및 식품 제조사를 대상으로 제천의 고품질 약재 및 해외 우수 원자재를 독점 중개하고 안정적으로 공급합니다.
+                        </p>
+                        <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">B2B 소싱대행</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
+                    <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-purple-50 text-purple-600 items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">콘텐츠 & 에듀테인먼트</h3>
+                        <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
+                            무역 실전 전자책 발행은 물론, 제천 한방 원료(황기, 오미자 등) 캐릭터를 활용한 인스타툰과 숏폼으로 MZ세대와 소통합니다.
+                        </p>
+                        <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">미디어 커머스</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold text-primary tracking-wider uppercase mb-2">PRODUCTS & SERVICES</h2>
+                <p class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">대표 제품 및 디지털 서비스</p>
+                <div class="w-12 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <a href="jangajji.html" class="rounded-2xl border-2 border-emerald-700 bg-slate-50 overflow-hidden flex flex-col h-full hover:scale-[1.02] transition-all shadow-md hover:shadow-xl hover:border-emerald-500 group" style="text-decoration:none;">
+                    <div class="h-44 bg-emerald-800 text-white flex items-center justify-center p-6 text-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-emerald-700 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                        <div class="flex flex-col items-center gap-3 relative z-10">
+                            <span class="text-2xl">🧄</span>
+                            <span class="font-extrabold text-base">프리미엄 한방 특제 저염 장아찌</span>
+                            <span class="text-[10px] bg-yellow-400 text-slate-900 font-bold px-3 py-1 rounded-full tracking-wide">17종 라인업 보기 →</span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col justify-between flex-grow">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs font-semibold text-primary">건강식품</span>
+                                <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded-full">클릭하여 상세보기</span>
+                            </div>
+                            <h4 class="text-base font-bold text-slate-900 mt-1 mb-2">프리미엄 한방 특제 저염 장아찌</h4>
+                            <p class="text-xs text-slate-500 font-light leading-relaxed mb-4">전통적인 짠맛이 아닌, 원재료의 풍미와 한약재의 은은한 향이 어우러진 프리미엄 가공 식품입니다</p>
+                        </div>
+                        <div class="border-t border-slate-200 pt-3 flex justify-between items-center text-xs">
+                            <span class="font-bold text-slate-900">10,000원~</span>
+                            <span class="text-emerald-600 font-semibold group-hover:underline">전체 라인업 →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="rounded-2xl border border-slate-100 bg-slate-50 overflow-hidden flex flex-col h-full hover:scale-[1.02] transition-transform shadow-sm">
+                    <div class="h-44 bg-amber-800 text-white flex items-center justify-center p-6 text-center">
+                        <span class="font-extrabold text-base">제천 황기·오미자 웰니스</span>
+                    </div>
+                    <div class="p-5 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="text-xs font-semibold text-amber-800">로컬 원료</span>
+                            <h4 class="text-base font-bold text-slate-900 mt-1 mb-2">항산화·노화 방지 세트</h4>
+                            <p class="text-xs text-slate-500 font-light leading-relaxed mb-4">제천 농가와의 직접 상생 계약을 통해 공급받는 최고급 특산 가공 약재 세트</p>
+                        </div>
+                        <div class="border-t border-slate-200 pt-3 flex justify-between items-center text-xs">
+                            <span class="font-bold text-slate-900">단가 별도협의</span>
+                            <span class="text-slate-400">제천 로컬/B2B</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="trade.html" class="rounded-2xl border-2 border-slate-700 bg-slate-50 overflow-hidden flex flex-col h-full hover:scale-[1.02] transition-all shadow-md hover:shadow-xl hover:border-slate-500 group" style="text-decoration:none;">
+                    <div class="h-44 bg-slate-800 text-white flex items-center justify-center p-6 text-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-600 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                        <div class="flex flex-col items-center gap-3 relative z-10">
+                            <span class="text-2xl">🚢</span>
+                            <span class="font-extrabold text-base">중국 무역 전문 컨설팅<br>안전하고 신속한 수입대행</span>
+                            <span class="text-[10px] bg-yellow-400 text-slate-900 font-bold px-3 py-1 rounded-full tracking-wide">컨설팅 상세보기 →</span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col justify-between flex-grow">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs font-semibold text-slate-600">핵심 노하우 보유</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 font-bold px-2 py-0.5 rounded-full">클릭하여 상세보기</span>
+                            </div>
+                            <h4 class="text-base font-bold text-slate-900 mt-1 mb-2">무역 현장 실무 가이드</h4>
+                            <p class="text-xs text-slate-500 font-light leading-relaxed mb-4">20년 중국 무역 소싱 핵심 프로세스 및 통관 서류 등 꼼꼼하게 진행하여 시행착오를 최소화함</p>
+                        </div>
+                        <div class="border-t border-slate-200 pt-3 flex justify-between items-center text-xs">
+                            <span class="font-bold text-slate-900">기본 무료~</span>
+                            <span class="text-slate-600 font-semibold group-hover:underline">서비스 전체보기 →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="rounded-2xl border border-slate-100 bg-slate-50 overflow-hidden flex flex-col h-full hover:scale-[1.02] transition-transform shadow-sm">
+                    <div class="h-44 bg-purple-800 text-white flex items-center justify-center p-6 text-center">
+                        <span class="font-extrabold text-base">한방 브랜드 스토리<br>인스타툰</span>
+                    </div>
+                    <div class="p-5 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="text-xs font-semibold text-purple-600">SNS 마케팅</span>
+                            <h4 class="text-base font-bold text-slate-900 mt-1 mb-2">캐릭터 브랜디드 툰</h4>
+                            <p class="text-xs text-slate-500 font-light leading-relaxed mb-4">제천 황기 캐릭터 등 직접 제작한 IP를 기반으로 친근함을 더한 마케팅 콘텐츠 솔루션</p>
+                        </div>
+                        <div class="border-t border-slate-200 pt-3 flex justify-between items-center text-xs">
+                            <span class="font-bold text-slate-900">제휴 문의</span>
+                            <span class="text-slate-400">인스타그램</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ceo" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                
+                <div class="md:col-span-8 flex flex-col justify-center">
+                    <span class="text-secondary font-bold tracking-wider text-xs mb-2 uppercase">MEET THE FOUNDER</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-4">
+                        20년 실전 수입 무역의 전문성과<br>
+                        고향 제천을 위한 진심
+                    </h2>
+                    <p class="text-slate-400 text-sm md:text-base mb-6 font-light leading-relaxed">
+                        안녕하세요. "나음생활건강" 대표 권영환입니다. 중국 상해와 광저우 현지에 15년간 거주하며 직접 발로 뛰고 협상해 온 20년 수입 무역 노하우를 이제 제 고향 제천의 우수한 한방 인프라와 결합하려 합니다. 성실과 진심을 무기로 실패하지 않는 성과를 증명하겠습니다.
+                    </p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                            <div class="text-secondary text-base mb-1"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <span class="text-[10px] text-slate-400 block">학력 사항</span>
+                            <span class="text-xs font-semibold">한양대학교 중어중문학 졸업</span>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                            <div class="text-secondary text-base mb-1"><i class="fa-solid fa-building-user"></i></div>
+                            <span class="text-[10px] text-slate-400 block">공기업 이력</span>
+                            <span class="text-xs font-semibold">한국토지공사 10년 실무 경력</span>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                            <div class="text-secondary text-base mb-1"><i class="fa-solid fa-earth-asia"></i></div>
+                            <span class="text-[10px] text-slate-400 block">무역 실전</span>
+                            <span class="text-xs font-semibold">중국 무역 20년 현업 경력</span>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                            <div class="text-secondary text-base mb-1"><i class="fa-solid fa-circle-check"></i></div>
+                            <span class="text-[10px] text-slate-400 block">고객 소통</span>
+                            <span class="text-xs font-semibold">중국 현지 실시간 바이어 직통 대응</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 flex flex-col items-center">
+                    <div class="w-48 h-48 rounded-full border-4 border-secondary overflow-hidden bg-slate-800 flex items-center justify-center shadow-xl">
+                        <img src="my_photo.jpg" 
+                             alt="대표 권영환 프로필" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center mt-6">
+                        <h4 class="text-lg font-bold">대표 권 영 환</h4>
+                        <span class="text-secondary text-[10px] font-semibold tracking-widest mt-1 block">FOUNDER & CEO</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ======= 소식 게시판 ======= -->
+    <section id="news" style="padding:80px 0; background:linear-gradient(180deg,#f8fafc 0%,#fff 100%);">
+        <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+
+            <!-- 섹션 헤더 -->
+            <div style="text-align:center;margin-bottom:56px;">
+                <p style="font-size:11px;font-weight:700;color:#0B4619;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;">NEWS & UPDATES</p>
+                <h2 style="font-family:'Noto Serif KR',serif;font-size:clamp(26px,4vw,40px);font-weight:900;color:#0f172a;line-height:1.25;margin-bottom:0;">나음생활건강 최신 소식</h2>
+                <div style="width:160px;height:4px;background:linear-gradient(90deg,#0B4619,#D4AF37);border-radius:4px;margin:16px auto 16px;"></div>
+                <p style="color:#64748b;font-size:14px;font-weight:300;">신제품 출시 · 회사 소식 · 이벤트 등 최신 정보를 빠르게 전달합니다</p>
+            </div>
+
+            <!-- 로딩 -->
+            <div id="news-loading" style="text-align:center;padding:60px 0;">
+                <div style="display:inline-block;width:44px;height:44px;border:3px solid #e2e8f0;border-top-color:#0B4619;border-radius:50%;animation:newspin 0.8s linear infinite;"></div>
+                <p style="color:#94a3b8;font-size:13px;margin-top:14px;">소식을 불러오는 중...</p>
+            </div>
+            <!-- 에러 -->
+            <div id="news-error" style="text-align:center;padding:60px 0;display:none;">
+                <div style="font-size:44px;margin-bottom:12px;">📡</div>
+                <p style="color:#64748b;font-size:14px;">소식을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</p>
+            </div>
+            <!-- 비어있음 -->
+            <div id="news-empty" style="text-align:center;padding:60px 0;display:none;">
+                <div style="font-size:44px;margin-bottom:12px;">📋</div>
+                <p style="color:#64748b;font-size:14px;">아직 등록된 소식이 없습니다. 곧 업데이트될 예정입니다!</p>
+            </div>
+
+            <!-- 피처드 카드 (1번째 소식) -->
+            <div id="news-featured" style="display:none;margin-bottom:28px;"></div>
+
+            <!-- 일반 카드 그리드 (2번째~ 소식) -->
+            <div id="news-grid" style="display:none;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px;"></div>
+
+            <!-- 더보기 -->
+            <div id="news-more-wrap" style="text-align:center;margin-top:40px;display:none;">
+                <button onclick="showMoreNews()"
+                    style="display:inline-flex;align-items:center;gap:8px;padding:12px 32px;border-radius:100px;border:2px solid #0B4619;background:#fff;color:#0B4619;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;"
+                    onmouseover="this.style.background='#0B4619';this.style.color='#fff';"
+                    onmouseout="this.style.background='#fff';this.style.color='#0B4619';">
+                    <i class="fa-solid fa-chevron-down" style="font-size:11px;"></i> 더 보기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes newspin { to { transform:rotate(360deg); } }
+
+        /* 피처드 카드 */
+        .nf-card {
+            display:grid; grid-template-columns:1fr 1fr; border-radius:24px;
+            overflow:hidden; box-shadow:0 4px 32px rgba(11,70,25,0.10);
+            border:1px solid #e8edf4; min-height:280px;
+            transition:box-shadow 0.3s, transform 0.3s;
+        }
+        .nf-card:hover { box-shadow:0 16px 48px rgba(11,70,25,0.16); transform:translateY(-3px); }
+        .nf-left { padding:40px 44px; display:flex; flex-direction:column; justify-content:space-between; background:#fff; }
+        .nf-right { position:relative; overflow:hidden; min-height:260px; }
+        .nf-right-bg { width:100%; height:100%; background-size:cover; background-position:center; filter:brightness(0.85); transition:transform 6s ease; }
+        .nf-card:hover .nf-right-bg { transform:scale(1.04); }
+        .nf-right-overlay { position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,70,25,0.55),rgba(11,70,25,0.25)); }
+
+        /* 일반 카드 */
+        .ng-card {
+            background:#fff; border-radius:18px; overflow:hidden;
+            border:1px solid #e8edf4; display:flex; flex-direction:column;
+            box-shadow:0 2px 12px rgba(0,0,0,0.05);
+            transition:box-shadow 0.25s, transform 0.25s;
+        }
+        .ng-card:hover { box-shadow:0 12px 36px rgba(11,70,25,0.12); transform:translateY(-4px); }
+        .ng-top-bar { height:5px; }
+        .ng-body { padding:22px 22px 0; flex-grow:1; }
+        .ng-footer { padding:14px 22px 20px; border-top:1px solid #f1f5f9; margin-top:16px;
+                     display:flex; justify-content:space-between; align-items:center; }
+
+        /* 공통 */
+        .n-badge { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700;
+                   padding:4px 12px; border-radius:100px; margin-bottom:12px; }
+        .n-title-lg { font-family:'Noto Serif KR',serif; font-size:22px; font-weight:900; color:#0f172a; line-height:1.4; margin-bottom:12px; }
+        .n-title-sm { font-size:15px; font-weight:800; color:#0f172a; line-height:1.4; margin-bottom:10px; }
+        .n-content-lg { font-size:14px; color:#475569; line-height:1.85; flex-grow:1;
+                        display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical; overflow:hidden; }
+        .n-content-sm { font-size:13px; color:#64748b; line-height:1.75;
+                        display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+        .n-date { font-size:11px; color:#94a3b8; font-weight:500; display:flex; align-items:center; gap:5px; }
+        .n-link { font-size:12px; color:#0B4619; font-weight:700; text-decoration:none;
+                  display:flex; align-items:center; gap:4px; }
+        .n-link:hover { text-decoration:underline; }
+        .n-num { font-size:11px; font-weight:800; color:#0B4619; margin-bottom:8px; letter-spacing:0.05em; }
+
+        @media(max-width:720px){
+            .nf-card { grid-template-columns:1fr; }
+            .nf-right { min-height:180px; }
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script>
+    // ── 카테고리 설정 ──
+    const CAT_CFG = {
+        '신제품':   { bg:'#dcfce7', color:'#15803d', bar:'#22c55e', icon:'fa-box-open',   img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80' },
+        '회사소식': { bg:'#dbeafe', color:'#1d4ed8', bar:'#3b82f6', icon:'fa-building',   img:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80' },
+        '이벤트':   { bg:'#fef9c3', color:'#a16207', bar:'#eab308', icon:'fa-calendar-star', img:'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80' },
+        '공지':     { bg:'#fee2e2', color:'#dc2626', bar:'#ef4444', icon:'fa-bullhorn',   img:'https://images.unsplash.com/photo-1586339949216-35c2747cc36d?w=800&q=80' },
+        '언론보도': { bg:'#f3e8ff', color:'#7e22ce', bar:'#a855f7', icon:'fa-newspaper',  img:'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80' },
+        '사무실':   { bg:'#d1fae5', color:'#065f46', bar:'#10b981', icon:'fa-door-open',  img:'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80' },
+        '홈페이지': { bg:'#e0f2fe', color:'#0369a1', bar:'#0ea5e9', icon:'fa-globe',      img:'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80' },
+        '제품':     { bg:'#ffedd5', color:'#c2410c', bar:'#f97316', icon:'fa-tags',       img:'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80' },
+        '채용':     { bg:'#fce7f3', color:'#9d174d', bar:'#ec4899', icon:'fa-user-plus',  img:'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80' },
+        '파트너십': { bg:'#ede9fe', color:'#5b21b6', bar:'#8b5cf6', icon:'fa-handshake',  img:'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80' },
+        '수상':     { bg:'#fef3c7', color:'#b45309', bar:'#f59e0b', icon:'fa-trophy',     img:'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=800&q=80' },
+    };
+    const DEFAULT_CFG = { bg:'#f0f4ff', color:'#3730a3', bar:'#6366f1', icon:'fa-bell', img:'https://images.unsplash.com/photo-1586339949216-35c2747cc36d?w=800&q=80' };
+
+    function cfg(cat) { return CAT_CFG[cat] || DEFAULT_CFG; }
+
+    function fmtDate(d) {
+        if (!d) return '';
+        const dt = new Date(d);
+        if (isNaN(dt)) return d;
+        return `${dt.getFullYear()}.${String(dt.getMonth()+1).padStart(2,'0')}.${String(dt.getDate()).padStart(2,'0')}`;
+    }
+
+    // ── 피처드 카드 (1번째 소식) ──
+    function makeFeatured(item, num) {
+        const c = cfg(item.category);
+        const linkHtml = item.link
+            ? `<a href="${item.link}" target="_blank" class="n-link">자세히 보기 <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a>`
+            : '';
+        return `
+        <div class="nf-card">
+            <div class="nf-left">
+                <div>
+                    <p class="n-num">NO.${String(num).padStart(2,'0')}</p>
+                    <span class="n-badge" style="background:${c.bg};color:${c.color};">
+                        <i class="fa-solid ${c.icon}" style="font-size:10px;"></i> ${item.category || '소식'}
+                    </span>
+                    <h3 class="n-title-lg">${item.title}</h3>
+                    <p class="n-content-lg">${(item.content||'').replace(/\n/g,'<br>')}</p>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:18px;border-top:1px solid #f1f5f9;">
+                    <span class="n-date"><i class="fa-regular fa-calendar"></i> ${fmtDate(item.date)}</span>
+                    ${linkHtml}
+                </div>
+            </div>
+            <div class="nf-right">
+                <div class="nf-right-bg" style="background-image:url('${c.img}');position:absolute;inset:0;"></div>
+                <div class="nf-right-overlay"></div>
+                <div style="position:absolute;bottom:24px;left:24px;right:24px;">
+                    <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.3);">
+                        최신 소식
+                    </span>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    // ── 일반 카드 ──
+    function makeCard(item, num) {
+        const c = cfg(item.category);
+        const linkHtml = item.link
+            ? `<a href="${item.link}" target="_blank" class="n-link">보기 <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a>`
+            : '';
+        return `
+        <div class="ng-card">
+            <div class="ng-top-bar" style="background:${c.bar};"></div>
+            <div class="ng-body">
+                <p class="n-num">NO.${String(num).padStart(2,'0')}</p>
+                <span class="n-badge" style="background:${c.bg};color:${c.color};">
+                    <i class="fa-solid ${c.icon}" style="font-size:10px;"></i> ${item.category || '소식'}
+                </span>
+                <h3 class="n-title-sm">${item.title}</h3>
+                <p class="n-content-sm">${(item.content||'').replace(/\n/g,'<br>')}</p>
+            </div>
+            <div class="ng-footer">
+                <span class="n-date"><i class="fa-regular fa-calendar"></i> ${fmtDate(item.date)}</span>
+                ${linkHtml}
+            </div>
+        </div>`;
+    }
+
+    // ── 렌더링 ──
+    let allNews = [], shownCount = 7;
+    function renderNews() {
+        const visible = allNews.slice(0, shownCount);
+        const featured = document.getElementById('news-featured');
+        const grid     = document.getElementById('news-grid');
+
+        if (visible.length > 0) {
+            // 1번째: 피처드
+            featured.style.display = 'block';
+            featured.innerHTML = makeFeatured(visible[0], allNews.length - 0);
+
+            // 2번째~: 그리드
+            const rest = visible.slice(1);
+            if (rest.length > 0) {
+                grid.style.display = 'grid';
+                grid.innerHTML = rest.map((item, i) =>
+                    makeCard(item, allNews.length - 1 - i)
+                ).join('');
+            } else {
+                grid.style.display = 'none';
+            }
+        }
+
+        const moreWrap = document.getElementById('news-more-wrap');
+        moreWrap.style.display = allNews.length > shownCount ? 'block' : 'none';
+    }
+
+    function showMoreNews() { shownCount += 6; renderNews(); }
+
+    // ── PapaParse CSV fetch ──
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSF8X3GfU_1OjZ3rTgDy6yL5ybNYVkAY346OwdBuglxunMxMm2QHFrWhsZewywtPs3YqCUx-577Hy1A/pub?gid=0&single=true&output=csv';
+
+    Papa.parse(CSV_URL, {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+            document.getElementById('news-loading').style.display = 'none';
+            allNews = results.data.filter(r => r.title && r.title.trim()).reverse();
+            if (allNews.length === 0) {
+                document.getElementById('news-empty').style.display = 'block';
+            } else {
+                renderNews();
+            }
+        },
+        error: function() {
+            document.getElementById('news-loading').style.display = 'none';
+            document.getElementById('news-error').style.display = 'block';
+        }
+    });
+    </script>
+
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold text-primary tracking-wider uppercase mb-2">CONTACT US</h2>
+                <p class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">협업 및 제휴 문의하기</p>
+                <div class="w-12 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 max-w-6xl mx-auto">
+                <div class="lg:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">"나음생활건강"과<br>더 나은(Better) 내일을 이야기하세요.</h3>
+                        <p class="text-slate-600 font-light leading-relaxed mb-8 text-sm">
+                            바이오밸리 입주사 원재료 소싱 대행, 무역 대행 및 컨설팅 자문, 캐릭터 라이센싱 협찬 제휴 등 제안을 주시면 성심껏 검토 후 신속히 연락해 드리겠습니다.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <span class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-location-dot"></i></span>
+                            <div>
+                                <span class="text-[10px] text-slate-400 block font-medium">공식 비즈니스 오피스</span>
+                                <span class="text-xs font-semibold text-slate-800">충북 제천시 바이오밸리 복합문화센터 3층 창업인큐베이터 1호실</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-envelope"></i></span>
+                            <div>
+                                <span class="text-[10px] text-slate-400 block font-medium">공식 이메일</span>
+                                <span class="text-xs font-semibold text-slate-800">ceo@naumlife.com</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0"><i class="fa-solid fa-phone"></i></span>
+                            <div>
+                                <span class="text-[10px] text-slate-400 block font-medium">연락처</span>
+                                <span class="text-xs font-semibold text-slate-800">010-8077-9118</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-50 p-8 rounded-2xl border border-slate-100 shadow-sm">
+                 <form name="contact" method="POST" data-netlify="true" class="space-y-6">
+    <input type="hidden" name="form-name" value="contact" />
+    
+    <div class="grid sm:grid-cols-2 gap-6">
+        <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">기업(기관)명</label>
+            <input type="text" name="company" placeholder="예: 나음생활건강" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" required>
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">담당자 성함</label>
+            <input type="text" name="name" placeholder="예: 권영환" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" required>
+        </div>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-6">
+        <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">이메일 주소</label>
+            <input type="email" name="email" placeholder="example@naumlife.com" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" required>
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">연락처</label>
+            <input type="tel" name="phone" placeholder="010-8077-9118" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" required>
+        </div>
+    </div>
+    <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">문의 유형</label>
+        <select name="type" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+            <option>중국 무역 대행 및 수입 컨설팅 신청</option>
+            <option>B2B 약재/원료 소싱 의뢰</option>
+            <option>한방 건강식품 유통/공급 문의</option>
+            <option>콘텐츠 및 인스타툰 비즈니스 제휴</option>
+            <option>기타 제휴 문의</option>
+        </select>
+    </div>
+    <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">상세 문의 내용</label>
+        <textarea name="message" rows="5" placeholder="기획 배경 및 희망하시는 구체적 제휴 일정을 함께 적어 주시면 신속하게 조율할 수 있습니다." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none" required></textarea>
+    </div>
+    <button type="submit" class="w-full bg-primary hover:bg-emerald-900 text-white font-bold py-4 rounded-xl transition-all shadow-md hover:shadow-lg text-sm">
+        비즈니스 제안서 전송하기
+    </button>
+</form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8 border-b border-slate-800 pb-8">
+                <div>
+                    <span class="text-xl font-bold text-white tracking-wider">나음생활건강</span>
+                    <p class="text-[10px] text-slate-500 mt-1">Professional Wellness & Sourcing Partner | <span class="text-secondary font-medium">www.naumlife.com</span></p>
+                </div>
+                <div class="flex gap-6 text-sm">
+                    <a href="#about" class="hover:text-white transition-colors">회사소개</a>
+                    <a href="#business" class="hover:text-white transition-colors">사업분야</a>
+                    <a href="#products" class="hover:text-white transition-colors">제품소개</a>
+                    <a href="#contact" class="hover:text-white transition-colors">문의하기</a>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between text-xs text-slate-500 gap-4">
+                <div>
+                    <p class="mb-1">상호: 나음생활건강 | 대표자: 권영환 | 이메일: ceo@naumlife.com</p>
+                    <p class="mb-1">공식 도메인: www.naumlife.com</p>
+                    <p>공식 입주처 주소: 충북 제천시 바이오밸리 복합문화센터 3층 창업인큐베이터 1호실</p>
+                </div>
+                <div class="md:text-right mt-4 md:mt-0">
+                    <p>&copy; 나음생활건강. 2001 All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

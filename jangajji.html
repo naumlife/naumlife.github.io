@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프리미엄 한방 특제 저염 장아찌 | 나음생활건강</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0B4619;
+            --primary-light: #1a6b2e;
+            --secondary: #D4AF37;
+            --accent: #1E293B;
+            --cream: #FDF8F0;
+            --brown: #6B3F1A;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--cream);
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e8e0d0;
+            z-index: 100;
+            height: 72px;
+            display: flex; align-items: center;
+        }
+
+        /* ── HERO ── */
+        .hero-section {
+            padding-top: 72px;
+            position: relative;
+            min-height: 620px;
+            display: flex;
+            align-items: stretch;
+            overflow: hidden;
+        }
+
+        /* 배경 레이어 */
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+            background-image:
+                url('https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                105deg,
+                rgba(6,32,12,0.98) 0%,
+                rgba(8,45,18,0.96) 35%,
+                rgba(10,55,20,0.88) 55%,
+                rgba(10,55,20,0.50) 75%,
+                rgba(10,55,20,0.10) 100%
+            );
+        }
+
+        /* 내부 2컬럼 그리드 */
+        .hero-inner {
+            position: relative; z-index: 2;
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 32px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* 텍스트 영역 */
+        .hero-text { padding: 70px 0; }
+
+        /* 이미지 영역 */
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 90px 0 60px;
+        }
+
+        .hero-img-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        /* 메인 이미지 */
+        .hero-img-main {
+            width: 100%;
+            aspect-ratio: 3/2;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+            border: 2px solid rgba(212,175,55,0.4);
+        }
+        .hero-img-main img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+
+        /* 서브 이미지 */
+        .hero-img-sub {
+            position: absolute;
+            bottom: -28px; left: -28px;
+            width: 42%; aspect-ratio: 1;
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+            border: 3px solid rgba(212,175,55,0.65);
+        }
+        .hero-img-sub img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+
+        /* 골드 뱃지 */
+        .hero-badge {
+            position: absolute;
+            top: -20px; right: -20px;
+            background: var(--secondary);
+            color: #1a1a1a;
+            font-size: 12px; font-weight: 800;
+            padding: 12px 16px;
+            border-radius: 14px;
+            line-height: 1.4; text-align: center;
+            box-shadow: 0 8px 28px rgba(212,175,55,0.55);
+            white-space: nowrap;
+        }
+
+        /* 한글 줄바꿈 자연스럽게 */
+        .keep-all { word-break: keep-all; }
+
+        .hero-grain {
+            position: absolute; inset: 0; z-index: 1; opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        @media (max-width: 860px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 0; }
+            .hero-visual { display: none; }
+            .hero-text { padding: 50px 0; }
+        }
+
+        .badge-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(212,175,55,0.15);
+            border: 1px solid rgba(212,175,55,0.4);
+            color: var(--secondary);
+            padding: 6px 16px; border-radius: 100px;
+            font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+        }
+
+        /* ── PRODUCT CARDS ── */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(11,70,25,0.15);
+        }
+
+        .card-thumb {
+            height: 200px;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+
+        .card-thumb-icon {
+            font-size: 64px; line-height: 1;
+        }
+
+        .card-thumb::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.25) 100%);
+        }
+
+        .badge-new {
+            position: absolute; top: 12px; right: 12px; z-index: 2;
+            background: var(--secondary); color: #1a1a1a;
+            font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 100px;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-best {
+            position: absolute; top: 12px; right: 12px; z-index: 2;
+            background: #e53935; color: #fff;
+            font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 100px;
+        }
+
+        .card-body { padding: 20px 22px; flex-grow: 1; display: flex; flex-direction: column; }
+
+        .tag-category {
+            font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--primary); margin-bottom: 6px;
+        }
+
+        .card-title {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 17px; font-weight: 700; color: #111; line-height: 1.4; margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 12.5px; color: #666; line-height: 1.7; flex-grow: 1; margin-bottom: 14px;
+        }
+
+        .feature-pills {
+            display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;
+        }
+
+        .pill {
+            font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+            background: #f0faf3; color: var(--primary); border: 1px solid #c6e8d0;
+        }
+
+        .card-footer {
+            border-top: 1px solid #f0ede8;
+            padding: 14px 22px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .price-label { font-size: 10px; color: #999; }
+        .price-value { font-size: 18px; font-weight: 800; color: var(--primary); line-height: 1; }
+
+        .btn-order {
+            background: var(--primary);
+            color: #fff; font-size: 12px; font-weight: 700;
+            padding: 8px 18px; border-radius: 10px;
+            border: none; cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 5px;
+        }
+        .btn-order:hover { background: var(--primary-light); }
+
+        /* ── INGREDIENT SECTION ── */
+        .ingredient-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e8e0d0;
+            text-align: center;
+            transition: box-shadow 0.3s;
+        }
+        .ingredient-card:hover { box-shadow: 0 8px 24px rgba(11,70,25,0.1); }
+
+        /* ── CTA STRIP ── */
+        .cta-strip {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5c28 100%);
+            border-radius: 24px;
+            padding: 48px 40px;
+            position: relative; overflow: hidden;
+        }
+        .cta-strip::before {
+            content: '🌿';
+            position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+            font-size: 120px; opacity: 0.08; line-height: 1;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up { animation: fadeUp 0.6s ease forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+        /* ── DIVIDER ── */
+        .gold-divider {
+            width: 48px; height: 3px; background: var(--secondary);
+            border-radius: 4px; margin: 12px auto 0;
+        }
+
+        /* ── SCROLL-REVEAL (Intersection Observer) ── */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── TABLE ── */
+        table { border-collapse: collapse; width: 100%; }
+        th { background: var(--primary); color: #fff; padding: 12px 16px; text-align: left; font-size: 13px; }
+        td { padding: 11px 16px; font-size: 13px; border-bottom: 1px solid #f0ede8; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: #faf7f2; }
+
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .cta-strip::before { display: none; }
+        }
+
+        /* ── CATEGORY TABS ── */
+        .tab-wrap {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            justify-content: center; margin-bottom: 48px;
+        }
+        .tab-btn {
+            padding: 8px 20px; border-radius: 100px;
+            font-size: 13px; font-weight: 700; cursor: pointer;
+            border: 2px solid #d1d5db;
+            background: #fff; color: #555;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .tab-btn.active {
+            background: var(--primary); color: #fff;
+            border-color: var(--primary);
+        }
+        .product-card { transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; }
+        .product-card.hidden { display: none; }
+
+        /* 시즌 뱃지 */
+        .badge-season {
+            position: absolute; top: 12px; right: 12px; z-index: 2;
+            background: #2563eb; color: #fff;
+            font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====== NAV ====== -->
+<nav>
+    <div style="max-width:1200px; margin:0 auto; padding:0 24px; width:100%; display:flex; justify-content:space-between; align-items:center;">
+        <a href="index.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+
+           <img src="logo.png" alt="나음생활건강 로고" style="height:36px; width:auto;">
+            <div>
+                <div style="font-weight:800; color:var(--primary); font-size:15px; line-height:1;">나음생활건강</div>
+                <div style="font-size:9px; color:#999; letter-spacing:0.1em; text-transform:uppercase; margin-top:2px;">naumlife.com</div>
+            </div>
+
+        </a>
+        <div style="display:flex; align-items:center; gap:20px;">
+            <a href="index.html" style="font-size:13px; color:#555; text-decoration:none; font-weight:500; display:flex; align-items:center; gap:5px;">
+                <i class="fa-solid fa-arrow-left" style="font-size:11px;"></i> 메인으로
+            </a>
+            <a href="index.html#contact" style="background:var(--primary); color:#fff; font-size:12px; font-weight:700; padding:8px 18px; border-radius:9px; text-decoration:none;">문의하기</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== HERO ====== -->
+<section class="hero-section">
+
+    <!-- 배경 이미지 레이어 -->
+    <div class="hero-bg"></div>
+    <div class="hero-grain"></div>
+
+    <!-- 내부 2컬럼 그리드 -->
+    <div class="hero-inner">
+
+        <!-- 왼쪽: 텍스트 -->
+        <div class="hero-text">
+            <div class="fade-up">
+                <span class="badge-tag"><i class="fa-solid fa-leaf"></i> 나음생활건강 대표 상품</span>
+            </div>
+            <h1 class="fade-up delay-1 keep-all"
+                style="font-family:'Noto Serif KR',serif;
+                       font-size:clamp(30px,4.5vw,54px);
+                       font-weight:900; color:#fff;
+                       line-height:1.3; margin:22px 0 18px;">
+                프리미엄 한방 특제<br>
+                <span style="color:var(--secondary);">저염 장아찌</span> 라인업
+            </h1>
+            <p class="fade-up delay-2 keep-all"
+               style="color:rgba(255,255,255,0.75);
+                      font-size:15px; max-width:460px;
+                      line-height:1.9; margin-bottom:36px; font-weight:300;">
+                짠맛을 줄이고 한약재의 은은한 향을 더한,<br>
+                건강을 먹는 새로운 방식의 장아찌입니다.<br>
+                제천 지역 우수 농가와의 직거래 계약으로<br>
+                원재료의 신선함을 그대로 담았습니다.
+            </p>
+            <div class="fade-up delay-3"
+                 style="display:flex; flex-wrap:wrap; gap:14px 28px;">
+                <div style="display:flex; align-items:center; gap:8px;
+                            color:rgba(255,255,255,0.75); font-size:13px;">
+                    <i class="fa-solid fa-check-circle" style="color:var(--secondary);"></i>
+                    저나트륨 · 저염 설계
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;
+                            color:rgba(255,255,255,0.75); font-size:13px;">
+                    <i class="fa-solid fa-check-circle" style="color:var(--secondary);"></i>
+                    제천 로컬 직거래 원료
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;
+                            color:rgba(255,255,255,0.75); font-size:13px;">
+                    <i class="fa-solid fa-check-circle" style="color:var(--secondary);"></i>
+                    무방부제 · 천연 발효
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;
+                            color:rgba(255,255,255,0.75); font-size:13px;">
+                    <i class="fa-solid fa-check-circle" style="color:var(--secondary);"></i>
+                    한약재 블렌드 레시피
+                </div>
+            </div>
+        </div>
+
+        <!-- 오른쪽: 이미지 -->
+        <div class="hero-visual">
+            <div class="hero-img-wrap fade-up delay-2">
+
+                <!-- 메인 이미지: 한국 전통 발효 음식 -->
+                <div class="hero-img-main">
+                    <img
+                        src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=800&q=85"
+                        alt="한방 저염 장아찌">
+                </div>
+
+                <!-- 서브 이미지: 신선한 채소 원료 -->
+                <div class="hero-img-sub">
+                    <img
+                        src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=400&q=80"
+                        alt="신선한 제천 채소">
+                </div>
+
+                <!-- 골드 뱃지 -->
+                <div class="hero-badge">
+                    🌿 제천<br>청정 원료
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ====== STAT BAR ====== -->
+<div style="background:var(--secondary); padding:16px 24px;">
+    <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-around; gap:12px; text-align:center;">
+        <div>
+            <div style="font-size:22px; font-weight:900; color:#1a1a1a;">17종</div>
+            <div style="font-size:11px; font-weight:600; color:rgba(0,0,0,0.6);">장아찌 풀 라인업</div>
+        </div>
+        <div style="width:1px; background:rgba(0,0,0,0.15);"></div>
+        <div>
+            <div style="font-size:22px; font-weight:900; color:#1a1a1a;">40%↓</div>
+            <div style="font-size:11px; font-weight:600; color:rgba(0,0,0,0.6);">일반 대비 나트륨 저감</div>
+        </div>
+        <div style="width:1px; background:rgba(0,0,0,0.15);"></div>
+        <div>
+            <div style="font-size:22px; font-weight:900; color:#1a1a1a;">100%</div>
+            <div style="font-size:11px; font-weight:600; color:rgba(0,0,0,0.6);">제천 로컬 직거래 원료</div>
+        </div>
+        <div style="width:1px; background:rgba(0,0,0,0.15);"></div>
+        <div>
+            <div style="font-size:22px; font-weight:900; color:#1a1a1a;">4개</div>
+            <div style="font-size:11px; font-weight:600; color:rgba(0,0,0,0.6);">테마 카테고리</div>
+        </div>
+        <div style="width:1px; background:rgba(0,0,0,0.15);"></div>
+        <div>
+            <div style="font-size:22px; font-weight:900; color:#1a1a1a;">무방부제</div>
+            <div style="font-size:11px; font-weight:600; color:rgba(0,0,0,0.6);">천연 발효 · 첨가물 無</div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== PRODUCT LINEUP ====== -->
+<section style="padding:80px 24px; max-width:1200px; margin:0 auto;">
+    <div class="reveal" style="text-align:center; margin-bottom:40px;">
+        <p style="font-size:11px; font-weight:700; color:var(--primary); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:8px;">PRODUCT LINE-UP</p>
+        <h2 style="font-family:'Noto Serif KR',serif; font-size:clamp(24px,4vw,38px); font-weight:900; color:#111; line-height:1.3;">
+            17가지 프리미엄 한방 저염 장아찌
+        </h2>
+        <div class="gold-divider"></div>
+        <p style="color:#777; font-size:14px; margin-top:16px; font-weight:300; max-width:540px; margin-left:auto; margin-right:auto; line-height:1.7;">
+            제천 청정 원료와 전통 한방 노하우가 만난 국내 최대 저염 장아찌 라인업
+        </p>
+    </div>
+
+    <!-- 카테고리 탭 -->
+    <div class="tab-wrap reveal">
+        <button class="tab-btn active" onclick="filterTab('all',this)">🍽 전체보기 (17종)</button>
+        <button class="tab-btn" onclick="filterTab('hanbang',this)">🌿 제천 한방 라인</button>
+        <button class="tab-btn" onclick="filterTab('mountain',this)">🏔 산채·버섯 라인</button>
+        <button class="tab-btn" onclick="filterTab('vegetable',this)">🥬 건강 채소 라인</button>
+        <button class="tab-btn" onclick="filterTab('trendy',this)">✨ 트렌디 웰니스</button>
+        <button class="tab-btn" onclick="filterTab('gift',this)">🎁 선물세트</button>
+    </div>
+
+    <div class="product-grid">
+
+        <!-- ① 황기 마늘 -->
+        <div class="product-card reveal" data-cat="hanbang">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#2d5a1b,#4a8c2a);">
+                <span class="card-thumb-icon">🧄</span>
+                <span class="badge-best">BEST</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">제천 한방 라인 · 001</p>
+                <h3 class="card-title">황기 베이스 저염 마늘 장아찌</h3>
+                <p class="card-desc">제천 황기 달인 물로 절인 마늘 장아찌. 황기 특유의 단맛과 깊은 감칠맛이 살아있어 면역력 강화에 탁월합니다.</p>
+                <div class="feature-pills"><span class="pill">황기 함유</span><span class="pill">면역강화</span><span class="pill">무첨가물</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (300g)</p><p class="price-value">12,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ② 오미자 깻잎 -->
+        <div class="product-card reveal" data-cat="hanbang">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#1b4d2a,#276337);">
+                <span class="card-thumb-icon">🍃</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">제천 한방 라인 · 002</p>
+                <h3 class="card-title">오미자 발효 저염 깻잎 장아찌</h3>
+                <p class="card-desc">제천 특산 오미자 발효액으로 담근 깻잎 장아찌. 5가지 맛의 오미자가 깻잎 향과 어우러져 MZ세대에게 특히 인기입니다.</p>
+                <div class="feature-pills"><span class="pill">오미자 발효</span><span class="pill">항산화</span><span class="pill">저칼로리</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (300g)</p><p class="price-value">13,500원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ③ 감초·당귀 무 -->
+        <div class="product-card reveal" data-cat="hanbang">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#5a3e1b,#8b6332);">
+                <span class="card-thumb-icon">🥕</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">제천 한방 라인 · 003</p>
+                <h3 class="card-title">감초 · 당귀 블렌드 저염 무 장아찌</h3>
+                <p class="card-desc">감초와 당귀를 우린 한방 양념장으로 절인 아삭한 무 장아찌. 소화 촉진 효능으로 남녀노소 가장 편하게 즐길 수 있는 기본 라인입니다.</p>
+                <div class="feature-pills"><span class="pill">감초·당귀</span><span class="pill">소화촉진</span><span class="pill">아삭한 식감</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (400g)</p><p class="price-value">10,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ④ 도라지 한방 (NEW) -->
+        <div class="product-card reveal" data-cat="hanbang">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#4a2a6b,#7b4fa0);">
+                <span class="card-thumb-icon">💜</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">제천 한방 라인 · 004</p>
+                <h3 class="card-title">제천 도라지 한방 저염 장아찌</h3>
+                <p class="card-desc">제천 대표 특산품 도라지로 만든 장아찌. 사포닌이 풍부하여 기관지·면역에 탁월하며, 쌉싸름한 맛이 한방 양념과 절묘하게 어우러집니다.</p>
+                <div class="feature-pills"><span class="pill">제천 특산</span><span class="pill">사포닌 풍부</span><span class="pill">기관지 강화</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (250g)</p><p class="price-value">14,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑤ 더덕 -->
+        <div class="product-card reveal" data-cat="mountain">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#3a5a2a,#5a8a3a);">
+                <span class="card-thumb-icon">🌱</span>
+                <span class="badge-best">PREMIUM</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">산채·버섯 라인 · 005</p>
+                <h3 class="card-title">제천 더덕 한방 저염 장아찌</h3>
+                <p class="card-desc">제천 산지 직거래 더덕으로 만든 최고급 장아찌. 쌉싸름한 향과 아삭한 식감에 한방 양념이 더해져 건강식 선물세트로도 각광받습니다.</p>
+                <div class="feature-pills"><span class="pill">산지 직거래</span><span class="pill">폐기능 강화</span><span class="pill">선물 인기</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (250g)</p><p class="price-value">18,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑥ 참송이버섯 (사용자 요청) -->
+        <div class="product-card reveal" data-cat="mountain">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#4a3420,#7a5a38);">
+                <span class="card-thumb-icon">🍄</span>
+                <span class="badge-best">PREMIUM</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">산채·버섯 라인 · 006</p>
+                <h3 class="card-title">참송이버섯 한방 저염 장아찌</h3>
+                <p class="card-desc">특유의 솔향과 탱글탱글한 식감이 일품인 참송이버섯 장아찌. 베타글루칸 항암 성분이 풍부하며 간장·오미자 발효액 양념이 버섯의 감칠맛을 극대화합니다.</p>
+                <div class="feature-pills"><span class="pill">베타글루칸</span><span class="pill">항암 효능</span><span class="pill">솔향 풍미</span><span class="pill">고급 식감</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (200g)</p><p class="price-value">22,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑦ 참두릅 (사용자 요청) -->
+        <div class="product-card reveal" data-cat="mountain">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#1e4d1a,#2e7a28);">
+                <span class="card-thumb-icon">🌿</span>
+                <span class="badge-season">봄 시즌</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">산채·버섯 라인 · 007</p>
+                <h3 class="card-title">참두릅 저염 장아찌</h3>
+                <p class="card-desc">봄철 단 한 번만 채취하는 참두릅으로 담근 희귀 장아찌. 두릅 특유의 쌉쌀한 향과 아삭함이 살아있으며 혈당 조절·피로회복에 탁월한 봄 보양 반찬입니다.</p>
+                <div class="feature-pills"><span class="pill">봄 한정</span><span class="pill">혈당 조절</span><span class="pill">피로회복</span><span class="pill">희귀 산채</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (200g)</p><p class="price-value">20,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑧ 명이나물 (NEW) -->
+        <div class="product-card reveal" data-cat="mountain">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#1a4a30,#2a7a4a);">
+                <span class="card-thumb-icon">🌾</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">산채·버섯 라인 · 008</p>
+                <h3 class="card-title">명이나물 (산마늘) 저염 장아찌</h3>
+                <p class="card-desc">MZ세대 SNS에서 폭발적 인기를 끄는 명이나물 장아찌. 산마늘 특유의 알싸한 향과 부드러운 식감에 오미자 발효액이 더해져 고기 쌈채소로도 최고입니다.</p>
+                <div class="feature-pills"><span class="pill">SNS 인기</span><span class="pill">항균 효능</span><span class="pill">쌈채소</span><span class="pill">MZ 선호</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (250g)</p><p class="price-value">16,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑨ 표고버섯 (NEW) -->
+        <div class="product-card reveal" data-cat="mountain">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#3d2a1a,#6b4a2a);">
+                <span class="card-thumb-icon">🍄‍🟫</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">산채·버섯 라인 · 009</p>
+                <h3 class="card-title">표고버섯 간장 저염 장아찌</h3>
+                <p class="card-desc">두툼한 표고버섯을 황기 달인 간장으로 절인 감칠맛 폭발 장아찌. 씹을수록 우러나는 깊은 향과 탄력 있는 식감이 밥도둑으로 불릴 만합니다.</p>
+                <div class="feature-pills"><span class="pill">감칠맛 극대</span><span class="pill">면역 증강</span><span class="pill">황기 간장</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (250g)</p><p class="price-value">15,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑩ 산초·진피 고추 -->
+        <div class="product-card reveal" data-cat="vegetable">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#8b1a1a,#c0392b);">
+                <span class="card-thumb-icon">🌶️</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">건강 채소 라인 · 010</p>
+                <h3 class="card-title">산초 · 진피 블렌드 저염 고추 장아찌</h3>
+                <p class="card-desc">산초와 진피(말린 귤껍질)를 더해 매운맛에 향미를 더한 고추 장아찌. 짜지 않으면서 더욱 풍부한 향미가 특징입니다.</p>
+                <div class="feature-pills"><span class="pill">산초 함유</span><span class="pill">향미 풍부</span><span class="pill">식욕증진</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (300g)</p><p class="price-value">11,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑪ 우엉 (사용자 요청) -->
+        <div class="product-card reveal" data-cat="vegetable">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#5c3d1a,#9a6632);">
+                <span class="card-thumb-icon">🥢</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">건강 채소 라인 · 011</p>
+                <h3 class="card-title">우엉 한방 저염 장아찌</h3>
+                <p class="card-desc">식이섬유의 왕 우엉을 당귀·감초 달인 물에 절인 건강 장아찌. 아삭하면서도 질기지 않은 식감과 구수한 향이 특징이며 장 건강·다이어트에 효과적입니다.</p>
+                <div class="feature-pills"><span class="pill">식이섬유 풍부</span><span class="pill">장 건강</span><span class="pill">다이어트</span><span class="pill">당귀·감초</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (300g)</p><p class="price-value">12,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑫ 연근 (NEW) -->
+        <div class="product-card reveal" data-cat="vegetable">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#8b6a4a,#c4956a);">
+                <span class="card-thumb-icon">🪷</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">건강 채소 라인 · 012</p>
+                <h3 class="card-title">연근 오미자 저염 장아찌</h3>
+                <p class="card-desc">구멍 뚫린 연근 슬라이스를 오미자 발효액에 절인 비주얼과 맛 모두 탁월한 장아찌. 뮤신 성분으로 위벽 보호 효능이 뛰어나며 도시락 반찬으로 인기입니다.</p>
+                <div class="feature-pills"><span class="pill">위벽 보호</span><span class="pill">오미자 발효</span><span class="pill">비주얼 갑</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (300g)</p><p class="price-value">13,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑬ 양파 (NEW) -->
+        <div class="product-card reveal" data-cat="vegetable">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#6b3a8b,#9b5ac0);">
+                <span class="card-thumb-icon">🧅</span>
+                <span class="badge-best">BEST</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">건강 채소 라인 · 013</p>
+                <h3 class="card-title">양파 한방 저염 장아찌</h3>
+                <p class="card-desc">혈압·혈관 건강의 대명사 양파를 황기 달인 간장으로 절인 대중 장아찌. 단 맛이 강하면서도 전혀 짜지 않아 혈당 관리가 필요한 어르신들께 가장 인기입니다.</p>
+                <div class="feature-pills"><span class="pill">혈압 개선</span><span class="pill">혈관 건강</span><span class="pill">어르신 인기</span><span class="pill">황기 간장</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (400g)</p><p class="price-value">10,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑭ 미나리 (NEW) -->
+        <div class="product-card reveal" data-cat="vegetable">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#1a5a3a,#2a8a5a);">
+                <span class="card-thumb-icon">🌿</span>
+                <span class="badge-season">봄 시즌</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">건강 채소 라인 · 014</p>
+                <h3 class="card-title">미나리 저염 해독 장아찌</h3>
+                <p class="card-desc">간 해독·피를 맑게 하는 미나리를 오미자 발효 양념에 절인 봄 시즌 한정 장아찌. 아삭한 식감과 상쾌한 향이 살아있어 봄철 입맛 회복에 탁월합니다.</p>
+                <div class="feature-pills"><span class="pill">간 해독</span><span class="pill">혈액 정화</span><span class="pill">봄 시즌</span><span class="pill">오미자 발효</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (250g)</p><p class="price-value">11,500원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑮ 매실 (NEW) -->
+        <div class="product-card reveal" data-cat="trendy">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#3a6b1a,#6ba52a);">
+                <span class="card-thumb-icon">🫐</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">트렌디 웰니스 · 015</p>
+                <h3 class="card-title">매실 발효 저염 장아찌</h3>
+                <p class="card-desc">3년 숙성 매실 발효액으로 담근 다목적 장아찌. 구연산이 풍부하여 피로회복·소화에 탁월하며, 새콤달콤한 맛으로 어린이부터 어른까지 모두 좋아하는 라인입니다.</p>
+                <div class="feature-pills"><span class="pill">3년 숙성 매실</span><span class="pill">피로회복</span><span class="pill">전 연령 인기</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (300g)</p><p class="price-value">13,000원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑯ 콜라비 (NEW) -->
+        <div class="product-card reveal" data-cat="trendy">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#2a4a8b,#4a6abf);">
+                <span class="card-thumb-icon">💜</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">트렌디 웰니스 · 016</p>
+                <h3 class="card-title">콜라비 오미자 저염 장아찌</h3>
+                <p class="card-desc">MZ세대가 사랑하는 콜라비를 오미자 발효액에 절여 보라빛 비주얼까지 살린 장아찌. 비타민 C가 풍부하고 칼로리가 낮아 다이어트 도시락 반찬으로 각광받고 있습니다.</p>
+                <div class="feature-pills"><span class="pill">비타민 C 풍부</span><span class="pill">저칼로리</span><span class="pill">인스타 감성</span><span class="pill">다이어트</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (300g)</p><p class="price-value">12,500원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- ⑰ 오이 (NEW) -->
+        <div class="product-card reveal" data-cat="trendy">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#1a6b3a,#2aad5a);">
+                <span class="card-thumb-icon">🥒</span>
+                <span class="badge-season">여름 시즌</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">트렌디 웰니스 · 017</p>
+                <h3 class="card-title">오이 황기 냉침 저염 장아찌</h3>
+                <p class="card-desc">냉침 공법으로 오이의 아삭함을 최대한 살린 여름 특별 장아찌. 황기 달인 물로 절여 수분 공급과 열 내림 효능까지 갖춘 여름철 필수 건강 반찬입니다.</p>
+                <div class="feature-pills"><span class="pill">냉침 공법</span><span class="pill">수분 보충</span><span class="pill">열 내림</span><span class="pill">여름 한정</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">판매가 (300g)</p><p class="price-value">10,500원</p></div>
+                <a href="index.html#contact" class="btn-order"><i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의</a>
+            </div>
+        </div>
+
+        <!-- 선물세트 -->
+        <div class="product-card reveal" data-cat="gift" style="border:2px solid var(--secondary);">
+            <div class="card-thumb" style="background:linear-gradient(135deg,#1a1a2e,#2d3561);">
+                <span class="card-thumb-icon">🎁</span>
+                <span class="badge-new" style="background:var(--secondary);color:#1a1a1a;">SET</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category" style="color:var(--secondary);">프리미엄 선물세트</p>
+                <h3 class="card-title">한방 저염 장아찌 프리미엄 선물세트</h3>
+                <p class="card-desc">17종 라인업 중 고객이 원하는 품목을 3·5·7종으로 직접 구성하는 맞춤 선물세트. 명절·기업선물·건강 선물로 최적입니다. 전통 보자기 포장 옵션 제공.</p>
+                <div class="feature-pills"><span class="pill">3·5·7종 선택</span><span class="pill">보자기 포장</span><span class="pill">명절 선물</span><span class="pill">기업 선물</span></div>
+            </div>
+            <div class="card-footer">
+                <div><p class="price-label">세트 구성에 따라</p><p class="price-value">35,000원~</p></div>
+                <a href="index.html#contact" class="btn-order" style="background:var(--secondary);color:#1a1a1a;">
+                    <i class="fa-solid fa-gift" style="font-size:11px;"></i> 세트 문의
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+function filterTab(cat, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+</script>
+
+        <!-- (구 카드 삭제됨) -->
+        <div style="display:none">
+            <div class="card-thumb" style="background: linear-gradient(135deg, #2d5a1b, #4a8c2a);">
+                <span class="card-thumb-icon">🧄</span>
+                <span class="badge-best">BEST</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">시그니처 라인 · 001</p>
+                <h3 class="card-title">황기 베이스 저염 마늘 장아찌</h3>
+                <p class="card-desc">제천 황기 달인 물로 절인 마늘 장아찌. 짠맛 대신 황기 특유의 단맛과 깊은 감칠맛이 살아있습니다. 면역력 강화에 탁월한 기능성 반찬입니다.</p>
+                <div class="feature-pills">
+                    <span class="pill">황기 함유</span>
+                    <span class="pill">저나트륨</span>
+                    <span class="pill">면역강화</span>
+                    <span class="pill">무첨가물</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div>
+                    <p class="price-label">판매가 (300g 기준)</p>
+                    <p class="price-value">12,000원</p>
+                </div>
+                <a href="index.html#contact" class="btn-order">
+                    <i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의
+                </a>
+            </div>
+        </div>
+
+        <!-- 02 깻잎 장아찌 -->
+        <div class="product-card reveal">
+            <div class="card-thumb" style="background: linear-gradient(135deg, #1b4d2a, #276337);">
+                <span class="card-thumb-icon">🍃</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">웰니스 라인 · 002</p>
+                <h3 class="card-title">오미자 발효 저염 깻잎 장아찌</h3>
+                <p class="card-desc">제천 특산 오미자 발효액으로 담근 깻잎 장아찌. 오미자의 새콤달콤한 5가지 맛이 깻잎의 향긋함과 어우러져 MZ세대에게 특히 인기입니다.</p>
+                <div class="feature-pills">
+                    <span class="pill">오미자 발효</span>
+                    <span class="pill">항산화</span>
+                    <span class="pill">저칼로리</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div>
+                    <p class="price-label">판매가 (300g 기준)</p>
+                    <p class="price-value">13,500원</p>
+                </div>
+                <a href="index.html#contact" class="btn-order">
+                    <i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의
+                </a>
+            </div>
+        </div>
+
+        <!-- 03 무 장아찌 -->
+        <div class="product-card reveal">
+            <div class="card-thumb" style="background: linear-gradient(135deg, #5a3e1b, #8b6332);">
+                <span class="card-thumb-icon">🥕</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">전통 라인 · 003</p>
+                <h3 class="card-title">감초 · 당귀 블렌드 저염 무 장아찌</h3>
+                <p class="card-desc">감초와 당귀를 우린 한방 양념장으로 절인 아삭한 무 장아찌. 부드러운 단맛과 소화 촉진 효능으로 남녀노소 가장 편하게 즐길 수 있는 기본 라인입니다.</p>
+                <div class="feature-pills">
+                    <span class="pill">감초 · 당귀</span>
+                    <span class="pill">소화촉진</span>
+                    <span class="pill">아삭한 식감</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div>
+                    <p class="price-label">판매가 (400g 기준)</p>
+                    <p class="price-value">10,000원</p>
+                </div>
+                <a href="index.html#contact" class="btn-order">
+                    <i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의
+                </a>
+            </div>
+        </div>
+
+        <!-- 04 고추 장아찌 -->
+        <div class="product-card reveal">
+            <div class="card-thumb" style="background: linear-gradient(135deg, #8b1a1a, #c0392b);">
+                <span class="card-thumb-icon">🌶️</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">스파이시 라인 · 004</p>
+                <h3 class="card-title">산초 · 진피 블렌드 저염 고추 장아찌</h3>
+                <p class="card-desc">산초와 진피(말린 귤껍질)를 더해 매운맛에 향미를 더한 고추 장아찌. 일반 고추 장아찌보다 짜지 않으면서 더욱 풍부한 향미가 특징입니다.</p>
+                <div class="feature-pills">
+                    <span class="pill">산초 함유</span>
+                    <span class="pill">향미 풍부</span>
+                    <span class="pill">식욕증진</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div>
+                    <p class="price-label">판매가 (300g 기준)</p>
+                    <p class="price-value">11,000원</p>
+                </div>
+                <a href="index.html#contact" class="btn-order">
+                    <i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의
+                </a>
+            </div>
+        </div>
+
+        <!-- 05 더덕 장아찌 -->
+        <div class="product-card reveal">
+            <div class="card-thumb" style="background: linear-gradient(135deg, #3a5a2a, #5a8a3a);">
+                <span class="card-thumb-icon">🌱</span>
+                <span class="badge-best">PREMIUM</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category">프리미엄 라인 · 005</p>
+                <h3 class="card-title">제천 더덕 한방 저염 장아찌</h3>
+                <p class="card-desc">제천 산지 직거래 더덕으로 만든 최고급 장아찌. 더덕 특유의 쌉싸름한 향과 아삭한 식감에 한방 양념이 더해져 건강식 선물세트로도 각광받고 있습니다.</p>
+                <div class="feature-pills">
+                    <span class="pill">제천 산지 직거래</span>
+                    <span class="pill">폐기능 강화</span>
+                    <span class="pill">선물세트 가능</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div>
+                    <p class="price-label">판매가 (250g 기준)</p>
+                    <p class="price-value">18,000원</p>
+                </div>
+                <a href="index.html#contact" class="btn-order">
+                    <i class="fa-solid fa-bag-shopping" style="font-size:11px;"></i> 구매문의
+                </a>
+            </div>
+        </div>
+
+        <!-- 06 선물세트 -->
+        <div class="product-card reveal" style="border: 2px solid var(--secondary);">
+            <div class="card-thumb" style="background: linear-gradient(135deg, #1a1a2e, #2d3561);">
+                <span class="card-thumb-icon">🎁</span>
+                <span class="badge-new" style="background: var(--secondary); color:#1a1a1a;">SET</span>
+            </div>
+            <div class="card-body">
+                <p class="tag-category" style="color:var(--secondary);">프리미엄 선물 · 006</p>
+                <h3 class="card-title">한방 저염 장아찌 프리미엄 선물세트</h3>
+                <p class="card-desc">위 5가지 장아찌 중 3~5종을 엄선하여 담은 프리미엄 선물세트. 명절·기업선물·건강을 생각하는 어른에게 드리는 최고의 선택입니다. 보자기 포장 별도 옵션 가능.</p>
+                <div class="feature-pills">
+                    <span class="pill">3종 / 5종 선택</span>
+                    <span class="pill">보자기 포장</span>
+                    <span class="pill">명절 선물</span>
+                    <span class="pill">기업 선물</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div>
+                    <p class="price-label">세트 구성에 따라</p>
+                    <p class="price-value">35,000원~</p>
+                </div>
+                <a href="index.html#contact" class="btn-order" style="background:var(--secondary); color:#1a1a1a;">
+                    <i class="fa-solid fa-gift" style="font-size:11px;"></i> 세트 문의
+                </a>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ====== KEY INGREDIENTS ====== -->
+<section style="background:#fff; padding:80px 24px;">
+    <div style="max-width:1200px; margin:0 auto;">
+        <div class="reveal" style="text-align:center; margin-bottom:48px;">
+            <p style="font-size:11px; font-weight:700; color:var(--primary); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:8px;">KEY INGREDIENTS</p>
+            <h2 style="font-family:'Noto Serif KR',serif; font-size:clamp(22px,3.5vw,34px); font-weight:900; color:#111;">맛과 효능을 더하는 핵심 한방 원료</h2>
+            <div class="gold-divider"></div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:20px;">
+            <div class="ingredient-card reveal">
+                <div style="font-size:40px; margin-bottom:12px;">🌾</div>
+                <h4 style="font-weight:700; font-size:15px; color:var(--primary); margin-bottom:6px;">제천 황기</h4>
+                <p style="font-size:12px; color:#777; line-height:1.6;">면역력 강화·원기회복의 대표 약재. 단맛으로 나트륨을 대체합니다.</p>
+            </div>
+            <div class="ingredient-card reveal">
+                <div style="font-size:40px; margin-bottom:12px;">🍒</div>
+                <h4 style="font-weight:700; font-size:15px; color:var(--primary); margin-bottom:6px;">제천 오미자</h4>
+                <p style="font-size:12px; color:#777; line-height:1.6;">5가지 맛을 내는 강력 항산화 발효 원료. 장아찌에 깊은 새콤한 맛을 부여합니다.</p>
+            </div>
+            <div class="ingredient-card reveal">
+                <div style="font-size:40px; margin-bottom:12px;">🌿</div>
+                <h4 style="font-weight:700; font-size:15px; color:var(--primary); margin-bottom:6px;">감초</h4>
+                <p style="font-size:12px; color:#777; line-height:1.6;">천연 감미료 역할로 염분을 줄이면서도 깊은 풍미를 유지합니다.</p>
+            </div>
+            <div class="ingredient-card reveal">
+                <div style="font-size:40px; margin-bottom:12px;">🌺</div>
+                <h4 style="font-weight:700; font-size:15px; color:var(--primary); margin-bottom:6px;">당귀</h4>
+                <p style="font-size:12px; color:#777; line-height:1.6;">혈액순환 개선 효능. 특유의 향이 장아찌에 고급스러운 향미를 더합니다.</p>
+            </div>
+            <div class="ingredient-card reveal">
+                <div style="font-size:40px; margin-bottom:12px;">🍊</div>
+                <h4 style="font-weight:700; font-size:15px; color:var(--primary); margin-bottom:6px;">진피 (陳皮)</h4>
+                <p style="font-size:12px; color:#777; line-height:1.6;">말린 귤껍질. 소화 촉진과 상쾌한 시트러스 향미를 동시에 제공합니다.</p>
+            </div>
+            <div class="ingredient-card reveal">
+                <div style="font-size:40px; margin-bottom:12px;">🌳</div>
+                <h4 style="font-weight:700; font-size:15px; color:var(--primary); margin-bottom:6px;">산초</h4>
+                <p style="font-size:12px; color:#777; line-height:1.6;">독특한 향신 풍미로 맛의 깊이를 더하고 식욕을 자극하는 전통 향신료입니다.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== COMPARISON TABLE ====== -->
+<section style="padding:80px 24px; max-width:1200px; margin:0 auto;">
+    <div class="reveal" style="text-align:center; margin-bottom:48px;">
+        <p style="font-size:11px; font-weight:700; color:var(--primary); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:8px;">PRODUCT COMPARISON</p>
+        <h2 style="font-family:'Noto Serif KR',serif; font-size:clamp(22px,3.5vw,34px); font-weight:900; color:#111;">17종 전 제품 라인업 한눈에 비교</h2>
+        <div class="gold-divider"></div>
+        <p style="color:#777; font-size:14px; margin-top:16px; font-weight:300;">카테고리별로 정리한 전 품목 비교표</p>
+    </div>
+    <div class="reveal" style="overflow-x:auto; border-radius:16px; box-shadow:0 2px 20px rgba(0,0,0,0.08);">
+        <table>
+            <thead>
+                <tr>
+                    <th style="border-radius:16px 0 0 0; min-width:180px;">제품명</th>
+                    <th style="min-width:60px;">용량</th>
+                    <th style="min-width:130px;">핵심 원료</th>
+                    <th style="min-width:150px;">주요 효능</th>
+                    <th style="min-width:90px;">판매가</th>
+                    <th style="border-radius:0 16px 0 0; min-width:140px;">추천 대상</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 제천 한방 라인 -->
+                <tr style="background:#f0f7f2;">
+                    <td colspan="6" style="font-size:11px; font-weight:800; color:var(--primary); letter-spacing:0.12em; text-transform:uppercase; padding:10px 16px;">
+                        🌿 제천 한방 라인 (4종)
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>🧄 황기 마늘 장아찌</strong></td>
+                    <td>300g</td><td>제천 황기</td>
+                    <td>면역강화 · 피로회복</td>
+                    <td><strong style="color:var(--primary);">12,000원</strong></td>
+                    <td>40~60대 건강 관심층</td>
+                </tr>
+                <tr>
+                    <td><strong>🍃 오미자 깻잎 장아찌</strong></td>
+                    <td>300g</td><td>오미자 발효액</td>
+                    <td>항산화 · 피부미용</td>
+                    <td><strong style="color:var(--primary);">13,500원</strong></td>
+                    <td>20~40대 MZ세대</td>
+                </tr>
+                <tr>
+                    <td><strong>🥕 감초·당귀 무 장아찌</strong></td>
+                    <td>400g</td><td>감초 · 당귀</td>
+                    <td>소화촉진 · 혈액순환</td>
+                    <td><strong style="color:var(--primary);">10,000원</strong></td>
+                    <td>전 연령 가족 식탁</td>
+                </tr>
+                <tr>
+                    <td><strong>💜 도라지 한방 장아찌</strong> <span style="font-size:10px;background:#e8f5e9;color:var(--primary);padding:1px 6px;border-radius:4px;font-weight:700;">NEW</span></td>
+                    <td>250g</td><td>제천 도라지 · 황기</td>
+                    <td>기관지 강화 · 면역</td>
+                    <td><strong style="color:var(--primary);">14,000원</strong></td>
+                    <td>기관지 약한 분</td>
+                </tr>
+
+                <!-- 산채·버섯 라인 -->
+                <tr style="background:#f0f7f2;">
+                    <td colspan="6" style="font-size:11px; font-weight:800; color:var(--primary); letter-spacing:0.12em; text-transform:uppercase; padding:10px 16px;">
+                        🏔 산채·버섯 라인 (5종)
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>🌱 제천 더덕 장아찌</strong></td>
+                    <td>250g</td><td>제천 산지 더덕</td>
+                    <td>폐기능 강화 · 원기</td>
+                    <td><strong style="color:var(--primary);">18,000원</strong></td>
+                    <td>건강 선물용</td>
+                </tr>
+                <tr>
+                    <td><strong>🍄 참송이버섯 장아찌</strong> <span style="font-size:10px;background:#e8f5e9;color:var(--primary);padding:1px 6px;border-radius:4px;font-weight:700;">NEW</span></td>
+                    <td>200g</td><td>참송이 · 오미자 간장</td>
+                    <td>항암 · 베타글루칸</td>
+                    <td><strong style="color:var(--primary);">22,000원</strong></td>
+                    <td>건강 최우선 프리미엄층</td>
+                </tr>
+                <tr>
+                    <td><strong>🌿 참두릅 장아찌</strong> <span style="font-size:10px;background:#e3f2fd;color:#1565c0;padding:1px 6px;border-radius:4px;font-weight:700;">봄 한정</span></td>
+                    <td>200g</td><td>참두릅 · 당귀 달인물</td>
+                    <td>혈당조절 · 피로회복</td>
+                    <td><strong style="color:var(--primary);">20,000원</strong></td>
+                    <td>봄 시즌 한정 구매층</td>
+                </tr>
+                <tr>
+                    <td><strong>🌾 명이나물 장아찌</strong> <span style="font-size:10px;background:#e8f5e9;color:var(--primary);padding:1px 6px;border-radius:4px;font-weight:700;">NEW</span></td>
+                    <td>250g</td><td>산마늘 · 오미자 발효액</td>
+                    <td>항균 · 혈액정화</td>
+                    <td><strong style="color:var(--primary);">16,000원</strong></td>
+                    <td>SNS·MZ세대 인기</td>
+                </tr>
+                <tr>
+                    <td><strong>🍄‍🟫 표고버섯 장아찌</strong> <span style="font-size:10px;background:#e8f5e9;color:var(--primary);padding:1px 6px;border-radius:4px;font-weight:700;">NEW</span></td>
+                    <td>250g</td><td>표고 · 황기 간장</td>
+                    <td>감칠맛 · 면역 증강</td>
+                    <td><strong style="color:var(--primary);">15,000원</strong></td>
+                    <td>밥도둑 선호층</td>
+                </tr>
+
+                <!-- 건강 채소 라인 -->
+                <tr style="background:#f0f7f2;">
+                    <td colspan="6" style="font-size:11px; font-weight:800; color:var(--primary); letter-spacing:0.12em; text-transform:uppercase; padding:10px 16px;">
+                        🥬 건강 채소 라인 (5종)
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>🌶️ 산초·진피 고추 장아찌</strong></td>
+                    <td>300g</td><td>산초 · 진피</td>
+                    <td>식욕증진 · 소화개선</td>
+                    <td><strong style="color:var(--primary);">11,000원</strong></td>
+                    <td>매운맛 선호층</td>
+                </tr>
+                <tr>
+                    <td><strong>🥢 우엉 한방 장아찌</strong> <span style="font-size:10px;background:#e8f5e9;color:var(--primary);padding:1px 6px;border-radius:4px;font-weight:700;">NEW</span></td>
+                    <td>300g</td><td>우엉 · 당귀 · 감초</td>
+                    <td>식이섬유 · 장 건강</td>
+                    <td><strong style="color:var(--primary);">12,000원</strong></td>
+                    <td>다이어트 · 장 건강층</td>
+                </tr>
+                <tr>
+                    <td><strong>🪷 연근 오미자 장아찌</strong> <span style="font-size:10px;background:#e8f5e9;color:var(--primary);padding:1px 6px;border-radius:4px;font-weight:700;">NEW</span></td>
+                    <td>300g</td><td>연근 · 오미자 발효액</td>
+                    <td>위벽 보호 · 항산화</td>
+                    <td><strong style="color:var(--primary);">13,000원</strong></td>
+                    <td>위 건강 관심층</td>
+                </tr>
+                <tr>
+                    <td><strong>🧅 양파 한방 장아찌</strong> <span style="font-size:10px;background:#e8f5e9;color:var(--primary);padding:1px 6px;border-radius:4px;font-weight:700;">NEW</span></td>
+                    <td>400g</td><td>양파 · 황기 달인 간장</td>
+                    <td>혈압개선 · 혈관 건강</td>
+                    <td><strong style="color:var(--primary);">10,000원</strong></td>
+                    <td>혈압·혈당 관리 어르신</td>
+                </tr>
+                <tr>
+                    <td><strong>🌿 미나리 해독 장아찌</strong> <span style="font-size:10px;background:#e3f2fd;color:#1565c0;padding:1px 6px;border-radius:4px;font-weight:700;">봄 한정</span></td>
+                    <td>250g</td><td>미나리 · 오미자 발효</td>
+                    <td>간 해독 · 혈액 정화</td>
+                    <td><strong style="color:var(--primary);">11,500원</strong></td>
+                    <td>봄철 해독 관심층</td>
+                </tr>
+
+                <!-- 트렌디 웰니스 라인 -->
+                <tr style="background:#f0f7f2;">
+                    <td colspan="6" style="font-size:11px; font-weight:800; color:var(--primary); letter-spacing:0.12em; text-transform:uppercase; padding:10px 16px;">
+                        ✨ 트렌디 웰니스 라인 (3종)
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>🫐 매실 발효 장아찌</strong> <span style="font-size:10px;background:#e8f5e9;color:var(--primary);padding:1px 6px;border-radius:4px;font-weight:700;">NEW</span></td>
+                    <td>300g</td><td>3년 숙성 매실 발효액</td>
+                    <td>피로회복 · 소화촉진</td>
+                    <td><strong style="color:var(--primary);">13,000원</strong></td>
+                    <td>전 연령 · 어린이 인기</td>
+                </tr>
+                <tr>
+                    <td><strong>💜 콜라비 오미자 장아찌</strong> <span style="font-size:10px;background:#e8f5e9;color:var(--primary);padding:1px 6px;border-radius:4px;font-weight:700;">NEW</span></td>
+                    <td>300g</td><td>콜라비 · 오미자 발효액</td>
+                    <td>비타민C · 저칼로리</td>
+                    <td><strong style="color:var(--primary);">12,500원</strong></td>
+                    <td>MZ · 다이어트층</td>
+                </tr>
+                <tr>
+                    <td><strong>🥒 오이 냉침 장아찌</strong> <span style="font-size:10px;background:#e3f2fd;color:#1565c0;padding:1px 6px;border-radius:4px;font-weight:700;">여름 한정</span></td>
+                    <td>300g</td><td>오이 · 황기 달인물</td>
+                    <td>수분보충 · 열 내림</td>
+                    <td><strong style="color:var(--primary);">10,500원</strong></td>
+                    <td>여름철 수분 보충층</td>
+                </tr>
+
+                <!-- 선물세트 -->
+                <tr style="background:#fff9e6;">
+                    <td colspan="6" style="font-size:11px; font-weight:800; color:#8a6d00; letter-spacing:0.12em; text-transform:uppercase; padding:10px 16px;">
+                        🎁 프리미엄 선물세트
+                    </td>
+                </tr>
+                <tr style="background:#fffdf5;">
+                    <td><strong>🎁 맞춤 선물세트</strong></td>
+                    <td>3·5·7종 선택</td>
+                    <td>고객 맞춤 구성</td>
+                    <td>종합 건강 케어</td>
+                    <td><strong style="color:var(--primary);">35,000원~</strong></td>
+                    <td>명절 · 기업 선물</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- ====== CTA ====== -->
+<section style="padding:0 24px 80px; max-width:1200px; margin:0 auto;">
+    <div class="cta-strip reveal">
+        <p style="font-size:11px; font-weight:700; color:var(--secondary); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;">CONTACT US</p>
+        <h2 style="font-family:'Noto Serif KR',serif; font-size:clamp(22px,4vw,36px); font-weight:900; color:#fff; margin-bottom:14px;">
+            대량 주문 · 유통 파트너십 문의
+        </h2>
+        <p style="color:rgba(255,255,255,0.7); font-size:14px; max-width:480px; line-height:1.7; margin-bottom:30px; font-weight:300;">
+            B2B 대량 납품, 마트·온라인몰 유통 파트너, 기업 선물 대량 구매 등 모든 제휴 제안을 환영합니다.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px;">
+            <a href="index.html#contact" style="background:var(--secondary); color:#1a1a1a; font-weight:800; padding:13px 28px; border-radius:12px; text-decoration:none; font-size:14px; display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-paper-plane"></i> 제휴 문의하기
+            </a>
+            <a href="tel:010-8077-9118" style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); color:#fff; font-weight:700; padding:13px 28px; border-radius:12px; text-decoration:none; font-size:14px; display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-phone"></i> 010-8077-9118
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer style="background:#1a1a1a; color:#888; padding:40px 24px; text-align:center;">
+    <div style="max-width:1200px; margin:0 auto;">
+        <a href="index.html" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; margin-bottom:16px;">
+            <div style="width:28px; height:28px; background:var(--primary); border-radius:6px; display:flex; align-items:center; justify-content:center; color:white; font-size:14px;">🌿</div>
+            <span style="color:#fff; font-weight:800; font-size:16px;">나음생활건강</span>
+        </a>
+        <p style="font-size:12px; margin-bottom:6px;">상호: 나음생활건강 | 대표자: 권영환 | ceo@naumlife.com | 010-8077-9118</p>
+        <p style="font-size:12px;">충북 제천시 바이오밸리 복합문화센터 3층 창업인큐베이터 1호실 | <span style="color:var(--secondary);">www.naumlife.com</span></p>
+        <p style="font-size:11px; margin-top:16px; color:#555;">&copy; 2025 나음생활건강. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                setTimeout(() => e.target.classList.add('visible'), i * 80);
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
