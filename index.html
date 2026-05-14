@@ -700,47 +700,87 @@
                 </div>
 
                 <div class="lg:col-span-7 bg-slate-50 p-8 rounded-2xl border border-slate-100 shadow-sm">
-                 <form name="contact" method="POST" data-netlify="true" class="space-y-6">
-    <input type="hidden" name="form-name" value="contact" />
-    
-    <div class="grid sm:grid-cols-2 gap-6">
-        <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">기업(기관)명</label>
-            <input type="text" name="company" placeholder="예: 나음생활건강" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" required>
-        </div>
-        <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">담당자 성함</label>
-            <input type="text" name="name" placeholder="예: 권영환" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" required>
-        </div>
-    </div>
-    <div class="grid sm:grid-cols-2 gap-6">
-        <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">이메일 주소</label>
-            <input type="email" name="email" placeholder="example@naumlife.com" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" required>
-        </div>
-        <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">연락처</label>
-            <input type="tel" name="phone" placeholder="010-8077-9118" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" required>
-        </div>
-    </div>
-    <div>
-        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">문의 유형</label>
-        <select name="type" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
-            <option>중국 무역 대행 및 수입 컨설팅 신청</option>
-            <option>B2B 약재/원료 소싱 의뢰</option>
-            <option>한방 건강식품 유통/공급 문의</option>
-            <option>콘텐츠 및 인스타툰 비즈니스 제휴</option>
-            <option>기타 제휴 문의</option>
-        </select>
-    </div>
-    <div>
-        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">상세 문의 내용</label>
-        <textarea name="message" rows="5" placeholder="기획 배경 및 희망하시는 구체적 제휴 일정을 함께 적어 주시면 신속하게 조율할 수 있습니다." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none" required></textarea>
-    </div>
-    <button type="submit" class="w-full bg-primary hover:bg-emerald-900 text-white font-bold py-4 rounded-xl transition-all shadow-md hover:shadow-lg text-sm">
-        비즈니스 제안서 전송하기
-    </button>
-</form>
+
+                    <!-- Google Forms 안내 -->
+                    <div style="text-align:center; padding:16px 0 24px;">
+                        <div style="font-size:48px; margin-bottom:16px;">📋</div>
+                        <h3 style="font-size:20px; font-weight:800; color:#0f172a; margin-bottom:10px;">
+                            구글 문의 폼으로 문의하기
+                        </h3>
+                        <p style="font-size:14px; color:#64748b; line-height:1.8; margin-bottom:28px; font-weight:300;">
+                            아래 버튼을 클릭하시면 문의 폼으로 이동합니다.<br>
+                            성함, 연락처, 문의 내용을 입력해 주시면<br>
+                            빠른 시일 내에 연락드리겠습니다.
+                        </p>
+
+                        <a href="https://forms.gle/QqoHoHpM38WMLCL79" target="_blank"
+                            style="display:inline-flex; align-items:center; gap:10px;
+                                   background:#0B4619; color:#fff;
+                                   font-size:16px; font-weight:800;
+                                   padding:18px 40px; border-radius:14px;
+                                   text-decoration:none;
+                                   box-shadow:0 4px 20px rgba(11,70,25,0.25);
+                                   transition:all 0.2s;"
+                            onmouseover="this.style.background='#1a6b2e'; this.style.transform='translateY(-2px)';"
+                            onmouseout="this.style.background='#0B4619'; this.style.transform='translateY(0)';">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            문의하기
+                        </a>
+
+                        <p style="font-size:11px; color:#94a3b8; margin-top:16px;">
+                            클릭하면 구글 문의 폼으로 이동합니다
+                        </p>
+                    </div>
+
+                    <!-- 구분선 -->
+                    <div style="border-top:1px solid #e2e8f0; margin:8px 0 24px;"></div>
+
+                    <!-- 빠른 연락 방법 -->
+                    <p style="font-size:11px; font-weight:700; color:#94a3b8; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:16px;">또는 바로 연락하기</p>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                        <a href="tel:010-8077-9118"
+                            style="display:flex; align-items:center; gap:10px;
+                                   background:#fff; border:1px solid #e2e8f0;
+                                   border-radius:12px; padding:14px 16px;
+                                   text-decoration:none; color:#1a1a1a;
+                                   transition:box-shadow 0.2s;"
+                            onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)';"
+                            onmouseout="this.style.boxShadow='none';">
+                            <span style="width:36px; height:36px; border-radius:10px; background:#e8f5e9; color:#0B4619; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                                <i class="fa-solid fa-phone" style="font-size:14px;"></i>
+                            </span>
+                            <div>
+                                <p style="font-size:10px; color:#94a3b8; margin-bottom:2px;">전화 문의</p>
+                                <p style="font-size:13px; font-weight:700;">010-8077-9118</p>
+                            </div>
+                        </a>
+                        <a href="mailto:ceo@naumlife.com"
+                            style="display:flex; align-items:center; gap:10px;
+                                   background:#fff; border:1px solid #e2e8f0;
+                                   border-radius:12px; padding:14px 16px;
+                                   text-decoration:none; color:#1a1a1a;
+                                   transition:box-shadow 0.2s;"
+                            onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)';"
+                            onmouseout="this.style.boxShadow='none';">
+                            <span style="width:36px; height:36px; border-radius:10px; background:#e8f5e9; color:#0B4619; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                                <i class="fa-solid fa-envelope" style="font-size:14px;"></i>
+                            </span>
+                            <div>
+                                <p style="font-size:10px; color:#94a3b8; margin-bottom:2px;">이메일 문의</p>
+                                <p style="font-size:13px; font-weight:700;">ceo@naumlife.com</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- 응답 시간 안내 -->
+                    <div style="background:#f0f9f4; border-radius:12px; padding:14px 18px; margin-top:16px; display:flex; align-items:center; gap:10px;">
+                        <i class="fa-solid fa-clock" style="color:#0B4619; font-size:14px; flex-shrink:0;"></i>
+                        <p style="font-size:12px; color:#374151; line-height:1.6;">
+                            <strong>평균 응답 시간: 24시간 이내</strong><br>
+                            주말·공휴일 문의는 다음 영업일에 답변드립니다.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
