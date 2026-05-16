@@ -1,0 +1,8 @@
+# robots.txt - 나음생활건강 (www.naumlife.com)
+# 모든 검색엔진 로봇에게 전체 페이지 수집 허용
+
+User-agent: *
+Allow: /
+
+# 사이트맵 위치 안내 (구글, 네이버 모두 인식)
+Sitemap: https://www.naumlife.com/sitemap.xml
