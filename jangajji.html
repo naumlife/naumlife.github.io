@@ -124,7 +124,221 @@
 
 <!-- ═══ HERO ═══ -->
 <section style="padding-top:80px;min-height:80vh;display:flex;align-items:center;position:relative;overflow:hidden;background:#0a2e12;">
-    <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;"></div>
+    <div style="position:absolute;inset:0;overflow:hidden;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <radialGradient id="bgr" cx="60%" cy="40%" r="70%">
+    <stop offset="0%" stop-color="#0d3a16"/>
+    <stop offset="100%" stop-color="#050f07"/>
+  </radialGradient>
+  
+  <!-- 깻잎 perilla leaf -->
+  <g id="pl">
+    <path d="M0,-85 C8,-78 22,-68 32,-50 C40,-35 42,-15 38,5 C33,25 22,42 8,52 C3,56 -3,56 -8,52 C-22,42 -33,25 -38,5 C-42,-15 -40,-35 -32,-50 C-22,-68 -8,-78 0,-85Z"
+          fill="#2d5f24" stroke="#1a3d14" stroke-width="1.2"/>
+    <!-- serrated edge highlight -->
+    <path d="M0,-85 C8,-78 22,-68 32,-50 C40,-35 42,-15 38,5 C33,25 22,42 8,52" 
+          fill="none" stroke="#3a7a2a" stroke-width="0.8" opacity="0.6"/>
+    <!-- main vein -->
+    <line x1="0" y1="-82" x2="0" y2="52" stroke="#1a3d14" stroke-width="1.8" opacity="0.7"/>
+    <!-- side veins -->
+    <line x1="0" y1="-55" x2="-28" y2="-20" stroke="#1a3d14" stroke-width="0.9" opacity="0.5"/>
+    <line x1="0" y1="-55" x2="28" y2="-20" stroke="#1a3d14" stroke-width="0.9" opacity="0.5"/>
+    <line x1="0" y1="-25" x2="-35" y2="10" stroke="#1a3d14" stroke-width="0.9" opacity="0.5"/>
+    <line x1="0" y1="-25" x2="35" y2="10" stroke="#1a3d14" stroke-width="0.9" opacity="0.5"/>
+    <line x1="0" y1="5" x2="-30" y2="35" stroke="#1a3d14" stroke-width="0.9" opacity="0.5"/>
+    <line x1="0" y1="5" x2="30" y2="35" stroke="#1a3d14" stroke-width="0.9" opacity="0.5"/>
+  </g>
+  
+  <!-- 깻잎 lighter variant -->
+  <g id="pl2">
+    <path d="M0,-85 C8,-78 22,-68 32,-50 C40,-35 42,-15 38,5 C33,25 22,42 8,52 C3,56 -3,56 -8,52 C-22,42 -33,25 -38,5 C-42,-15 -40,-35 -32,-50 C-22,-68 -8,-78 0,-85Z"
+          fill="#3d7a32" stroke="#2a5a1e" stroke-width="1"/>
+    <line x1="0" y1="-82" x2="0" y2="52" stroke="#2a5a1e" stroke-width="1.5" opacity="0.6"/>
+    <line x1="0" y1="-45" x2="-32" y2="0" stroke="#2a5a1e" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0" y1="-45" x2="32" y2="0" stroke="#2a5a1e" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0" y1="5" x2="-30" y2="40" stroke="#2a5a1e" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0" y1="5" x2="30" y2="40" stroke="#2a5a1e" stroke-width="0.8" opacity="0.4"/>
+  </g>
+
+  <!-- 뽕잎 mulberry leaf (lobed heart shape) -->
+  <g id="ml">
+    <path d="M0,-90 C10,-85 25,-75 35,-60 C45,-45 45,-25 38,-5 C35,5 25,18 15,30 C5,42 0,55 0,60 C0,55 -5,42 -15,30 C-25,18 -35,5 -38,-5 C-45,-25 -45,-45 -35,-60 C-25,-75 -10,-85 0,-90Z"
+          fill="#3a6e2e" stroke="#264a1e" stroke-width="1.2"/>
+    <!-- lobes on side -->
+    <path d="M35,-60 C50,-55 55,-38 45,-25 C38,-5 35,5" fill="none" stroke="#264a1e" stroke-width="0.8" opacity="0.5"/>
+    <path d="M-35,-60 C-50,-55 -55,-38 -45,-25 C-38,-5 -35,5" fill="none" stroke="#264a1e" stroke-width="0.8" opacity="0.5"/>
+    <line x1="0" y1="-87" x2="0" y2="60" stroke="#264a1e" stroke-width="1.6" opacity="0.6"/>
+    <line x1="0" y1="-60" x2="-38" y2="-5" stroke="#264a1e" stroke-width="0.9" opacity="0.45"/>
+    <line x1="0" y1="-60" x2="38" y2="-5" stroke="#264a1e" stroke-width="0.9" opacity="0.45"/>
+    <line x1="0" y1="-20" x2="-35" y2="25" stroke="#264a1e" stroke-width="0.9" opacity="0.45"/>
+    <line x1="0" y1="-20" x2="35" y2="25" stroke="#264a1e" stroke-width="0.9" opacity="0.45"/>
+  </g>
+
+  <!-- 참송이버섯 matsutake mushroom -->
+  <g id="mm">
+    <!-- cap -->
+    <path d="M-50,0 C-50,-30 -30,-55 0,-60 C30,-55 50,-30 50,0Z" fill="#7a5520"/>
+    <ellipse cx="0" cy="0" rx="50" ry="12" fill="#9b6e2e"/>
+    <ellipse cx="0" cy="0" rx="48" ry="10" fill="#b8823a"/>
+    <!-- cap highlight -->
+    <path d="M-30,-35 C-20,-45 20,-45 30,-35" fill="none" stroke="#d4a060" stroke-width="2" opacity="0.5"/>
+    <!-- stem -->
+    <path d="M-14,0 C-16,20 -14,45 -10,65 C-6,75 6,75 10,65 C14,45 16,20 14,0Z" fill="#e8dcc5"/>
+    <path d="M-11,0 C-12,20 -11,45 -8,63 C-5,72 5,72 8,63 C11,45 12,20 11,0Z" fill="#f2e8d5"/>
+    <!-- gills suggestion -->
+    <path d="M-45,5 C-35,12 -20,16 0,16 C20,16 35,12 45,5" fill="none" stroke="#c4a070" stroke-width="1" opacity="0.6"/>
+    <path d="M-40,8 C-30,14 -15,18 0,18 C15,18 30,14 40,8" fill="none" stroke="#c4a070" stroke-width="0.8" opacity="0.5"/>
+  </g>
+
+  <!-- 도라지 bellflower root + flower -->
+  <g id="dj">
+    <!-- roots -->
+    <path d="M0,-5 C-3,15 -5,40 -4,65 C-3,78 3,78 4,65 C5,40 3,15 0,-5Z" fill="#e8e0cc"/>
+    <path d="M0,-5 C3,12 6,35 8,58 C9,68 12,70 14,62 C16,52 12,30 10,12 C8,-2 4,-8 0,-5Z" fill="#ddd5be"/>
+    <path d="M0,-5 C-3,10 -8,30 -10,52 C-11,62 -14,64 -16,56 C-18,46 -14,25 -12,8 C-10,-6 -4,-10 0,-5Z" fill="#ddd5be"/>
+    <!-- stem -->
+    <line x1="0" y1="-5" x2="0" y2="-60" stroke="#4a7a30" stroke-width="2.5"/>
+    <!-- flower petals (5-petaled bell) -->
+    <path d="M0,-60 C-8,-65 -18,-75 -15,-85 C-12,-95 -5,-95 0,-88 C5,-95 12,-95 15,-85 C18,-75 8,-65 0,-60Z" fill="#9b7acc"/>
+    <path d="M0,-60 C8,-65 20,-62 22,-72 C24,-82 16,-88 8,-84 C4,-90 8,-98 16,-94 C24,-90 26,-78 22,-68 C18,-58 10,-58 0,-60Z" fill="#a882d8"/>
+    <path d="M0,-60 C-8,-65 -20,-62 -22,-72 C-24,-82 -16,-88 -8,-84 C-4,-90 -8,-98 -16,-94 C-24,-90 -26,-78 -22,-68 C-18,-58 -10,-58 0,-60Z" fill="#a882d8"/>
+    <path d="M0,-60 C6,-68 18,-72 22,-82 C24,-90 18,-96 10,-92 C6,-88 0,-82 0,-75 C0,-82 -6,-88 -10,-92 C-18,-96 -24,-90 -22,-82 C-18,-72 -6,-68 0,-60Z" fill="#b08ae0"/>
+    <!-- center -->
+    <circle cx="0" cy="-72" r="5" fill="#f5d76e"/>
+  </g>
+
+  <!-- 두릅 aralia shoot -->
+  <g id="dr">
+    <!-- stem -->
+    <path d="M0,80 C-2,50 -3,20 0,-10 C3,20 2,50 0,80Z" fill="#5a3a28" stroke="#3d2518" stroke-width="1"/>
+    <!-- compound leaflets -->
+    <!-- bottom pair -->
+    <ellipse cx="-35" cy="20" rx="30" ry="14" fill="#4a8030" transform="rotate(-25,-35,20)" stroke="#2a5a18" stroke-width="0.8"/>
+    <ellipse cx="35" cy="20" rx="30" ry="14" fill="#4a8030" transform="rotate(25,35,20)" stroke="#2a5a18" stroke-width="0.8"/>
+    <!-- middle pair -->
+    <ellipse cx="-28" cy="-5" rx="26" ry="12" fill="#5a9038" transform="rotate(-15,-28,-5)" stroke="#2a5a18" stroke-width="0.8"/>
+    <ellipse cx="28" cy="-5" rx="26" ry="12" fill="#5a9038" transform="rotate(15,28,-5)" stroke="#2a5a18" stroke-width="0.8"/>
+    <!-- upper pair -->
+    <ellipse cx="-20" cy="-28" rx="22" ry="11" fill="#6aa040" transform="rotate(-10,-20,-28)" stroke="#3a6a22" stroke-width="0.8"/>
+    <ellipse cx="20" cy="-28" rx="22" ry="11" fill="#6aa040" transform="rotate(10,20,-28)" stroke="#3a6a22" stroke-width="0.8"/>
+    <!-- top leaflet -->
+    <ellipse cx="0" cy="-45" rx="20" ry="12" fill="#78b048" stroke="#3a6a22" stroke-width="0.8"/>
+    <!-- veins on center top leaflet -->
+    <line x1="0" y1="-56" x2="0" y2="-35" stroke="#3a6a22" stroke-width="0.7" opacity="0.6"/>
+  </g>
+
+  <!-- Spring onion / chive bunch -->
+  <g id="pa">
+    <path d="M-3,80 C-4,40 -4,-10 -2,-60 C-1,-80 1,-80 2,-60 C4,-10 4,40 3,80Z" fill="#3d8020"/>
+    <path d="M-10,80 C-12,45 -11,0 -9,-50 C-8,-70 -6,-72 -5,-52 C-3,0 -4,45 -3,80Z" fill="#4a9028"/>
+    <path d="M10,80 C12,45 11,0 9,-50 C8,-70 6,-72 5,-52 C3,0 4,45 3,80Z" fill="#4a9028"/>
+    <path d="M-18,80 C-20,50 -18,10 -15,-35 C-14,-55 -11,-56 -10,-38 C-8,10 -10,50 -10,80Z" fill="#5aa030"/>
+    <path d="M18,80 C20,50 18,10 15,-35 C14,-55 11,-56 10,-38 C8,10 10,50 10,80Z" fill="#5aa030"/>
+  </g>
+
+</defs>
+
+<!-- Background gradient -->
+<rect width="1920" height="1080" fill="url(#bgr)"/>
+
+<!-- === 깻잎 PERILLA LEAVES === -->
+<!-- Left cluster -->
+<use href="#pl" transform="translate(80,320) rotate(-25) scale(2.2)"/>
+<use href="#pl2" transform="translate(180,180) rotate(15) scale(1.8)"/>
+<use href="#pl" transform="translate(320,420) rotate(-40) scale(1.6)"/>
+<use href="#pl2" transform="translate(50,520) rotate(30) scale(2.0)"/>
+<use href="#pl" transform="translate(220,600) rotate(-10) scale(1.4)"/>
+<!-- Center scatter -->
+<use href="#pl2" transform="translate(600,150) rotate(45) scale(1.5)"/>
+<use href="#pl" transform="translate(750,350) rotate(-20) scale(1.9)"/>
+<use href="#pl2" transform="translate(900,200) rotate(60) scale(1.3)"/>
+<use href="#pl" transform="translate(1000,450) rotate(-35) scale(1.7)"/>
+<!-- Right cluster -->
+<use href="#pl2" transform="translate(1250,280) rotate(20) scale(2.0)"/>
+<use href="#pl" transform="translate(1400,150) rotate(-50) scale(1.5)"/>
+<use href="#pl2" transform="translate(1550,380) rotate(35) scale(1.8)"/>
+<use href="#pl" transform="translate(1700,220) rotate(-15) scale(2.2)"/>
+<use href="#pl2" transform="translate(1850,400) rotate(55) scale(1.6)"/>
+<use href="#pl" transform="translate(1650,550) rotate(-30) scale(1.4)"/>
+<!-- Bottom band -->
+<use href="#pl2" transform="translate(400,780) rotate(20) scale(1.9)"/>
+<use href="#pl" transform="translate(700,820) rotate(-45) scale(2.1)"/>
+<use href="#pl2" transform="translate(1000,760) rotate(15) scale(1.7)"/>
+<use href="#pl" transform="translate(1300,840) rotate(-25) scale(2.0)"/>
+<use href="#pl2" transform="translate(1600,780) rotate(40) scale(1.8)"/>
+<use href="#pl" transform="translate(1850,850) rotate(-10) scale(1.5)"/>
+
+<!-- === 뽕잎 MULBERRY LEAVES === -->
+<use href="#ml" transform="translate(150,250) rotate(30) scale(1.8)"/>
+<use href="#ml" transform="translate(450,180) rotate(-40) scale(1.5)"/>
+<use href="#ml" transform="translate(850,300) rotate(55) scale(1.9)"/>
+<use href="#ml" transform="translate(1100,180) rotate(-20) scale(1.6)"/>
+<use href="#ml" transform="translate(1350,400) rotate(35) scale(2.0)"/>
+<use href="#ml" transform="translate(1750,300) rotate(-45) scale(1.7)"/>
+<use href="#ml" transform="translate(550,700) rotate(25) scale(1.8)"/>
+<use href="#ml" transform="translate(1150,750) rotate(-30) scale(1.6)"/>
+<use href="#ml" transform="translate(1800,680) rotate(50) scale(1.9)"/>
+<use href="#ml" transform="translate(300,850) rotate(-15) scale(1.5)"/>
+
+<!-- === 참송이버섯 MATSUTAKE MUSHROOMS === -->
+<use href="#mm" transform="translate(200,700) rotate(-10) scale(1.4)"/>
+<use href="#mm" transform="translate(500,600) rotate(5) scale(1.2)"/>
+<use href="#mm" transform="translate(820,680) rotate(-8) scale(1.6)"/>
+<use href="#mm" transform="translate(1100,620) rotate(12) scale(1.3)"/>
+<use href="#mm" transform="translate(1420,700) rotate(-5) scale(1.5)"/>
+<use href="#mm" transform="translate(1700,640) rotate(8) scale(1.2)"/>
+<use href="#mm" transform="translate(350,480) rotate(-12) scale(1.1)"/>
+<use href="#mm" transform="translate(1550,500) rotate(6) scale(1.3)"/>
+
+<!-- === 도라지 BELLFLOWER ROOTS+FLOWERS === -->
+<use href="#dj" transform="translate(130,580) rotate(5) scale(1.5)"/>
+<use href="#dj" transform="translate(420,550) rotate(-8) scale(1.3)"/>
+<use href="#dj" transform="translate(680,480) rotate(12) scale(1.6)"/>
+<use href="#dj" transform="translate(1050,530) rotate(-6) scale(1.4)"/>
+<use href="#dj" transform="translate(1320,560) rotate(10) scale(1.5)"/>
+<use href="#dj" transform="translate(1620,520) rotate(-4) scale(1.3)"/>
+<use href="#dj" transform="translate(1880,580) rotate(8) scale(1.4)"/>
+
+<!-- === 두릅 ARALIA SHOOTS === -->
+<use href="#dr" transform="translate(360,350) rotate(-5) scale(1.5)"/>
+<use href="#dr" transform="translate(620,250) rotate(8) scale(1.8)"/>
+<use href="#dr" transform="translate(950,380) rotate(-12) scale(1.4)"/>
+<use href="#dr" transform="translate(1200,300) rotate(6) scale(1.7)"/>
+<use href="#dr" transform="translate(1480,380) rotate(-8) scale(1.5)"/>
+<use href="#dr" transform="translate(1780,350) rotate(10) scale(1.6)"/>
+<use href="#dr" transform="translate(100,650) rotate(-15) scale(1.3)"/>
+<use href="#dr" transform="translate(900,720) rotate(5) scale(1.4)"/>
+
+<!-- === SPRING ONION BUNCHES === -->
+<use href="#pa" transform="translate(260,500) rotate(-3) scale(1.4)"/>
+<use href="#pa" transform="translate(760,550) rotate(5) scale(1.2)"/>
+<use href="#pa" transform="translate(1350,620) rotate(-6) scale(1.3)"/>
+<use href="#pa" transform="translate(1700,570) rotate(4) scale(1.5)"/>
+
+<!-- Extra perilla leaves to fill gaps -->
+<use href="#pl" transform="translate(480,300) rotate(50) scale(1.2)"/>
+<use href="#pl2" transform="translate(1100,350) rotate(-55) scale(1.3)"/>
+<use href="#pl" transform="translate(1500,200) rotate(40) scale(1.1)"/>
+<use href="#pl2" transform="translate(1900,700) rotate(-20) scale(1.6)"/>
+<use href="#pl" transform="translate(30,400) rotate(10) scale(1.3)"/>
+<use href="#pl2" transform="translate(1850,150) rotate(-60) scale(1.2)"/>
+<use href="#pl" transform="translate(650,900) rotate(30) scale(1.8)"/>
+<use href="#pl2" transform="translate(1450,950) rotate(-35) scale(1.6)"/>
+<use href="#pl" transform="translate(200,950) rotate(55) scale(1.4)"/>
+<use href="#pl2" transform="translate(950,920) rotate(-20) scale(1.5)"/>
+
+<!-- Extra mulberry leaves -->
+<use href="#ml" transform="translate(700,800) rotate(40) scale(1.4)"/>
+<use href="#ml" transform="translate(1600,860) rotate(-30) scale(1.7)"/>
+
+<!-- Subtle overall greenery texture (small leaves) -->
+<use href="#pl" transform="translate(350,650) rotate(-35) scale(0.8)"/>
+<use href="#pl2" transform="translate(1250,680) rotate(45) scale(0.9)"/>
+<use href="#pl" transform="translate(1700,750) rotate(-20) scale(0.85)"/>
+<use href="#pl2" transform="translate(550,400) rotate(60) scale(0.75)"/>
+<use href="#pl" transform="translate(1080,270) rotate(-50) scale(0.8)"/>
+
+</svg></div>
     <div style="position:absolute;inset:0;background:linear-gradient(110deg,rgba(8,35,16,.97) 0%,rgba(10,46,20,.95) 45%,rgba(10,46,20,.7) 70%,rgba(10,46,20,.15) 100%);"></div>
     <div class="hero-grid" style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:80px 32px;width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:center;">
 
