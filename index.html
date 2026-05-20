@@ -212,36 +212,284 @@
         </div>
     </nav>
 
-    <header class="relative pt-36 pb-28 md:pt-48 md:pb-40 text-white overflow-hidden bg-cover bg-center" 
-            style="background-image: linear-gradient(rgba(11, 70, 25, 0.82), rgba(15, 23, 42, 0.92)), url('https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1920&q=80');">
-        
-        <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-            <span class="text-secondary font-bold tracking-widest uppercase text-xs md:text-sm mb-4 bg-white/10 px-4 py-1.5 rounded-full border border-white/10">
-                Natural Wellness & Global Trade Partner
+    <!-- ===== 헤더 스타일 (용추폭포 + 청풍호 합성 배경) ===== -->
+    <style>
+        /* 떠오르는 한방 잎사귀 파티클 */
+        @keyframes floatLeaf {
+            0%   { transform: translateY(0) translateX(0) rotate(0deg) scale(1); opacity:0; }
+            8%   { opacity:0.8; }
+            85%  { opacity:0.5; }
+            100% { transform: translateY(-110vh) translateX(40px) rotate(380deg) scale(0.6); opacity:0; }
+        }
+        @keyframes floatLeaf2 {
+            0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity:0; }
+            8%   { opacity:0.6; }
+            85%  { opacity:0.4; }
+            100% { transform: translateY(-110vh) translateX(-35px) rotate(-300deg); opacity:0; }
+        }
+        /* 청풍호 물결 애니메이션 */
+        @keyframes waveMove {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes shimmer {
+            0%,100% { opacity:0.4; }
+            50%      { opacity:0.8; }
+        }
+        /* 헤더 랜드마크 배지 호버 */
+        .hero-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        }
+        /* 반짝이는 별 파티클 */
+        @keyframes twinkle {
+            0%,100% { opacity:0.2; transform:scale(0.8); }
+            50%      { opacity:1;   transform:scale(1.3); }
+        }
+        /* 폭포 물빛 글로우 */
+        @keyframes waterfallGlow {
+            0%,100% { opacity:0.5; }
+            50%      { opacity:0.75; }
+        }
+        .hero-btn-primary:hover {
+            transform:translateY(-3px);
+            box-shadow:0 12px 32px rgba(212,175,55,0.45);
+        }
+        .hero-btn-secondary:hover {
+            transform:translateY(-3px);
+            box-shadow:0 8px 24px rgba(255,255,255,0.2);
+        }
+    </style>
+
+    <header class="relative text-white overflow-hidden" style="min-height:88vh; padding-top:140px; padding-bottom:100px;">
+
+        <!-- ■ Layer 0: 청풍호 낮 하늘 & 호수빛 기저 그라데이션 -->
+        <div style="position:absolute;inset:0;
+            background: linear-gradient(175deg,
+                #050f1a 0%,
+                #0d2744 12%,
+                #1a4a7a 28%,
+                #1b5e3a 50%,
+                #0e3d22 72%,
+                #071a0f 100%
+            );z-index:0;"></div>
+
+        <!-- ■ Layer 1: 용추폭포 이미지 (핵심 배경, 적당한 밝기) -->
+        <div style="position:absolute;inset:0;
+            background-image: url('용추폭포.png');
+            background-size: cover;
+            background-position: center 25%;
+            z-index:1;
+            opacity:0.62;"></div>
+
+        <!-- ■ Layer 2: 청풍호 호수빛 컬러 오버레이 (전체 분위기) -->
+        <div style="position:absolute;inset:0;
+            background: linear-gradient(180deg,
+                rgba(5,15,30,0.55) 0%,
+                rgba(10,30,55,0.20) 25%,
+                rgba(5,25,15,0.10) 50%,
+                rgba(5,25,15,0.40) 72%,
+                rgba(11,70,25,0.80) 100%
+            );z-index:2;"></div>
+
+        <!-- ■ Layer 3: 청풍호 파란 물빛 반영 (하단 1/3) -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:42%;
+            background: linear-gradient(0deg,
+                rgba(15,50,100,0.65) 0%,
+                rgba(25,80,140,0.30) 45%,
+                transparent 100%
+            );z-index:3;"></div>
+
+        <!-- ■ Layer 4: 수면 반짝임 – 애니메이션 물결 SVG (청풍호) -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:180px;overflow:hidden;z-index:4;opacity:0.45;">
+            <svg style="width:200%;height:100%;animation:waveMove 9s linear infinite;" viewBox="0 0 2400 180" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="waveGrad1" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#4fc3f7" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#1565c0" stop-opacity="0.9"/>
+                    </linearGradient>
+                    <linearGradient id="waveGrad2" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#81d4fa" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#0d47a1" stop-opacity="0.7"/>
+                    </linearGradient>
+                </defs>
+                <path d="M0,80 C150,30 300,130 450,80 C600,30 750,130 900,80 C1050,30 1200,130 1350,80 C1500,30 1650,130 1800,80 C1950,30 2100,130 2250,80 C2350,30 2400,100 2400,80 L2400,180 L0,180 Z" fill="url(#waveGrad1)"/>
+            </svg>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:130px;overflow:hidden;z-index:4;opacity:0.3;">
+            <svg style="width:200%;height:100%;animation:waveMove 13s linear infinite reverse;" viewBox="0 0 2400 130" preserveAspectRatio="none">
+                <path d="M0,65 C200,15 400,115 600,65 C800,15 1000,115 1200,65 C1400,15 1600,115 1800,65 C2000,15 2200,115 2400,65 L2400,130 L0,130 Z" fill="url(#waveGrad2)"/>
+            </svg>
+        </div>
+
+        <!-- ■ Layer 5: 청풍호 주변 산 실루엣 (원경) -->
+        <svg style="position:absolute;bottom:60px;left:0;right:0;width:100%;z-index:5;opacity:0.22;" viewBox="0 0 1400 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,180 L0,100 L80,65 L160,90 L270,35 L380,75 L500,20 L620,60 L740,15 L860,55 L980,30 L1100,70 L1220,45 L1340,80 L1400,65 L1400,180 Z" fill="#0a3520"/>
+        </svg>
+        <svg style="position:absolute;bottom:50px;left:0;right:0;width:100%;z-index:5;opacity:0.30;" viewBox="0 0 1400 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,160 L0,120 L120,90 L250,110 L400,68 L550,100 L700,55 L850,95 L1000,72 L1150,105 L1300,80 L1400,100 L1400,160 Z" fill="rgba(11,70,25,0.8)"/>
+        </svg>
+
+        <!-- ■ Layer 6: 별빛 파티클 (야간 용추폭포 분위기) -->
+        <div style="position:absolute;inset:0;z-index:3;pointer-events:none;">
+            <style>
+                .star-dot { position:absolute; border-radius:50%; background:#fff; animation:twinkle ease-in-out infinite; }
+            </style>
+            <div class="star-dot" style="width:2px;height:2px;top:8%;left:15%;animation-duration:2.1s;animation-delay:0.3s;"></div>
+            <div class="star-dot" style="width:1.5px;height:1.5px;top:12%;left:28%;animation-duration:3.0s;animation-delay:0.8s;"></div>
+            <div class="star-dot" style="width:2.5px;height:2.5px;top:6%;left:42%;animation-duration:2.5s;animation-delay:1.2s;"></div>
+            <div class="star-dot" style="width:1.5px;height:1.5px;top:15%;left:58%;animation-duration:3.3s;animation-delay:0.5s;"></div>
+            <div class="star-dot" style="width:2px;height:2px;top:9%;left:72%;animation-duration:2.8s;animation-delay:1.7s;"></div>
+            <div class="star-dot" style="width:1px;height:1px;top:18%;left:85%;animation-duration:2.2s;animation-delay:0.1s;"></div>
+            <div class="star-dot" style="width:2px;height:2px;top:5%;left:90%;animation-duration:3.5s;animation-delay:2.0s;"></div>
+            <div class="star-dot" style="width:1.5px;height:1.5px;top:22%;left:6%;animation-duration:2.7s;animation-delay:0.9s;"></div>
+            <div class="star-dot" style="width:2px;height:2px;top:4%;left:52%;animation-duration:3.1s;animation-delay:1.5s;"></div>
+        </div>
+
+        <!-- ■ Layer 7: 한방 잎사귀 & 약초 파티클 (떠다님) -->
+        <div style="position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden;">
+            <span style="position:absolute;font-size:18px;left:8%;bottom:-10%;animation:floatLeaf 16s ease-in-out infinite;animation-delay:0s;">🌿</span>
+            <span style="position:absolute;font-size:13px;left:22%;bottom:-10%;animation:floatLeaf2 20s ease-in-out infinite;animation-delay:4s;">🍃</span>
+            <span style="position:absolute;font-size:16px;left:40%;bottom:-10%;animation:floatLeaf 22s ease-in-out infinite;animation-delay:8s;">🌿</span>
+            <span style="position:absolute;font-size:12px;left:60%;bottom:-10%;animation:floatLeaf2 18s ease-in-out infinite;animation-delay:2s;">🍃</span>
+            <span style="position:absolute;font-size:14px;left:78%;bottom:-10%;animation:floatLeaf 14s ease-in-out infinite;animation-delay:10s;">🌿</span>
+            <span style="position:absolute;font-size:10px;left:90%;bottom:-10%;animation:floatLeaf2 24s ease-in-out infinite;animation-delay:6s;">🍃</span>
+        </div>
+
+        <!-- ■ 폭포 물빛 글로우 (좌측 분위기 조명) -->
+        <div style="position:absolute;top:30%;left:-5%;width:45%;height:60%;
+            background:radial-gradient(ellipse at 30% 60%, rgba(180,80,200,0.12) 0%, transparent 65%);
+            z-index:3;animation:waterfallGlow 4s ease-in-out infinite;pointer-events:none;"></div>
+        <div style="position:absolute;top:20%;right:-5%;width:40%;height:70%;
+            background:radial-gradient(ellipse at 70% 50%, rgba(74,180,230,0.08) 0%, transparent 60%);
+            z-index:3;animation:waterfallGlow 5s ease-in-out infinite;animation-delay:2s;pointer-events:none;"></div>
+
+        <!-- ============ 헤더 콘텐츠 ============ -->
+        <div class="max-w-7xl mx-auto px-6 relative flex flex-col items-center text-center" style="z-index:10;">
+
+            <!-- 제천 랜드마크 배지 2종 -->
+            <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:22px;">
+                <span class="hero-badge" style="
+                    display:inline-flex;align-items:center;gap:7px;
+                    background:rgba(255,255,255,0.10);
+                    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+                    border:1px solid rgba(255,255,255,0.22);
+                    color:rgba(255,255,255,0.92);
+                    font-size:11px;font-weight:700;
+                    padding:7px 18px;border-radius:100px;
+                    letter-spacing:0.06em;
+                    transition:all 0.25s;cursor:default;">
+                    🏔️ 제천 의림지 용추폭포
+                </span>
+                <span class="hero-badge" style="
+                    display:inline-flex;align-items:center;gap:7px;
+                    background:rgba(74,159,212,0.18);
+                    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+                    border:1px solid rgba(100,180,240,0.35);
+                    color:rgba(190,230,255,0.95);
+                    font-size:11px;font-weight:700;
+                    padding:7px 18px;border-radius:100px;
+                    letter-spacing:0.06em;
+                    transition:all 0.25s;cursor:default;">
+                    🌊 청풍호 청정 비경
+                </span>
+            </div>
+
+            <span style="
+                display:inline-block;
+                color:#D4AF37;font-weight:800;
+                letter-spacing:0.18em;text-transform:uppercase;
+                font-size:11px;
+                margin-bottom:18px;
+                background:rgba(255,255,255,0.08);
+                padding:7px 22px;border-radius:100px;
+                border:1px solid rgba(212,175,55,0.25);
+                backdrop-filter:blur(10px);">
+                Natural Wellness &amp; Global Trade Partner
             </span>
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6 max-w-4xl">
-                <span class="text-secondary">세계가 주목하는 K-건강식</span><br>
+
+            <h1 style="
+                font-size:clamp(28px,5.5vw,62px);
+                font-weight:900;
+                line-height:1.18;
+                letter-spacing:-0.02em;
+                margin-bottom:22px;
+                max-width:860px;
+                text-shadow:0 2px 30px rgba(0,0,0,0.5);">
+                <span style="color:#D4AF37;">세계가 주목하는 K-건강식</span><br>
                 제천 천년 한방의 정수를 담아<br>
-                전세계의 식탁으로 향합니다
+                <span style="
+                    background:linear-gradient(90deg,#81d4fa,#a5d6a7,#fff9c4);
+                    -webkit-background-clip:text;
+                    -webkit-text-fill-color:transparent;
+                    background-clip:text;">
+                    전세계의 식탁으로 향합니다
+                </span>
             </h1>
-            <p class="text-sm md:text-lg max-w-2xl mb-10 font-light leading-relaxed" style="color:#D4AF37;">
+
+            <p style="
+                font-size:clamp(13px,1.5vw,17px);
+                max-width:640px;
+                margin-bottom:36px;
+                font-weight:300;
+                line-height:1.85;
+                color:rgba(212,215,220,0.90);
+                text-shadow:0 1px 12px rgba(0,0,0,0.4);">
                 제천의 풍부한 한방 원료 인프라와 글로벌 직소싱 네트워크를 결합하여,<br>
                 성공적이고 안정적인 웰니스 비즈니스 솔루션을 제공합니다.
             </p>
-            
-            <div class="mb-10 px-6 py-3 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 inline-flex items-center gap-2">
-                <i class="fa-solid fa-globe text-secondary"></i>
-                <span class="text-sm font-semibold tracking-wide text-slate-200">공식 웹사이트:</span>
-                <span class="text-sm font-bold text-secondary tracking-wider">www.naumlife.com</span>
+
+            <!-- 공식 사이트 배지 -->
+            <div style="
+                margin-bottom:36px;
+                padding:12px 24px;
+                background:rgba(255,255,255,0.06);
+                backdrop-filter:blur(14px);
+                border-radius:16px;
+                border:1px solid rgba(255,255,255,0.12);
+                display:inline-flex;align-items:center;gap:10px;">
+                <i class="fa-solid fa-globe" style="color:#D4AF37;font-size:15px;"></i>
+                <span style="font-size:13px;font-weight:600;color:rgba(200,210,220,0.9);">공식 웹사이트:</span>
+                <span style="font-size:13px;font-weight:800;color:#D4AF37;letter-spacing:0.05em;">www.naumlife.com</span>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a href="#contact" class="bg-secondary text-slate-900 font-bold px-8 py-4 rounded-xl hover:bg-yellow-400 transition-all text-center shadow-lg hover:scale-[1.02]">
+            <!-- CTA 버튼 2종 -->
+            <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+                <a href="#contact" class="hero-btn-primary" style="
+                    display:inline-flex;align-items:center;gap:9px;
+                    background:linear-gradient(135deg,#D4AF37,#f0cd60);
+                    color:#1a1200;
+                    font-weight:800;
+                    font-size:15px;
+                    padding:16px 34px;
+                    border-radius:14px;
+                    text-decoration:none;
+                    box-shadow:0 6px 24px rgba(212,175,55,0.35);
+                    transition:all 0.25s;">
+                    <i class="fa-solid fa-handshake"></i>
                     사업 제휴 및 파트너 문의
                 </a>
-                <a href="#business" class="bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium px-8 py-4 rounded-xl hover:bg-white/20 transition-all text-center">
+                <a href="#business" class="hero-btn-secondary" style="
+                    display:inline-flex;align-items:center;gap:9px;
+                    background:rgba(255,255,255,0.10);
+                    backdrop-filter:blur(12px);
+                    border:1.5px solid rgba(255,255,255,0.25);
+                    color:#fff;
+                    font-weight:600;
+                    font-size:15px;
+                    padding:16px 34px;
+                    border-radius:14px;
+                    text-decoration:none;
+                    transition:all 0.25s;">
+                    <i class="fa-solid fa-arrow-down"></i>
                     주요 사업 영역 보기
                 </a>
+            </div>
+
+            <!-- 하단 스크롤 힌트 -->
+            <div style="margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0.5;">
+                <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;">Scroll</span>
+                <div style="width:1px;height:32px;background:linear-gradient(180deg,rgba(255,255,255,0.7),transparent);"></div>
             </div>
         </div>
     </header>
