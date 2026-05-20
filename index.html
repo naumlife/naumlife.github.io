@@ -273,6 +273,19 @@
                 rgba(10,40,10,0.35) 65%,
                 rgba(11,70,25,0.85) 100%);
         }
+        /* 슬라이드 4: 약초·산·호수 일러스트 — 에메랄드/티얼/약초그린 */
+        @keyframes kenBurns4 {
+            0%   { transform:scale(1.05) translate(1%,0); }
+            100% { transform:scale(1.0)  translate(-2%,1%); }
+        }
+        #slide4 .kb-layer { animation-name:kenBurns4; background-image:url('장아찌.jpg'); }
+        #slide4 .slide-overlay {
+            background:linear-gradient(180deg,
+                rgba(5,35,40,0.30) 0%,
+                rgba(10,55,35,0.08) 35%,
+                rgba(5,40,20,0.28) 62%,
+                rgba(11,70,25,0.82) 100%);
+        }
         /* ── 물결 SVG 애니메이션 ── */
         @keyframes waveMove {
             0%   { transform:translateX(0); }
@@ -386,6 +399,14 @@
             <div class="slide-overlay" style="position:absolute;inset:0;z-index:1;"></div>
         </div>
 
+        <!-- ════════════════════════════════
+             슬라이드 4 — 약초·산·호수 일러스트 🍄
+        ════════════════════════════════ -->
+        <div id="slide4" class="hero-slide">
+            <div class="kb-layer"></div>
+            <div class="slide-overlay" style="position:absolute;inset:0;z-index:1;"></div>
+        </div>
+
         <!-- ── 공통 하단 물결 (청풍호 느낌 유지) ── -->
         <div style="position:absolute;bottom:0;left:0;right:0;height:160px;overflow:hidden;z-index:8;opacity:0.40;pointer-events:none;">
             <svg style="width:200%;height:100%;animation:waveMove 11s linear infinite;" viewBox="0 0 2400 160" preserveAspectRatio="none">
@@ -465,6 +486,12 @@
                     color:rgba(180,240,180,0.95);">
                     🌿 제천 한방엑스포 공원
                 </span>
+                <span id="cap4" class="slide-caption" style="
+                    background:rgba(0,80,70,0.30);
+                    border:1px solid rgba(0,210,180,0.40);
+                    color:rgba(160,245,230,0.95);">
+                    🍄 청정 약초·산야초 산지
+                </span>
             </div>
 
             <!-- 서브 태그라인 -->
@@ -494,7 +521,7 @@
                     -webkit-background-clip:text;
                     -webkit-text-fill-color:transparent;
                     background-clip:text;">
-                    세계인의 식탁에 전합니다.
+                    전세계의 식탁으로 향합니다
                 </span>
             </h1>
 
@@ -534,6 +561,7 @@
                 <div class="slide-dot active" onclick="heroGoTo(0)" id="dot0"></div>
                 <div class="slide-dot" onclick="heroGoTo(1)" id="dot1"></div>
                 <div class="slide-dot" onclick="heroGoTo(2)" id="dot2"></div>
+                <div class="slide-dot" onclick="heroGoTo(3)" id="dot3"></div>
             </div>
 
             <!-- 스크롤 힌트 -->
@@ -547,9 +575,9 @@
     <!-- ── 슬라이드쇼 JS ── -->
     <script>
     (function(){
-        const slides   = ['slide1','slide2','slide3'];
-        const caps     = ['cap1','cap2','cap3'];
-        const dots     = ['dot0','dot1','dot2'];
+        const slides   = ['slide1','slide2','slide3','slide4'];
+        const caps     = ['cap1','cap2','cap3','cap4'];
+        const dots     = ['dot0','dot1','dot2','dot3'];
         let cur = 0, timer = null;
 
         function goTo(idx) {
