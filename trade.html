@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>중국 무역 전문 컨설팅 · 수입대행 | 나음생활건강</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -76,6 +76,176 @@
             .hero-text { padding:50px 0; }
             .step-line { display:none; }
         }
+
+        /* ====== RESPONSIVE WEB OPTIMIZATION ====== */
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+        img, svg, video { max-width:100%; }
+        a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+        body.menu-open { overflow:hidden; }
+        .mobile-only { display:none; }
+
+        .trade-hamburger {
+            display:none;
+            width:44px;
+            height:44px;
+            border:0;
+            background:transparent;
+            border-radius:10px;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            gap:5px;
+            cursor:pointer;
+            flex-shrink:0;
+        }
+        .trade-hamburger span {
+            display:block;
+            width:23px;
+            height:2px;
+            border-radius:2px;
+            background:var(--navy);
+            transition:transform .25s ease, opacity .25s ease;
+        }
+        .trade-hamburger:active { background:rgba(13,33,55,.08); }
+        .trade-hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+        .trade-hamburger.open span:nth-child(2) { opacity:0; }
+        .trade-hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+        #trade-mobile-menu {
+            position:fixed;
+            top:72px;
+            left:0;
+            right:0;
+            bottom:0;
+            z-index:99;
+            display:none;
+            flex-direction:column;
+            gap:0;
+            padding:18px 22px max(32px, env(safe-area-inset-bottom));
+            background:rgba(255,255,255,.98);
+            backdrop-filter:blur(18px);
+            -webkit-backdrop-filter:blur(18px);
+            border-top:1px solid #e7edf4;
+            overflow-y:auto;
+            animation:tradeMenuIn .25s ease both;
+        }
+        #trade-mobile-menu.open { display:flex; }
+        @keyframes tradeMenuIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+        .trade-mobile-link {
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:17px 4px;
+            color:#132338;
+            font-size:17px;
+            font-weight:800;
+            text-decoration:none;
+            border-bottom:1px solid #eef2f7;
+        }
+        .trade-mobile-link i { width:24px; color:var(--navy); font-size:14px; }
+        .trade-mobile-cta {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:10px;
+            margin-top:20px;
+            padding:16px 18px;
+            border-radius:14px;
+            background:var(--navy);
+            color:#fff;
+            font-size:15px;
+            font-weight:900;
+            text-decoration:none;
+            box-shadow:0 8px 24px rgba(13,33,55,.22);
+        }
+        .trade-mobile-phone {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:9px;
+            margin-top:12px;
+            padding:15px 18px;
+            border-radius:14px;
+            background:#f5f8fc;
+            border:1px solid #d9e5f2;
+            color:var(--navy);
+            font-size:14px;
+            font-weight:800;
+            text-decoration:none;
+        }
+
+        @media (max-width: 1100px) {
+            .hero-inner { gap:36px !important; padding:0 28px !important; }
+            .hero-img-wrap { max-width:390px !important; }
+            .trade-nav-links { gap:14px !important; }
+        }
+
+        @media (max-width: 900px) {
+            .trade-nav-links { display:none !important; }
+            .trade-hamburger { display:flex !important; }
+            .mobile-only { display:block; }
+            .hero-section { min-height:auto !important; }
+            .hero-inner { grid-template-columns:1fr !important; gap:0 !important; padding:0 24px !important; }
+            .hero-text { padding:58px 0 62px !important; max-width:680px; }
+            .hero-visual { display:none !important; }
+            .hero-bg::after {
+                background:linear-gradient(180deg, rgba(13,33,55,.96) 0%, rgba(13,33,55,.90) 52%, rgba(13,33,55,.96) 100%) !important;
+            }
+            .step-line { display:none !important; }
+            section[style*="padding:80px 24px"] { padding:64px 22px !important; }
+            section[style*="padding:0 24px 80px"] { padding:0 22px 64px !important; }
+        }
+
+        @media (max-width: 640px) {
+            nav { height:64px !important; padding-top:env(safe-area-inset-top); }
+            nav > div { padding:0 18px !important; }
+            #trade-mobile-menu { top:64px; }
+            .hero-section { padding-top:64px !important; }
+            .hero-inner { padding:0 18px !important; }
+            .hero-text { padding:42px 0 50px !important; text-align:left; }
+            .hero-text h1 { font-size:clamp(27px, 9vw, 38px) !important; line-height:1.28 !important; margin:18px 0 14px !important; }
+            .hero-text p { font-size:14px !important; line-height:1.82 !important; margin-bottom:26px !important; }
+            .badge-tag { font-size:10px !important; padding:6px 12px !important; letter-spacing:.1em !important; max-width:100%; line-height:1.35; }
+            section[style*="padding:80px 24px"] { padding:52px 18px !important; }
+            section[style*="padding:0 24px 80px"] { padding:0 18px 52px !important; }
+            .service-card { padding:22px !important; border-radius:16px !important; }
+            .service-card:hover { transform:none !important; }
+            [style*="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))"],
+            [style*="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))"],
+            [style*="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))"] {
+                grid-template-columns:1fr !important;
+            }
+            [style*="display:flex;flex-wrap:wrap;gap:14px 28px"] { gap:10px 14px !important; }
+            [style*="font-size:22px;font-weight:900;color:#1a1a1a"] { font-size:20px !important; }
+            [style*="width:1px;background:rgba(0,0,0,0.15)"] { display:none !important; }
+            .cta-strip { padding:34px 24px !important; border-radius:18px !important; }
+            .cta-strip::before { right:8px !important; font-size:70px !important; opacity:.05 !important; }
+            .cta-strip h2 { font-size:clamp(23px,7vw,32px) !important; line-height:1.35 !important; }
+            .cta-strip p { font-size:13.5px !important; line-height:1.75 !important; }
+            .cta-strip a { width:100% !important; justify-content:center !important; text-align:center !important; }
+            footer { padding:34px 18px !important; }
+            footer a { flex-wrap:wrap; justify-content:center; }
+            footer p { line-height:1.7 !important; }
+        }
+
+        @media (max-width: 420px) {
+            nav img { height:32px !important; }
+            nav a div div:first-child { font-size:14px !important; }
+            nav a div div:last-child { display:none !important; }
+            .hero-text h1 { font-size:clamp(25px, 8.8vw, 34px) !important; }
+            .service-card[style*="display:flex"] { gap:12px !important; }
+            .service-card[style*="display:flex"] > div:first-child { width:36px !important; height:36px !important; font-size:16px !important; }
+            [style*="padding:18px 20px"] { padding:16px !important; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+        }
+
     </style>
 </head>
 <body>
@@ -90,14 +260,54 @@
                 <div style="font-size:9px;color:#999;letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">naumlife.com</div>
             </div>
         </a>
-        <div style="display:flex;align-items:center;gap:20px;">
+        <div class="trade-nav-links" style="display:flex;align-items:center;gap:20px;">
             <a href="index.html" style="font-size:13px;color:#555;text-decoration:none;font-weight:500;display:flex;align-items:center;gap:5px;">
                 <i class="fa-solid fa-arrow-left" style="font-size:11px;"></i> 메인으로
             </a>
             <a href="index.html#contact" style="background:var(--navy);color:#fff;font-size:12px;font-weight:700;padding:8px 18px;border-radius:9px;text-decoration:none;">무료 상담 신청</a>
         </div>
+        <button class="trade-hamburger" id="trade-hamburger" type="button" aria-label="메뉴 열기" aria-controls="trade-mobile-menu" aria-expanded="false" onclick="toggleTradeMenu()">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div id="trade-mobile-menu" role="navigation" aria-label="모바일 메뉴">
+    <a href="index.html" class="trade-mobile-link" onclick="closeTradeMenu()">
+        <i class="fa-solid fa-house"></i> 메인 홈으로
+    </a>
+    <a href="#" class="trade-mobile-link" onclick="closeTradeMenu(); setTimeout(function(){ window.scrollTo({top:0, behavior:'smooth'}); }, 20); return false;">
+        <i class="fa-solid fa-ship"></i> 무역 컨설팅 소개
+    </a>
+    <a href="index.html#contact" class="trade-mobile-cta" onclick="closeTradeMenu()">
+        <i class="fa-solid fa-paper-plane"></i> 무료 상담 신청하기
+    </a>
+    <a href="tel:010-8077-9118" class="trade-mobile-phone" onclick="closeTradeMenu()">
+        <i class="fa-solid fa-phone"></i> 010-8077-9118 바로 전화
+    </a>
+</div>
+
+<script>
+function toggleTradeMenu(){
+    var btn=document.getElementById('trade-hamburger');
+    var menu=document.getElementById('trade-mobile-menu');
+    if(!btn || !menu) return;
+    var isOpen=menu.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.classList.toggle('menu-open', isOpen);
+}
+function closeTradeMenu(){
+    var btn=document.getElementById('trade-hamburger');
+    var menu=document.getElementById('trade-mobile-menu');
+    if(menu) menu.classList.remove('open');
+    if(btn){ btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+    document.body.classList.remove('menu-open');
+}
+window.addEventListener('resize', function(){ if(window.innerWidth > 900) closeTradeMenu(); }, {passive:true});
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeTradeMenu(); });
+</script>
 
 <!-- HERO -->
 <section class="hero-section">
