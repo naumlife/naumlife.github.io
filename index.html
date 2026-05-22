@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>나음생활건강 | 제천 한방 건강식품 & 중국 수입무역 전문</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
    
@@ -319,11 +319,504 @@
         /* ====== 푸터 링크 터치 개선 ====== */
         footer a { padding: 4px 0; display: inline-block; }
     </style>
+
+
+    <!-- ====== 반응형 웹 최적화 최종 보정 CSS ====== -->
+    <style id="responsive-web-optimization">
+        :root {
+            --nav-h: 80px;
+            --section-y: clamp(56px, 8vw, 80px);
+            --page-x: clamp(18px, 4vw, 32px);
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--nav-h) + 16px);
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+        body {
+            overflow-x: hidden;
+            min-width: 320px;
+        }
+        body.menu-open { overscroll-behavior: contain; }
+        img, picture, video, canvas, svg, iframe {
+            max-width: 100%;
+        }
+        img { height: auto; }
+        a, button {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(11,70,25,0.12);
+        }
+        #main-nav {
+            min-height: var(--nav-h);
+            padding-top: env(safe-area-inset-top);
+        }
+        #main-nav .nav-inner {
+            height: var(--nav-h) !important;
+            padding-left: var(--page-x) !important;
+            padding-right: var(--page-x) !important;
+        }
+        #main-nav img[alt*="로고"] {
+            display: block;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        #main-nav .nav-desktop-links a {
+            white-space: nowrap;
+        }
+        #mobile-menu {
+            top: calc(var(--nav-h) + env(safe-area-inset-top)) !important;
+            padding-left: var(--page-x) !important;
+            padding-right: var(--page-x) !important;
+        }
+        #hero {
+            min-height: 100svh !important;
+            isolation: isolate;
+        }
+        #hero > .max-w-7xl {
+            width: 100%;
+            padding-left: var(--page-x) !important;
+            padding-right: var(--page-x) !important;
+        }
+        #hero .hero-slide,
+        #hero .kb-layer {
+            transform-origin: center center;
+            backface-visibility: hidden;
+        }
+        #txt-slider {
+            width: 100% !important;
+            max-width: min(900px, 100%) !important;
+        }
+        #txt-track .txt-item p {
+            overflow-wrap: break-word;
+            text-wrap: balance;
+        }
+        .slide-caption {
+            max-width: 100%;
+            white-space: normal;
+            justify-content: center;
+            text-align: center;
+        }
+        .official-site-badge {
+            max-width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+        }
+        .official-site-badge span:last-child {
+            overflow-wrap: anywhere;
+        }
+        .hero-cta-row {
+            width: 100%;
+        }
+        .hero-btn-gold,
+        .hero-btn-ghost,
+        .mobile-menu-cta,
+        .mobile-menu-link {
+            min-height: 44px;
+        }
+        .hero-dots .slide-dot {
+            width: 10px;
+            height: 10px;
+            min-width: 24px;
+            min-height: 24px;
+        }
+        section[id], footer {
+            scroll-margin-top: calc(var(--nav-h) + 14px);
+        }
+        section[id] > .max-w-7xl,
+        footer > .max-w-7xl {
+            padding-left: var(--page-x) !important;
+            padding-right: var(--page-x) !important;
+        }
+        #about .grid,
+        #business .grid,
+        #products .grid,
+        #contact .grid,
+        #ceo .grid {
+            min-width: 0;
+        }
+        #about .grid > *,
+        #business .grid > *,
+        #products .grid > *,
+        #contact .grid > *,
+        #ceo .grid > * {
+            min-width: 0;
+        }
+        #products .grid.md\:grid-cols-2.lg\:grid-cols-4 {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(min(245px, 100%), 1fr)) !important;
+        }
+        #news-grid {
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)) !important;
+        }
+        #news-modal-box {
+            width: min(680px, calc(100vw - 32px)) !important;
+        }
+        .nf-card,
+        .ng-card {
+            min-width: 0;
+        }
+        footer .flex.gap-6.text-sm {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        @media (max-width: 1180px) and (min-width: 1024px) {
+            #main-nav .nav-desktop-links {
+                gap: 18px !important;
+                font-size: 13px !important;
+            }
+            #main-nav .nav-desktop-links a:last-child {
+                padding-left: 14px !important;
+                padding-right: 14px !important;
+            }
+        }
+        @media (max-width: 1023px) {
+            :root { --nav-h: 72px; }
+            #main-nav .nav-desktop-links {
+                display: none !important;
+            }
+            .hamburger-btn {
+                display: flex !important;
+            }
+            #mobile-menu {
+                display: none;
+                max-height: calc(100svh - var(--nav-h));
+            }
+            #mobile-menu.open { display: flex !important; }
+            #hero {
+                padding-top: calc(var(--nav-h) + 44px) !important;
+                padding-bottom: 58px !important;
+            }
+            .slide-arrow { display: none !important; }
+            #hero .kb-layer {
+                animation-duration: 18s !important;
+            }
+            #slide1 .kb-layer,
+            #slide2 .kb-layer,
+            #slide3 .kb-layer,
+            #slide4 .kb-layer,
+            #slide5 .kb-layer,
+            #slide6 .kb-layer {
+                background-position: center center !important;
+            }
+            #about, #business, #products, #ceo, #contact {
+                padding-top: var(--section-y) !important;
+                padding-bottom: var(--section-y) !important;
+            }
+            #news {
+                padding: var(--section-y) 0 !important;
+            }
+            #news > div {
+                padding-left: var(--page-x) !important;
+                padding-right: var(--page-x) !important;
+            }
+            #business .bg-white.p-8,
+            #business a.p-8,
+            #products .p-5,
+            #contact .lg\:col-span-7 {
+                padding: 24px !important;
+            }
+            .nf-left {
+                padding: 30px 28px !important;
+            }
+            #ceo .w-48.h-48 {
+                width: 168px !important;
+                height: 168px !important;
+            }
+        }
+        @media (max-width: 767px) {
+            :root {
+                --nav-h: 68px;
+                --page-x: clamp(16px, 5vw, 22px);
+            }
+            #main-nav img[alt*="로고"] {
+                height: 48px !important;
+                width: auto !important;
+            }
+            #main-nav .nav-logo-text {
+                font-size: 17px !important;
+            }
+            #mobile-menu {
+                padding-top: 12px !important;
+                padding-bottom: calc(28px + env(safe-area-inset-bottom)) !important;
+            }
+            .mobile-menu-link {
+                padding: 15px 2px !important;
+                font-size: 16px !important;
+            }
+            .mobile-menu-cta {
+                margin-top: 18px !important;
+                padding: 16px !important;
+                font-size: 15px !important;
+            }
+            #hero {
+                min-height: 100svh !important;
+                padding-top: calc(var(--nav-h) + 38px) !important;
+                padding-bottom: 44px !important;
+            }
+            #hero .slide-caption {
+                font-size: 10px !important;
+                padding: 6px 12px !important;
+                line-height: 1.35 !important;
+            }
+            #hero span[style*="Natural Wellness"] {
+                letter-spacing: .12em !important;
+                font-size: 10px !important;
+                padding: 7px 14px !important;
+                max-width: 100% !important;
+                white-space: normal !important;
+            }
+            #txt-slider {
+                margin-bottom: 18px !important;
+            }
+            #txt-track .txt-item p {
+                font-size: clamp(23px, 8vw, 36px) !important;
+                line-height: 1.24 !important;
+                letter-spacing: -0.045em !important;
+            }
+            #hero p[style*="max-width:640px"] {
+                font-size: 14px !important;
+                line-height: 1.75 !important;
+                margin-bottom: 24px !important;
+            }
+            .official-site-badge {
+                margin-bottom: 24px !important;
+                padding: 10px 14px !important;
+                border-radius: 14px !important;
+                gap: 6px !important;
+            }
+            .official-site-badge span {
+                font-size: 12px !important;
+            }
+            .hero-cta-row {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 10px !important;
+            }
+            .hero-btn-gold,
+            .hero-btn-ghost {
+                width: min(100%, 360px) !important;
+                justify-content: center !important;
+                padding: 14px 18px !important;
+                font-size: 14px !important;
+                border-radius: 12px !important;
+            }
+            .hero-dots {
+                margin-top: 34px !important;
+                gap: 6px !important;
+            }
+            #hero svg[style*="bottom:55px"],
+            #hero svg[style*="bottom:48px"] {
+                opacity: 0.16 !important;
+            }
+            .text-center.max-w-3xl,
+            #news > div > div[style*="text-align:center"] {
+                margin-bottom: 38px !important;
+            }
+            #about .quote-card,
+            #about .mission-card {
+                border-radius: 20px !important;
+            }
+            #about .mission-card {
+                padding: 32px 22px !important;
+                text-align: left !important;
+            }
+            #about .mission-card p,
+            #about .mission-card h3 {
+                text-align: left !important;
+            }
+            #business .bg-white.p-8,
+            #business a.p-8 {
+                padding: 22px !important;
+                gap: 16px !important;
+                border-radius: 22px !important;
+            }
+            #business h3,
+            #products h4 {
+                line-height: 1.35 !important;
+            }
+            #products .grid.md\:grid-cols-2.lg\:grid-cols-4 {
+                grid-template-columns: 1fr !important;
+                gap: 18px !important;
+            }
+            #products .h-44 {
+                height: 148px !important;
+            }
+            #products a,
+            #products .rounded-2xl {
+                border-radius: 18px !important;
+            }
+            #ceo .grid.md\:grid-cols-12 {
+                gap: 34px !important;
+            }
+            #ceo .w-48.h-48 {
+                width: 146px !important;
+                height: 146px !important;
+            }
+            #ceo h2 br,
+            #contact h3 br {
+                display: none !important;
+            }
+            #ceo .text-slate-400[style*="display:flex"] {
+                font-size: 14px !important;
+                line-height: 1.85 !important;
+            }
+            .nf-card {
+                grid-template-columns: 1fr !important;
+                border-radius: 20px !important;
+                min-height: 0 !important;
+            }
+            .nf-right {
+                min-height: 190px !important;
+                order: -1;
+            }
+            .nf-left {
+                padding: 24px 22px !important;
+            }
+            .n-title-lg {
+                font-size: 19px !important;
+            }
+            .n-content-lg {
+                font-size: 13px !important;
+                line-height: 1.75 !important;
+                -webkit-line-clamp: 4 !important;
+            }
+            #news-grid {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+            .ng-body {
+                padding: 19px 18px 0 !important;
+            }
+            .ng-footer {
+                padding: 13px 18px 18px !important;
+            }
+            #news-modal-overlay.open {
+                padding: 12px !important;
+                align-items: flex-end !important;
+            }
+            #news-modal-box {
+                border-radius: 20px 20px 0 0 !important;
+                width: 100% !important;
+                max-height: 88svh !important;
+            }
+            #contact .lg\:col-span-7 {
+                padding: 22px !important;
+                border-radius: 20px !important;
+            }
+            #contact a[href*="forms.gle"] {
+                width: min(100%, 320px) !important;
+                justify-content: center !important;
+                padding: 16px 24px !important;
+            }
+            .contact-quick-grid {
+                grid-template-columns: 1fr !important;
+            }
+            footer {
+                padding-top: 42px !important;
+                padding-bottom: 42px !important;
+            }
+            footer .flex.gap-6.text-sm {
+                gap: 8px 18px !important;
+            }
+            footer .flex.gap-6.text-sm a {
+                min-height: 36px;
+                display: inline-flex;
+                align-items: center;
+            }
+        }
+        @media (max-width: 480px) {
+            :root { --nav-h: 64px; }
+            #main-nav img[alt*="로고"] {
+                height: 42px !important;
+            }
+            #main-nav .nav-inner {
+                gap: 10px !important;
+            }
+            #main-nav .nav-logo-text {
+                font-size: 15px !important;
+            }
+            #main-nav .nav-logo-sub {
+                display: none !important;
+            }
+            .hamburger-btn {
+                width: 42px !important;
+                height: 42px !important;
+            }
+            #hero {
+                padding-top: calc(var(--nav-h) + 34px) !important;
+            }
+            #txt-track .txt-item p {
+                font-size: clamp(22px, 8.4vw, 31px) !important;
+            }
+            #hero p[style*="max-width:640px"] span.hidden {
+                display: none !important;
+            }
+            .official-site-badge {
+                display: flex !important;
+                width: 100% !important;
+            }
+            .hero-btn-gold,
+            .hero-btn-ghost {
+                width: 100% !important;
+                max-width: 320px !important;
+            }
+            #about .grid[style*="grid-template-columns:1fr 1fr"] {
+                gap: 10px !important;
+            }
+            #about .grid[style*="grid-template-columns:1fr 1fr"] > div {
+                padding: 20px 14px !important;
+                border-radius: 15px !important;
+            }
+            #about .grid[style*="grid-template-columns:1fr 1fr"] div[style*="font-size:32px"] {
+                font-size: 27px !important;
+            }
+            #business .bg-white.p-8,
+            #business a.p-8,
+            #products .p-5,
+            #contact .lg\:col-span-7 {
+                padding: 20px !important;
+            }
+            #news-modal-img {
+                height: 190px !important;
+            }
+            #news-modal-body {
+                padding: 22px 18px 28px !important;
+            }
+        }
+        @media (max-width: 360px) {
+            #main-nav .nav-logo-text {
+                font-size: 14px !important;
+            }
+            #main-nav img[alt*="로고"] {
+                height: 38px !important;
+            }
+            .hero-btn-gold,
+            .hero-btn-ghost {
+                font-size: 13px !important;
+                padding-left: 14px !important;
+                padding-right: 14px !important;
+            }
+            .official-site-badge span:last-child {
+                width: 100%;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+
 </head>
 <body class="bg-slate-50 text-slate-800 scroll-smooth">
 
-    <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+    <nav id="main-nav" class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-slate-100">
+        <div class="nav-inner max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             
             <a href="#" class="flex items-center gap-2.5">
                <img src="logo.png" alt="나음생활건강 로고" class="h-16 w-auto">
@@ -333,7 +826,7 @@
                 </div>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+            <div class="nav-desktop-links hidden md:flex items-center gap-8 font-medium text-slate-600">
                 <a href="#about" class="hover:text-primary transition-colors">회사소개</a>
                 <a href="#business" class="hover:text-primary transition-colors">사업분야</a>
                 <a href="#products" class="hover:text-primary transition-colors">제품 및 서비스</a>
@@ -343,7 +836,7 @@
             </div>
 
             <!-- 햄버거 버튼 (모바일 전용) -->
-            <button class="hamburger-btn md:hidden" id="hamburger-btn" aria-label="메뉴 열기" onclick="toggleMobileMenu()">
+            <button class="hamburger-btn md:hidden" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -367,11 +860,18 @@
         const menu = document.getElementById('mobile-menu');
         const isOpen = menu.classList.toggle('open');
         btn.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        document.body.classList.toggle('menu-open', isOpen);
         document.body.style.overflow = isOpen ? 'hidden' : '';
     }
     function closeMobileMenu() {
-        document.getElementById('mobile-menu').classList.remove('open');
-        document.getElementById('hamburger-btn').classList.remove('open');
+        const menu = document.getElementById('mobile-menu');
+        const btn = document.getElementById('hamburger-btn');
+        if (!menu || !btn) return;
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
         document.body.style.overflow = '';
     }
     // 스크롤 시 모바일 메뉴 닫기
@@ -821,7 +1321,7 @@
             </p>
 
             <!-- 공식 사이트 배지 -->
-            <div style="
+            <div class="official-site-badge" style="
                 margin-bottom:32px; padding:11px 22px;
                 background:rgba(255,255,255,0.06); backdrop-filter:blur(14px);
                 border-radius:16px; border:1px solid rgba(255,255,255,0.12);
@@ -832,7 +1332,7 @@
             </div>
 
             <!-- CTA 버튼 -->
-            <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+            <div class="hero-cta-row" style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
                 <a href="#contact" class="hero-btn-gold">
                     <i class="fa-solid fa-handshake"></i> 사업 제휴 및 파트너 문의
                 </a>
@@ -842,7 +1342,7 @@
             </div>
 
             <!-- 슬라이드 인디케이터 도트 -->
-            <div style="display:flex;gap:10px;margin-top:48px;align-items:center;">
+            <div class="hero-dots" style="display:flex;gap:10px;margin-top:48px;align-items:center;">
                 <div class="slide-dot active" onclick="heroGoTo(0)" id="dot0"></div>
                 <div class="slide-dot" onclick="heroGoTo(1)" id="dot1"></div>
                 <div class="slide-dot" onclick="heroGoTo(2)" id="dot2"></div>
@@ -1208,7 +1708,8 @@
                     <div class="w-48 h-48 rounded-full border-4 border-secondary overflow-hidden bg-slate-800 flex items-center justify-center shadow-xl">
                         <img src="my_photo.jpg" 
                              alt="대표 권영환 프로필" 
-                             class="w-full h-full object-cover">
+                             class="w-full h-full object-cover"
+                             loading="lazy" decoding="async">
                     </div>
                     <div class="text-center mt-6">
                         <h4 class="text-lg font-bold">대표 권 영 환</h4>
@@ -1776,6 +2277,33 @@
             </div>
         </div>
     </footer>
+
+
+
+    <!-- ====== 반응형 메뉴 보조 스크립트 ====== -->
+    <script id="responsive-menu-helper">
+    (function(){
+        const btn = document.getElementById('hamburger-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (!btn || !menu) return;
+        const desktopQuery = window.matchMedia('(min-width: 1024px)');
+        function syncForViewport(e){
+            if (e.matches && typeof window.closeMobileMenu === 'function') {
+                window.closeMobileMenu();
+            }
+        }
+        if (desktopQuery.addEventListener) desktopQuery.addEventListener('change', syncForViewport);
+        else if (desktopQuery.addListener) desktopQuery.addListener(syncForViewport);
+        document.addEventListener('keydown', function(e){
+            if (e.key === 'Escape' && typeof window.closeMobileMenu === 'function') window.closeMobileMenu();
+        });
+        document.addEventListener('click', function(e){
+            if (!menu.classList.contains('open')) return;
+            if (menu.contains(e.target) || btn.contains(e.target)) return;
+            if (typeof window.closeMobileMenu === 'function') window.closeMobileMenu();
+        });
+    })();
+    </script>
 
 </body>
 </html>
