@@ -250,28 +250,28 @@
         #slide1 .kb-layer { animation-name:kenBurns1; background-image:url('img_006.png'); }
         #slide1 .slide-overlay {
             background:linear-gradient(180deg,
-                rgba(20,10,50,0.45) 0%,
-                rgba(40,15,80,0.15) 35%,
-                rgba(10,30,15,0.30) 65%,
-                rgba(11,70,25,0.82) 100%);
+                rgba(0,0,0,0.72) 0%,
+                rgba(0,0,0,0.68) 35%,
+                rgba(0,0,0,0.72) 65%,
+                rgba(0,15,5,0.92) 100%);
         }
         /* 슬라이드 2: 청풍호 — 청량한 하늘파랑/에메랄드 */
         #slide2 .kb-layer { animation-name:kenBurns2; background-image:url('img_005.png'); }
         #slide2 .slide-overlay {
             background:linear-gradient(180deg,
-                rgba(5,25,60,0.40) 0%,
-                rgba(10,60,80,0.10) 40%,
-                rgba(5,40,20,0.25) 65%,
-                rgba(11,70,25,0.80) 100%);
+                rgba(0,0,0,0.72) 0%,
+                rgba(0,5,10,0.68) 40%,
+                rgba(0,0,0,0.72) 65%,
+                rgba(0,15,5,0.92) 100%);
         }
         /* 슬라이드 3: 한방엑스포 공원 — 따뜻한 황금/초록 */
         #slide3 .kb-layer { animation-name:kenBurns3; background-image:url('img_004.png'); }
         #slide3 .slide-overlay {
             background:linear-gradient(180deg,
-                rgba(10,30,10,0.45) 0%,
-                rgba(20,60,10,0.10) 40%,
-                rgba(10,40,10,0.35) 65%,
-                rgba(11,70,25,0.85) 100%);
+                rgba(0,0,0,0.72) 0%,
+                rgba(0,5,0,0.68) 40%,
+                rgba(0,0,0,0.72) 65%,
+                rgba(0,15,5,0.92) 100%);
         }
         /* 슬라이드 4: 약초·산·호수 일러스트 — 에메랄드/티얼/약초그린 */
         @keyframes kenBurns4 {
@@ -281,10 +281,10 @@
         #slide4 .kb-layer { animation-name:kenBurns4; background-image:url('img_003.png'); }
         #slide4 .slide-overlay {
             background:linear-gradient(180deg,
-                rgba(5,35,40,0.30) 0%,
-                rgba(10,55,35,0.08) 35%,
-                rgba(5,40,20,0.28) 62%,
-                rgba(11,70,25,0.82) 100%);
+                rgba(0,0,0,0.72) 0%,
+                rgba(0,5,5,0.68) 35%,
+                rgba(0,0,0,0.72) 62%,
+                rgba(0,15,5,0.92) 100%);
         }
         /* 슬라이드 5: 채소·장아찌 재료 — 싱그러운 초록/주황 */
         @keyframes kenBurns5 {
@@ -294,10 +294,10 @@
         #slide5 .kb-layer { animation-name:kenBurns5; background-image:url('채소.jpg'); }
         #slide5 .slide-overlay {
             background:linear-gradient(180deg,
-                rgba(5,30,5,0.35) 0%,
-                rgba(20,70,10,0.10) 38%,
-                rgba(10,50,10,0.30) 65%,
-                rgba(11,70,25,0.84) 100%);
+                rgba(0,0,0,0.72) 0%,
+                rgba(0,5,0,0.68) 38%,
+                rgba(0,0,0,0.72) 65%,
+                rgba(0,15,5,0.92) 100%);
         }
         /* 슬라이드 6: 장아찌 모음 — 따뜻한 황토/갈색 */
         @keyframes kenBurns6 {
@@ -307,10 +307,10 @@
         #slide6 .kb-layer { animation-name:kenBurns6; background-image:url('장아찌모음.jpg'); }
         #slide6 .slide-overlay {
             background:linear-gradient(180deg,
-                rgba(30,15,5,0.40) 0%,
-                rgba(60,30,10,0.12) 38%,
-                rgba(30,15,5,0.32) 65%,
-                rgba(40,20,5,0.85) 100%);
+                rgba(0,0,0,0.72) 0%,
+                rgba(5,2,0,0.68) 38%,
+                rgba(0,0,0,0.72) 65%,
+                rgba(10,5,0,0.92) 100%);
         }
         /* ── 물결 SVG 애니메이션 ── */
         @keyframes waveMove {
@@ -560,30 +560,90 @@
                 Natural Wellness &amp; Global Trade Partner
             </span>
 
-            <!-- 메인 타이틀 -->
-            <h1 style="
-                font-size:clamp(26px,5.2vw,60px);
-                font-weight:900; line-height:1.18;
-                letter-spacing:-0.02em; margin-bottom:22px;
-                max-width:880px;
-                text-shadow:0 2px 32px rgba(0,0,0,0.55);">
-                <span style="color:#D4AF37;">세계가 주목하는 K-건강식</span><br>
-                제천 천년 한방의 정수를 담아<br>
-                <span style="
-                    background:linear-gradient(90deg,#81d4fa 0%,#a5d6a7 50%,#fff9c4 100%);
-                    -webkit-background-clip:text;
-                    -webkit-text-fill-color:transparent;
-                    background-clip:text;">
-                    전세계의 식탁으로 향합니다
-                </span>
-            </h1>
+            <!-- 메인 타이틀 — 5줄 슬라이드 텍스트 -->
+            <div id="txt-slider" style="
+                overflow:hidden;
+                max-width:900px;
+                margin-bottom:22px;
+                position:relative;">
+
+                <div class="txt-track" id="txt-track" style="
+                    display:flex;
+                    transition:transform 0.7s cubic-bezier(0.77,0,0.18,1);
+                    will-change:transform;">
+
+                    <!-- 슬라이드 1 -->
+                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
+                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;color:#D4AF37;margin:0;">
+                            세계가 주목하는 K-건강식
+                        </p>
+                    </div>
+
+                    <!-- 슬라이드 2 -->
+                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
+                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;color:#ffffff;margin:0;">
+                            제천 천년 한방의 정수를 담아
+                        </p>
+                    </div>
+
+                    <!-- 슬라이드 3 -->
+                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
+                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
+                            background:linear-gradient(90deg,#43a047 0%,#66bb6a 40%,#a5d6a7 100%);
+                            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                            전세계의 식탁에 전합니다
+                        </p>
+                    </div>
+
+                    <!-- 슬라이드 4 -->
+                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
+                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;color:#ffffff;margin:0;">
+                            20년 무역 전문가가 직접 소싱
+                        </p>
+                    </div>
+
+                    <!-- 슬라이드 5 -->
+                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
+                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
+                            background:linear-gradient(90deg,#D4AF37 0%,#f0cd60 50%,#D4AF37 100%);
+                            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                            나음생활건강과 건강을 나누다
+                        </p>
+                    </div>
+
+                </div><!-- /txt-track -->
+            </div><!-- /txt-slider -->
+
+            <script>
+            (function(){
+                var track = document.getElementById('txt-track');
+                var total = 5;
+                var cur   = 0;
+                var itemW = 100; // %
+
+                setInterval(function(){
+                    cur = (cur + 1) % total;
+                    track.style.transform = 'translateX(-' + (cur * itemW) + '%)';
+                    /* 마지막→첫번째 부드럽게 루프 */
+                    if(cur === 0){
+                        setTimeout(function(){
+                            track.style.transition = 'none';
+                            track.style.transform  = 'translateX(0%)';
+                            setTimeout(function(){
+                                track.style.transition = 'transform 0.7s cubic-bezier(0.77,0,0.18,1)';
+                            }, 50);
+                        }, 750);
+                    }
+                }, 3000);
+            })();
+            </script>
 
             <!-- 설명 문구 -->
             <p style="
                 font-size:clamp(13px,1.5vw,17px); max-width:640px;
                 margin-bottom:32px; font-weight:300; line-height:1.9;
-                color:rgba(215,220,228,0.92);
-                text-shadow:0 1px 14px rgba(0,0,0,0.45);">
+                color:rgba(225,235,245,0.98);
+                text-shadow:0 1px 6px rgba(0,0,0,0.9), 0 2px 20px rgba(0,0,0,0.7);">
                 제천의 풍부한 한방 원료 인프라와 글로벌 직소싱 네트워크를 결합하여,<br>
                 성공적이고 안정적인 웰니스 비즈니스 솔루션을 제공합니다.
             </p>
