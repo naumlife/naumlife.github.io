@@ -878,105 +878,44 @@
     window.addEventListener('scroll', function(){ closeMobileMenu(); }, { passive: true });
     </script>
 
-    <!-- ===== 헤더 스타일 (3장 자동 슬라이드쇼) ===== -->
+    <!-- ===== 헤더: 비디오 배경 (토스토스 스타일) ===== -->
     <style>
-        /* ── Ken Burns 줌 효과 ── */
-        @keyframes kenBurns1 {
-            0%   { transform:scale(1.0) translate(0,0); }
-            100% { transform:scale(1.12) translate(-2%,-1%); }
+        /* ── 비디오 배경 ── */
+        #hero-video-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
         }
-        @keyframes kenBurns2 {
-            0%   { transform:scale(1.08) translate(2%,1%); }
-            100% { transform:scale(1.0) translate(-1%,0); }
+        #hero-bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
         }
-        @keyframes kenBurns3 {
-            0%   { transform:scale(1.0) translate(-1%,2%); }
-            100% { transform:scale(1.1) translate(2%,-1%); }
+        /* 비디오 위 어두운 그라디언트 오버레이 */
+        #hero-video-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                180deg,
+                rgba(0,0,0,0.55) 0%,
+                rgba(0,10,5,0.48) 40%,
+                rgba(0,0,0,0.60) 70%,
+                rgba(0,15,5,0.88) 100%
+            );
         }
-        /* ── 슬라이드 크로스페이드 ── */
-        .hero-slide {
-            position:absolute; inset:0;
-            background-size:cover;
-            background-position:center;
-            opacity:0;
-            transition:opacity 1.6s ease-in-out;
-            will-change:opacity;
-        }
-        .hero-slide.active { opacity:1; }
-        .hero-slide .kb-layer {
-            position:absolute; inset:0;
-            background-size:cover;
-            background-position:inherit;
-            animation-duration:12s;
-            animation-timing-function:ease-in-out;
-            animation-fill-mode:both;
-        }
-        /* ── 슬라이드별 컬러 오버레이 ── */
-        /* 슬라이드 1: 의림지 용추폭포 — 신비로운 보라/딥네이비 */
-        #slide1 .kb-layer { animation-name:kenBurns1; background-image:url('img_006.png'); }
-        #slide1 .slide-overlay {
-            background:linear-gradient(180deg,
-                rgba(0,0,0,0.72) 0%,
-                rgba(0,0,0,0.68) 35%,
-                rgba(0,0,0,0.72) 65%,
-                rgba(0,15,5,0.92) 100%);
-        }
-        /* 슬라이드 2: 청풍호 — 청량한 하늘파랑/에메랄드 */
-        #slide2 .kb-layer { animation-name:kenBurns2; background-image:url('img_005.png'); }
-        #slide2 .slide-overlay {
-            background:linear-gradient(180deg,
-                rgba(0,0,0,0.72) 0%,
-                rgba(0,5,10,0.68) 40%,
-                rgba(0,0,0,0.72) 65%,
-                rgba(0,15,5,0.92) 100%);
-        }
-        /* 슬라이드 3: 한방엑스포 공원 — 따뜻한 황금/초록 */
-        #slide3 .kb-layer { animation-name:kenBurns3; background-image:url('img_004.png'); }
-        #slide3 .slide-overlay {
-            background:linear-gradient(180deg,
-                rgba(0,0,0,0.72) 0%,
-                rgba(0,5,0,0.68) 40%,
-                rgba(0,0,0,0.72) 65%,
-                rgba(0,15,5,0.92) 100%);
-        }
-        /* 슬라이드 4: 약초·산·호수 일러스트 — 에메랄드/티얼/약초그린 */
-        @keyframes kenBurns4 {
-            0%   { transform:scale(1.05) translate(1%,0); }
-            100% { transform:scale(1.0)  translate(-2%,1%); }
-        }
-        #slide4 .kb-layer { animation-name:kenBurns4; background-image:url('img_003.png'); }
-        #slide4 .slide-overlay {
-            background:linear-gradient(180deg,
-                rgba(0,0,0,0.72) 0%,
-                rgba(0,5,5,0.68) 35%,
-                rgba(0,0,0,0.72) 62%,
-                rgba(0,15,5,0.92) 100%);
-        }
-        /* 슬라이드 5: 채소·장아찌 재료 — 싱그러운 초록/주황 */
-        @keyframes kenBurns5 {
-            0%   { transform:scale(1.0) translate(0,2%); }
-            100% { transform:scale(1.12) translate(-1%,-2%); }
-        }
-        #slide5 .kb-layer { animation-name:kenBurns5; background-image:url('채소.jpg'); }
-        #slide5 .slide-overlay {
-            background:linear-gradient(180deg,
-                rgba(0,0,0,0.72) 0%,
-                rgba(0,5,0,0.68) 38%,
-                rgba(0,0,0,0.72) 65%,
-                rgba(0,15,5,0.92) 100%);
-        }
-        /* 슬라이드 6: 장아찌 모음 — 따뜻한 황토/갈색 */
-        @keyframes kenBurns6 {
-            0%   { transform:scale(1.08) translate(-1%,1%); }
-            100% { transform:scale(1.0) translate(2%,-1%); }
-        }
-        #slide6 .kb-layer { animation-name:kenBurns6; background-image:url('장아찌모음.jpg'); }
-        #slide6 .slide-overlay {
-            background:linear-gradient(180deg,
-                rgba(0,0,0,0.72) 0%,
-                rgba(5,2,0,0.68) 38%,
-                rgba(0,0,0,0.72) 65%,
-                rgba(10,5,0,0.92) 100%);
+        /* 비디오 로드 실패 시 폴백 이미지 */
+        #hero-video-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('img_006.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
         }
         /* ── 물결 SVG 애니메이션 ── */
         @keyframes waveMove {
@@ -1001,32 +940,6 @@
             88%  { opacity:0.4; }
             100% { transform:translateY(-105vh) translateX(-38px) rotate(-310deg); opacity:0; }
         }
-        /* ── 슬라이드 인디케이터 도트 ── */
-        .slide-dot {
-            width:9px; height:9px; border-radius:50%;
-            background:rgba(255,255,255,0.35);
-            border:1.5px solid rgba(255,255,255,0.5);
-            cursor:pointer;
-            transition:all 0.3s;
-        }
-        .slide-dot.active {
-            background:#D4AF37;
-            border-color:#D4AF37;
-            transform:scale(1.3);
-            box-shadow:0 0 8px rgba(212,175,55,0.6);
-        }
-        /* ── 슬라이드 캡션 라벨 ── */
-        .slide-caption {
-            display:none;
-            align-items:center; gap:7px;
-            padding:7px 18px; border-radius:100px;
-            font-size:11px; font-weight:700;
-            letter-spacing:0.06em;
-            backdrop-filter:blur(14px);
-            -webkit-backdrop-filter:blur(14px);
-            transition:all 0.3s;
-        }
-        .slide-caption.active { display:inline-flex; }
         /* ── CTA 버튼 ── */
         .hero-btn-gold {
             display:inline-flex; align-items:center; gap:9px;
@@ -1048,73 +961,84 @@
             text-decoration:none; transition:all 0.25s;
         }
         .hero-btn-ghost:hover { transform:translateY(-3px); background:rgba(255,255,255,0.18); }
-        /* ── 좌우 화살표 버튼 ── */
-        .slide-arrow {
-            position:absolute; top:50%; transform:translateY(-50%);
-            z-index:20; width:44px; height:44px;
-            background:rgba(255,255,255,0.12);
-            backdrop-filter:blur(10px);
-            border:1.5px solid rgba(255,255,255,0.22);
-            border-radius:50%; color:#fff; font-size:16px;
-            display:flex; align-items:center; justify-content:center;
-            cursor:pointer; transition:all 0.25s;
+        /* ── 텍스트 슬라이더 ── */
+        @keyframes txtSlideUp {
+            0%   { opacity:0; transform:translateY(22px); }
+            100% { opacity:1; transform:translateY(0); }
         }
-        .slide-arrow:hover { background:rgba(212,175,55,0.35); border-color:#D4AF37; }
-        .slide-arrow.prev { left:20px; }
-        .slide-arrow.next { right:20px; }
-        @media(max-width:640px){ .slide-arrow{ display:none; } }
+        .txt-slide-item {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            opacity: 0;
+            transition: opacity 0.9s ease;
+            pointer-events: none;
+        }
+        .txt-slide-item.active {
+            opacity: 1;
+            position: relative;
+            pointer-events: auto;
+        }
+        /* 비디오 음소거/재생 버튼 */
+        #video-mute-btn {
+            position: absolute;
+            bottom: 100px;
+            right: 28px;
+            z-index: 20;
+            width: 42px; height: 42px;
+            background: rgba(255,255,255,0.13);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(255,255,255,0.22);
+            border-radius: 50%;
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-size: 15px;
+        }
+        #video-mute-btn:hover { background: rgba(212,175,55,0.30); border-color: #D4AF37; }
+        @media(max-width:640px){
+            #video-mute-btn { bottom: 130px; right: 16px; }
+        }
+        @media (max-width: 480px) {
+            .hero-btn-gold, .hero-btn-ghost {
+                font-size: 14px !important;
+                padding: 14px 22px !important;
+                border-radius: 12px !important;
+                width: 100%;
+                justify-content: center;
+                max-width: 320px;
+            }
+        }
     </style>
 
     <header id="hero" class="relative text-white overflow-hidden" style="min-height:90vh; display:flex; flex-direction:column; justify-content:center; padding-top:clamp(100px,15vw,130px); padding-bottom:80px;">
 
-        <!-- ════════════════════════════════
-             슬라이드 1 — 의림지 용추폭포 🌊
-        ════════════════════════════════ -->
-        <div id="slide1" class="hero-slide active">
-            <div class="kb-layer"></div>
-            <div class="slide-overlay" style="position:absolute;inset:0;z-index:1;"></div>
+        <!-- ════ 비디오 배경 ════ -->
+        <div id="hero-video-wrap">
+            <!--
+                📌 깃허브에 동영상 파일 업로드 후 아래 src를 수정하세요
+                권장 파일명: hero-bg.mp4 (루트 폴더에 업로드)
+                권장 해상도: 1920x1080, 10~30초 루프, 음소거, 10MB 이하
+                예시: src="hero-bg.mp4"
+                또는 CDN/외부 링크: src="https://cdn.example.com/hero-bg.mp4"
+            -->
+            <video
+                id="hero-bg-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                poster="img_006.png"
+            >
+                <source src="hero-bg.mp4" type="video/mp4">
+                <source src="hero-bg.webm" type="video/webm">
+                <!-- 비디오 미지원 브라우저 폴백 -->
+            </video>
+            <div id="hero-video-overlay"></div>
         </div>
 
-        <!-- ════════════════════════════════
-             슬라이드 2 — 청풍호 청정 비경 🏞️
-        ════════════════════════════════ -->
-        <div id="slide2" class="hero-slide">
-            <div class="kb-layer"></div>
-            <div class="slide-overlay" style="position:absolute;inset:0;z-index:1;"></div>
-        </div>
-
-        <!-- ════════════════════════════════
-             슬라이드 3 — 제천 한방엑스포 공원 🌿
-        ════════════════════════════════ -->
-        <div id="slide3" class="hero-slide">
-            <div class="kb-layer"></div>
-            <div class="slide-overlay" style="position:absolute;inset:0;z-index:1;"></div>
-        </div>
-
-        <!-- ════════════════════════════════
-             슬라이드 4 — 약초·산·호수 일러스트 🍄
-        ════════════════════════════════ -->
-        <div id="slide4" class="hero-slide">
-            <div class="kb-layer"></div>
-            <div class="slide-overlay" style="position:absolute;inset:0;z-index:1;"></div>
-        </div>
-        <!-- ════════════════════════════════
-             슬라이드 5 — 한방 저염 장아찌 신선 재료 🥕
-        ════════════════════════════════ -->
-        <div id="slide5" class="hero-slide">
-            <div class="kb-layer"></div>
-            <div class="slide-overlay" style="position:absolute;inset:0;z-index:1;"></div>
-        </div>
-
-        <!-- ════════════════════════════════
-             슬라이드 6 — 명품 장아찌 모음 🫙
-        ════════════════════════════════ -->
-        <div id="slide6" class="hero-slide">
-            <div class="kb-layer"></div>
-            <div class="slide-overlay" style="position:absolute;inset:0;z-index:1;"></div>
-        </div>
-
-        <!-- ── 공통 하단 물결 (청풍호 느낌 유지) ── -->
+        <!-- ── 공통 하단 물결 ── -->
         <div style="position:absolute;bottom:0;left:0;right:0;height:160px;overflow:hidden;z-index:8;opacity:0.40;pointer-events:none;">
             <svg style="width:200%;height:100%;animation:waveMove 11s linear infinite;" viewBox="0 0 2400 160" preserveAspectRatio="none">
                 <defs>
@@ -1132,7 +1056,7 @@
             </svg>
         </div>
 
-        <!-- ── 산 실루엣 (원경) ── -->
+        <!-- ── 산 실루엣 ── -->
         <svg style="position:absolute;bottom:55px;left:0;width:100%;z-index:7;opacity:0.20;pointer-events:none;" viewBox="0 0 1400 170" preserveAspectRatio="none">
             <path d="M0,170 L0,95 L90,58 L180,85 L300,32 L420,68 L560,18 L680,52 L810,12 L940,48 L1060,28 L1180,65 L1310,40 L1400,60 L1400,170 Z" fill="#0a3520"/>
         </svg>
@@ -1162,56 +1086,13 @@
             <span style="position:absolute;font-size:10px;left:91%;bottom:-8%;animation:floatLeaf2 25s ease-in-out infinite 6s;">🍃</span>
         </div>
 
-        <!-- ── 좌우 화살표 ── -->
-        <div class="slide-arrow prev" onclick="heroSlide(-1)">
-            <i class="fa-solid fa-chevron-left"></i>
-        </div>
-        <div class="slide-arrow next" onclick="heroSlide(1)">
-            <i class="fa-solid fa-chevron-right"></i>
+        <!-- ── 음소거 토글 버튼 ── -->
+        <div id="video-mute-btn" onclick="toggleVideoMute()" title="음소거 토글">
+            <i class="fa-solid fa-volume-xmark" id="mute-icon"></i>
         </div>
 
         <!-- ════ 헤더 콘텐츠 ════ -->
         <div class="max-w-7xl mx-auto px-6 relative flex flex-col items-center text-center" style="z-index:15;">
-
-            <!-- 슬라이드별 랜드마크 캡션 배지 -->
-            <div style="min-height:36px;display:flex;justify-content:center;align-items:center;margin-bottom:18px;gap:10px;flex-wrap:wrap;">
-                <span id="cap1" class="slide-caption active" style="
-                    background:rgba(80,30,120,0.28);
-                    border:1px solid rgba(180,100,240,0.40);
-                    color:rgba(230,200,255,0.95);">
-                    🏔️ 제천 의림지 용추폭포
-                </span>
-                <span id="cap2" class="slide-caption" style="
-                    background:rgba(10,60,120,0.28);
-                    border:1px solid rgba(80,160,240,0.40);
-                    color:rgba(190,225,255,0.95);">
-                    🌊 청풍호 청정 비경
-                </span>
-                <span id="cap3" class="slide-caption" style="
-                    background:rgba(10,70,20,0.30);
-                    border:1px solid rgba(80,200,80,0.40);
-                    color:rgba(180,240,180,0.95);">
-                    🌿 제천 한방엑스포 공원
-                </span>
-                <span id="cap4" class="slide-caption" style="
-                    background:rgba(0,80,70,0.30);
-                    border:1px solid rgba(0,210,180,0.40);
-                    color:rgba(160,245,230,0.95);">
-                    🍄 청정 약초·산야초 산지
-                </span>
-                <span id="cap5" class="slide-caption" style="
-                    background:rgba(30,80,10,0.28);
-                    border:1px solid rgba(80,200,50,0.40);
-                    color:rgba(200,255,180,0.95);">
-                    🥕 한방 저염 장아찌 신선 재료
-                </span>
-                <span id="cap6" class="slide-caption" style="
-                    background:rgba(80,40,5,0.30);
-                    border:1px solid rgba(200,150,50,0.45);
-                    color:rgba(255,230,160,0.95);">
-                    🫙 자연의 깊은 맛, 명품 장아찌
-                </span>
-            </div>
 
             <!-- 서브 태그라인 -->
             <span style="
@@ -1226,86 +1107,60 @@
                 Natural Wellness &amp; Global Trade Partner
             </span>
 
-            <!-- 메인 타이틀 — 5줄 슬라이드 텍스트 -->
+            <!-- 메인 타이틀 — 텍스트 슬라이더 -->
             <div id="txt-slider" style="
-                overflow:hidden;
+                position:relative;
+                height:clamp(50px,9vw,90px);
                 max-width:900px;
+                width:100%;
                 margin-bottom:22px;
-                position:relative;">
+                overflow:hidden;">
 
-                <div class="txt-track" id="txt-track" style="
-                    display:flex;
-                    transition:transform 0.7s cubic-bezier(0.77,0,0.18,1);
-                    will-change:transform;">
-
-                    <!-- 슬라이드 1 -->
-                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
-                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
-                            background:linear-gradient(90deg,#43a047 0%,#66bb6a 40%,#a5d6a7 100%);
-                            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                            세계가 주목하는 K-건강식
-                        </p>
-                    </div>
-
-                    <!-- 슬라이드 2 -->
-                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
-                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
-                            background:linear-gradient(90deg,#D4AF37 0%,#f0cd60 50%,#D4AF37 100%);
-                            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                            천년 한방의 정수를 담아
-                        </p>
-                    </div>
-
-                    <!-- 슬라이드 3 -->
-                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
-                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
-                            background:linear-gradient(90deg,#43a047 0%,#66bb6a 40%,#a5d6a7 100%);
-                            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                            전세계의 식탁에 전합니다
-                        </p>
-                    </div>
-
-                    <!-- 슬라이드 4 -->
-                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
-                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
-                            background:linear-gradient(90deg,#D4AF37 0%,#f0cd60 50%,#D4AF37 100%);
-                            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                            나음생활건강과 함께 해요
-                        </p>
-                    </div>
-
-                    <!-- 슬라이드 5 -->
-                    <div class="txt-item" style="min-width:100%;flex-shrink:0;padding:4px 0;">
-                        <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
-                            background:linear-gradient(90deg,#43a047 0%,#66bb6a 40%,#a5d6a7 100%);
-                            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                            당신의 삶이 더 나아집니다
-                        </p>
-                    </div>
-
-                </div><!-- /txt-track -->
-            </div><!-- /txt-slider -->
+                <div class="txt-slide-item active" id="ts0">
+                    <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
+                        background:linear-gradient(90deg,#43a047 0%,#66bb6a 40%,#a5d6a7 100%);
+                        -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                        세계가 주목하는 K-건강식
+                    </p>
+                </div>
+                <div class="txt-slide-item" id="ts1">
+                    <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
+                        background:linear-gradient(90deg,#D4AF37 0%,#f0cd60 50%,#D4AF37 100%);
+                        -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                        천년 한방의 정수를 담아
+                    </p>
+                </div>
+                <div class="txt-slide-item" id="ts2">
+                    <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
+                        background:linear-gradient(90deg,#43a047 0%,#66bb6a 40%,#a5d6a7 100%);
+                        -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                        전세계의 식탁에 전합니다
+                    </p>
+                </div>
+                <div class="txt-slide-item" id="ts3">
+                    <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
+                        background:linear-gradient(90deg,#D4AF37 0%,#f0cd60 50%,#D4AF37 100%);
+                        -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                        나음생활건강과 함께 해요
+                    </p>
+                </div>
+                <div class="txt-slide-item" id="ts4">
+                    <p style="font-size:clamp(24px,4.8vw,58px);font-weight:900;line-height:1.22;letter-spacing:-0.02em;margin:0;
+                        background:linear-gradient(90deg,#43a047 0%,#66bb6a 40%,#a5d6a7 100%);
+                        -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                        당신의 삶이 더 나아집니다
+                    </p>
+                </div>
+            </div>
 
             <script>
             (function(){
-                var track = document.getElementById('txt-track');
-                var total = 5;
-                var cur   = 0;
-                var itemW = 100; // %
-
+                var items = document.querySelectorAll('.txt-slide-item');
+                var cur = 0;
                 setInterval(function(){
-                    cur = (cur + 1) % total;
-                    track.style.transform = 'translateX(-' + (cur * itemW) + '%)';
-                    /* 마지막→첫번째 부드럽게 루프 */
-                    if(cur === 0){
-                        setTimeout(function(){
-                            track.style.transition = 'none';
-                            track.style.transform  = 'translateX(0%)';
-                            setTimeout(function(){
-                                track.style.transition = 'transform 0.7s cubic-bezier(0.77,0,0.18,1)';
-                            }, 50);
-                        }, 750);
-                    }
+                    items[cur].classList.remove('active');
+                    cur = (cur + 1) % items.length;
+                    items[cur].classList.add('active');
                 }, 3000);
             })();
             </script>
@@ -1341,57 +1196,39 @@
                 </a>
             </div>
 
-            <!-- 슬라이드 인디케이터 도트 -->
-            <div class="hero-dots" style="display:flex;gap:10px;margin-top:48px;align-items:center;">
-                <div class="slide-dot active" onclick="heroGoTo(0)" id="dot0"></div>
-                <div class="slide-dot" onclick="heroGoTo(1)" id="dot1"></div>
-                <div class="slide-dot" onclick="heroGoTo(2)" id="dot2"></div>
-                <div class="slide-dot" onclick="heroGoTo(3)" id="dot3"></div>
-                <div class="slide-dot" onclick="heroGoTo(4)" id="dot4"></div>
-                <div class="slide-dot" onclick="heroGoTo(5)" id="dot5"></div>
-            </div>
-
             <!-- 스크롤 힌트 -->
-            <div style="margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:5px;opacity:0.45;">
+            <div style="margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:5px;opacity:0.45;">
                 <span style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;font-weight:700;">Scroll</span>
                 <div style="width:1px;height:28px;background:linear-gradient(180deg,rgba(255,255,255,0.7),transparent);"></div>
             </div>
         </div>
     </header>
 
-    <!-- ── 슬라이드쇼 JS ── -->
+    <!-- ── 비디오 음소거 JS ── -->
     <script>
-    (function(){
-        const slides   = ['slide1','slide2','slide3','slide4','slide5','slide6'];
-        const caps     = ['cap1','cap2','cap3','cap4','cap5','cap6'];
-        const dots     = ['dot0','dot1','dot2','dot3','dot4','dot5'];
-        let cur = 0, timer = null;
-
-        function goTo(idx) {
-            // 슬라이드
-            document.getElementById(slides[cur]).classList.remove('active');
-            document.getElementById(caps[cur]).classList.remove('active');
-            document.getElementById(dots[cur]).classList.remove('active');
-            cur = (idx + slides.length) % slides.length;
-            const el = document.getElementById(slides[cur]);
-            el.classList.add('active');
-            // Ken Burns 재시작
-            const kb = el.querySelector('.kb-layer');
-            kb.style.animation = 'none';
-            void kb.offsetWidth;
-            kb.style.animation = '';
-            document.getElementById(caps[cur]).classList.add('active');
-            document.getElementById(dots[cur]).classList.add('active');
+    function toggleVideoMute() {
+        var video = document.getElementById('hero-bg-video');
+        var icon  = document.getElementById('mute-icon');
+        if (!video) return;
+        video.muted = !video.muted;
+        if (video.muted) {
+            icon.className = 'fa-solid fa-volume-xmark';
+        } else {
+            icon.className = 'fa-solid fa-volume-high';
+            // 음소거 해제 시 재생 재개
+            video.play().catch(function(){});
         }
-
-        window.heroSlide = function(dir){ clearInterval(timer); goTo(cur+dir); startAuto(); };
-        window.heroGoTo  = function(idx){ clearInterval(timer); goTo(idx); startAuto(); };
-
-        function startAuto(){
-            timer = setInterval(function(){ goTo(cur+1); }, 10000);
+    }
+    // 페이지 로드 후 비디오 자동재생 강제
+    document.addEventListener('DOMContentLoaded', function(){
+        var video = document.getElementById('hero-bg-video');
+        if (video) {
+            video.play().catch(function(){
+                // autoplay 차단 시 폴백: poster 이미지로 충분
+                console.log('비디오 자동재생 차단됨 — poster 이미지로 표시');
+            });
         }
-        startAuto();
-    })();
+    });
     </script>
 
     <section id="about" class="py-20 bg-white">
