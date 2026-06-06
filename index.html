@@ -1598,6 +1598,207 @@
         }
     </style>
 
+
+
+    <!-- ====== GENERATED PHILOSOPHY BACKGROUNDS: bg-001 / bg-002 ====== -->
+    <style id="generated-philosophy-backgrounds">
+        /*
+          GitHub 루트 폴더에 index.html, bg-001.png, bg-002.png를 함께 업로드하세요.
+          첫 번째 카드: 성장과 매일의 개선 / 두 번째 카드: 도전과 전진
+        */
+        .scene-grow,
+        .scene-horizon {
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14) !important;
+        }
+        .scene-grow {
+            background-image: url('bg-001.png') !important;
+            background-position: center center !important;
+        }
+        .scene-horizon {
+            background-image: url('bg-002.png') !important;
+            background-position: center center !important;
+        }
+
+        /* 생성 이미지 자체의 밝은 여백을 살리고 별도 이미지 오버레이는 제거 */
+        .scene-grow::before,
+        .scene-grow::after,
+        .scene-horizon::before,
+        .scene-horizon::after {
+            display: none !important;
+            background: none !important;
+        }
+
+        /* 밝은 배경 이미지 위 문구 가독성 */
+        .scene-grow .cn-font,
+        .scene-grow .cn-font span,
+        .scene-grow p,
+        .scene-grow span {
+            color: #164e3b !important;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.55);
+        }
+        .scene-grow > p:first-of-type {
+            color: #065f46 !important;
+        }
+        .scene-grow div[style*="background:#D4AF37"] {
+            background: #c99919 !important;
+        }
+
+        .scene-horizon p,
+        .scene-horizon span {
+            color: #8a3b06 !important;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.58);
+        }
+        .scene-horizon > p:first-of-type {
+            color: #b45309 !important;
+        }
+        .scene-horizon div[style*="background:#D4AF37"] {
+            background: #c89012 !important;
+        }
+
+        @media (max-width: 767px) {
+            .scene-grow,
+            .scene-horizon {
+                min-height: 280px !important;
+                background-position: center center !important;
+            }
+        }
+    </style>
+
+
+
+    <!-- ====== GENERATED STAT BANNERS: bg-003 ~ bg-006 ====== -->
+    <style id="generated-stat-banners">
+        /*
+          GitHub 루트 폴더에 index.html과 bg-003.png, bg-004.png,
+          bg-005.png, bg-006.png를 함께 업로드하세요.
+          배치: 좌상 bg-003 / 우상 bg-004 / 우하 bg-005 / 좌하 bg-006
+        */
+        .stat-banner-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .stat-banner-card {
+            overflow: hidden;
+            border-radius: 18px;
+            background: #0b1e33;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .stat-banner-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.22);
+        }
+        .stat-banner-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 1;
+            object-fit: cover;
+        }
+        @media (max-width: 767px) {
+            .stat-banner-grid { gap: 12px; }
+            .stat-banner-card { border-radius: 14px; }
+        }
+        @media (max-width: 420px) {
+            .stat-banner-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+    </style>
+
+
+    <!-- ====== GENERATED CORE VALUE BACKGROUNDS: bg-007 ~ bg-009 ====== -->
+    <style id="generated-core-value-backgrounds">
+        /*
+          GitHub 루트 폴더에 index.html과 bg-007.png, bg-008.png, bg-009.png를
+          함께 업로드하세요. 세 이미지는 핵심 가치 카드 순서대로 배치됩니다.
+        */
+        .generated-value-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 30px 28px !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            background-position: center center !important;
+            border-radius: 22px !important;
+            border-width: 1px !important;
+            box-shadow: 0 14px 34px rgba(15,23,42,0.13) !important;
+            transition: transform .3s ease, box-shadow .3s ease !important;
+        }
+        .generated-value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 44px rgba(15,23,42,0.19) !important;
+        }
+        .generated-value-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0 !important;
+            pointer-events: none;
+        }
+        .generated-value-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        .generated-value-card .value-card-copy {
+            max-width: 74%;
+            line-height: 1.86 !important;
+            letter-spacing: -0.025em;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+        .value-card-herb.generated-value-card {
+            background-image: url('bg-007.png') !important;
+            border-color: rgba(11,70,25,0.18) !important;
+        }
+        .value-card-herb.generated-value-card::before {
+            background: linear-gradient(90deg, rgba(242,255,245,0.98) 0%, rgba(242,255,245,0.95) 43%, rgba(242,255,245,0.76) 63%, rgba(242,255,245,0.10) 100%) !important;
+        }
+        .value-card-trade.generated-value-card {
+            background-image: url('bg-008.png') !important;
+            border-color: rgba(180,83,9,0.18) !important;
+        }
+        .value-card-trade.generated-value-card::before {
+            background: linear-gradient(90deg, rgba(255,251,235,0.98) 0%, rgba(255,251,235,0.95) 43%, rgba(255,251,235,0.76) 63%, rgba(255,251,235,0.10) 100%) !important;
+        }
+        .value-card-zero.generated-value-card {
+            background-image: url('bg-009.png') !important;
+            border-color: rgba(30,64,175,0.18) !important;
+        }
+        .value-card-zero.generated-value-card::before {
+            background: linear-gradient(90deg, rgba(239,246,255,0.98) 0%, rgba(239,246,255,0.95) 43%, rgba(239,246,255,0.76) 63%, rgba(239,246,255,0.10) 100%) !important;
+        }
+        @media (max-width: 1023px) {
+            .generated-value-card { min-height: 320px; }
+            .generated-value-card .value-card-copy { max-width: 68%; }
+        }
+        @media (max-width: 767px) {
+            .generated-value-card {
+                min-height: 300px;
+                padding: 24px 22px !important;
+                background-position: center center !important;
+            }
+            .generated-value-card .value-card-copy {
+                max-width: 76%;
+                line-height: 1.78 !important;
+            }
+            .value-card-break { display: none; }
+        }
+        @media (max-width: 420px) {
+            .generated-value-card { min-height: 278px; }
+            .generated-value-card .value-card-copy { max-width: 80%; }
+        }
+    </style>
+
 </head>
 <body class="bg-slate-50 text-slate-800 scroll-smooth">
 
@@ -2072,14 +2273,14 @@
                         <p class="cn-font" style="font-size:clamp(22px,3vw,30px);font-weight:900;color:#fff;line-height:1.3;margin-bottom:14px;">没有最好<br><span style="color:#D4AF37;">只有更好</span></p>
                         <p style="font-size:14px;color:rgba(255,255,255,0.75);font-weight:400;line-height:1.6;margin-bottom:16px;">완벽한 것이란 없다, 오직 더 나은 것이 있을 뿐이다</p>
                         <div style="width:40px;height:2px;background:#D4AF37;border-radius:4px;margin-bottom:14px;"></div>
-                        <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;">"어제"에 만족하거나 안주하지 않고 매일 1%씩 더 나아지는 것이 나음생활건강의 경영 원칙입니다.</p>
+                        <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;">"어제"에 만족하거나 안주하지 않고<br> 매일 1%씩 조금씩 더 나아지는 것이 <br>나음생활건강의 경영 원칙입니다.</p>
                     </div>
                     <div class="quote-card scene scene-horizon" style="border-radius:24px;padding:36px 32px;">
                         <div style="position:absolute;right:-10px;top:-10px;font-size:80px;opacity:0.07;line-height:1;">❝</div>
                         <p style="font-size:11px;font-weight:700;color:rgba(212,175,55,0.9);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">대표 권영환의 신념</p>
                         <p style="font-family:'Noto Sans KR',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:900;color:#fff;line-height:1.4;margin-bottom:14px;">멈추면 <span style="color:#D4AF37;">거기까지가</span><br>너의 인생이다</p>
                         <div style="width:40px;height:2px;background:#D4AF37;border-radius:4px;margin-bottom:14px;"></div>
-                        <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;">중국 현지 15년, 무역 현장 20년. 끊임없이 달려온 그 길이 오늘의 나음생활건강을 만들었습니다.</p>
+                        <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;">중국 현지 15년, 무역 현장 20년.<br> 끊임없이 달려온 그 길이 <br>오늘의 나음생활건강을 만들었습니다.</p>
                     </div>
                 </div>
 
@@ -2119,55 +2320,58 @@
                     </div>
                     <!-- 수치 -->
                     <div class="lg:col-span-2">
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                            <div class="stat-emerald stat-photo stat-trade" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
-                                <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">20<span style="font-size:16px;">년+</span></div>
-                                <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">중국 무역<br>실전 경력</div>
+                        <!-- 생성 이미지 카드: GitHub 루트 폴더에 bg-003.png ~ bg-006.png를 index.html과 함께 업로드 -->
+                        <div class="stat-banner-grid">
+                            <div class="stat-banner-card">
+                                <img src="bg-003.png" alt="20년 이상 중국 무역 실전 경력" loading="lazy">
                             </div>
-                            <div class="stat-navy stat-photo stat-pickles" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
-                                <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">20<span style="font-size:16px;">종</span></div>
-                                <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">장아찌<br>풀 라인업</div>
+                            <div class="stat-banner-card">
+                                <img src="bg-004.png" alt="장아찌 20종 풀 라인업" loading="lazy">
                             </div>
-                            <div class="stat-navy stat-photo stat-china" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
-                                <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">15<span style="font-size:16px;">년</span></div>
-                                <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">중국 현지<br>거주 경험</div>
+                            <div class="stat-banner-card">
+                                <img src="bg-006.png" alt="15년 중국 현지 거주 경험" loading="lazy">
                             </div>
-                            <div class="stat-emerald stat-photo stat-category" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
-                                <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">∞</div>
-                                <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">수입 가능<br>카테고리</div>
+                            <div class="stat-banner-card">
+                                <img src="bg-005.png" alt="수입 가능 카테고리" loading="lazy">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ── 3가지 핵심 가치 카드 (기존) ── -->
+            <!-- ── 3가지 핵심 가치 카드: bg-007.png ~ bg-009.png 실사 배경 적용 ── -->
             <div class="grid lg:grid-cols-3 gap-8">
-                <div class="value-card-herb p-8 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                <div class="value-card-herb generated-value-card rounded-2xl shadow-sm hover:shadow-md transition-all">
                     <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold mb-6" style="background:linear-gradient(135deg,#0B4619,#16a34a);color:#fff;">
                         <i class="fa-solid fa-seedling"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3" style="color:#064e1a;">전통 한방의 가치</h3>
-                    <p class="leading-relaxed font-light text-sm" style="color:#166534;">
-                        약초의 고장 제천시의 우수한 한방 네트워크를 활용하여 신뢰할 수 있는 우수 원료만을 선별 및 공급합니다.
+                    <p class="value-card-copy leading-relaxed font-light text-sm" style="color:#166534;">
+                        약초의 고장 제천시의 우수한 한방<br class="value-card-break">
+                        네트워크를 활용하여 신뢰할 수 있는<br class="value-card-break">
+                        우수 원료만을 선별 및 공급합니다.
                     </p>
                 </div>
-                <div class="value-card-trade p-8 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                <div class="value-card-trade generated-value-card rounded-2xl shadow-sm hover:shadow-md transition-all">
                     <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold mb-6" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;">
                         <i class="fa-solid fa-handshake"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3" style="color:#78350f;">공장 직소싱 원가 절감</h3>
-                    <p class="leading-relaxed font-light text-sm" style="color:#92400e;">
-                        중간 유통 단계를 완전히 생략하고 중국 GMP 인증 공장과의 직거래를 통해 압도적인 원가 경쟁력을 확보합니다.
+                    <p class="value-card-copy leading-relaxed font-light text-sm" style="color:#92400e;">
+                        중간 유통 단계를 완전히 생략하고<br class="value-card-break">
+                        중국 GMP 인증 공장과의 직거래를 통해<br class="value-card-break">
+                        압도적인 원가 경쟁력을 확보합니다.
                     </p>
                 </div>
-                <div class="value-card-zero p-8 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                <div class="value-card-zero generated-value-card rounded-2xl shadow-sm hover:shadow-md transition-all">
                     <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold mb-6" style="background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;">
                         <i class="fa-solid fa-file-shield"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3" style="color:#1e3a8a;">수입 무역 리스크 제로</h3>
-                    <p class="leading-relaxed font-light text-sm" style="color:#1e40af;">
-                        20년 실전 현장 통관 경력으로 까다로운 식약처 검역, FTA 관세 절감 서류 준비 등 모든 리스크를 사전 차단합니다.
+                    <p class="value-card-copy leading-relaxed font-light text-sm" style="color:#1e40af;">
+                        20년 실전 현장 통관 경력으로 까다로운<br class="value-card-break">
+                        식약처 검역, FTA 관세 절감 서류 준비 등<br class="value-card-break">
+                        모든 리스크를 사전 차단합니다.
                     </p>
                 </div>
             </div>
