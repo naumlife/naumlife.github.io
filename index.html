@@ -1138,6 +1138,334 @@
         }
     </style>
 
+
+
+    <!-- ====== PHOTO-FIRST RENEWAL OVERRIDES: realistic backgrounds + brighter hero ====== -->
+    <style id="photo-first-renewal-overrides">
+        :root {
+            --photo-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
+            --photo-shadow-hover: 0 20px 48px rgba(15, 23, 42, 0.20);
+        }
+
+        /* 1) HERO: retain video but make it considerably brighter and more welcoming. */
+        #hero-video-wrap::after {
+            z-index: 0 !important;
+            background-image:
+                linear-gradient(90deg, rgba(246,255,244,0.22), rgba(255,255,255,0.08), rgba(255,248,226,0.18)),
+                url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2200&q=88') !important;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+        #hero-bg-video {
+            position: relative;
+            z-index: 1;
+            filter: brightness(1.28) saturate(1.13) contrast(0.93) !important;
+        }
+        #hero-video-overlay {
+            z-index: 2 !important;
+            background:
+                linear-gradient(180deg,
+                    rgba(3, 30, 16, 0.18) 0%,
+                    rgba(2, 24, 13, 0.20) 36%,
+                    rgba(1, 22, 12, 0.30) 68%,
+                    rgba(0, 19, 10, 0.54) 100%),
+                linear-gradient(90deg, rgba(255,255,255,0.04), rgba(11,70,25,0.05), rgba(255,245,214,0.04)) !important;
+        }
+        #hero .hero-btn-ghost {
+            background: rgba(255,255,255,0.18) !important;
+            border-color: rgba(255,255,255,0.54) !important;
+            box-shadow: 0 7px 22px rgba(0,0,0,0.12);
+        }
+        #hero .official-site-badge {
+            background: rgba(7,37,22,0.34) !important;
+            border-color: rgba(255,255,255,0.24) !important;
+        }
+
+        /* 2) PHILOSOPHY CARDS: replace flat gradients with realistic imagery. */
+        .scene-grow {
+            min-height: 290px;
+            background:
+                linear-gradient(105deg, rgba(4,48,23,0.94) 0%, rgba(6,68,30,0.83) 48%, rgba(8,58,27,0.58) 100%),
+                url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=86') center/cover no-repeat !important;
+            box-shadow: var(--photo-shadow);
+        }
+        .scene-horizon {
+            min-height: 290px;
+            background:
+                linear-gradient(105deg, rgba(10,24,48,0.94) 0%, rgba(19,41,75,0.80) 48%, rgba(30,45,68,0.48) 100%),
+                url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=86') center/cover no-repeat !important;
+            box-shadow: var(--photo-shadow);
+        }
+        .scene-grow::before, .scene-grow::after,
+        .scene-horizon::before, .scene-horizon::after {
+            background: none !important;
+        }
+        .quote-card {
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--photo-shadow-hover);
+        }
+
+        /* Mission card: add botanical texture but keep maximum readability. */
+        .mission-card {
+            background:
+                linear-gradient(100deg, rgba(255,255,255,0.97), rgba(246,255,248,0.93), rgba(255,252,235,0.94)),
+                url('https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat !important;
+        }
+
+        /* 3) STAT CARDS: each metric gets a message-matched real photo. */
+        .stat-photo {
+            position: relative;
+            isolation: isolate;
+            min-height: 158px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-size: cover !important;
+            background-position: center !important;
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: var(--photo-shadow) !important;
+        }
+        .stat-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(150deg, rgba(1,25,15,0.72), rgba(5,29,46,0.72));
+        }
+        .stat-photo::after {
+            height: 3px !important;
+            background: linear-gradient(90deg, transparent, rgba(244,205,86,0.95), transparent) !important;
+        }
+        .stat-trade {
+            background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=900&q=84') !important;
+        }
+        .stat-pickles {
+            background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=84') !important;
+        }
+        .stat-china {
+            background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=900&q=84') !important;
+        }
+        .stat-category {
+            background-image: url('https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=900&q=84') !important;
+        }
+
+        /* 4) VALUE CARDS: realistic photo textures with light readability washes. */
+        .value-card-herb, .value-card-trade, .value-card-zero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background-size: cover !important;
+            background-position: center !important;
+            box-shadow: 0 9px 28px rgba(15,23,42,0.10) !important;
+        }
+        .value-card-herb::before, .value-card-trade::before, .value-card-zero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+        .value-card-herb > *, .value-card-trade > *, .value-card-zero > * { position: relative; z-index: 1; }
+        .value-card-herb {
+            background-image: url('https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=1000&q=80') !important;
+        }
+        .value-card-herb::before { background: rgba(238,255,241,0.91); }
+        .value-card-trade {
+            background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1000&q=80') !important;
+        }
+        .value-card-trade::before { background: rgba(255,249,229,0.92); }
+        .value-card-zero {
+            background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1000&q=80') !important;
+        }
+        .value-card-zero::before { background: rgba(239,247,255,0.93); }
+
+        /* 5) BUSINESS CARDS: subtle photo-backed surfaces; content remains easy to read. */
+        #business .business-card-photo {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background-size: cover !important;
+            background-position: center !important;
+            box-shadow: 0 8px 26px rgba(15,23,42,0.09) !important;
+        }
+        #business .business-card-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(95deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92), rgba(255,255,255,0.78));
+        }
+        #business .business-card-photo > * { position: relative; z-index: 1; }
+        #business .business-card-food {
+            background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80') !important;
+        }
+        #business .business-card-trade {
+            background-image: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80') !important;
+        }
+        #business .business-card-herb {
+            background-image: url('https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=1200&q=80') !important;
+        }
+        #business .business-card-content {
+            background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80') !important;
+        }
+
+        /* Flagship export platform: premium visual story instead of a flat burgundy block. */
+        #business .feature-export-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background:
+                linear-gradient(95deg, rgba(114,12,18,0.96) 0%, rgba(137,21,25,0.89) 52%, rgba(84,14,21,0.60) 100%),
+                url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1800&q=86') center/cover no-repeat !important;
+            box-shadow: 0 18px 42px rgba(127,29,29,0.24) !important;
+        }
+        #business .feature-export-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 88% 50%, rgba(255,208,92,0.20), transparent 34%);
+        }
+
+        /* 6) PRODUCT CARDS: photographic hero images for all four products/services. */
+        .product-bg-jangajji,
+        .product-bg-herb,
+        .product-bg-trade,
+        .product-bg-content {
+            position: relative;
+            isolation: isolate;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+        .product-bg-jangajji::before,
+        .product-bg-herb::before,
+        .product-bg-trade::before,
+        .product-bg-content::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+        .product-bg-jangajji {
+            background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1100&q=86') !important;
+        }
+        .product-bg-jangajji::before { background: linear-gradient(140deg, rgba(2,71,43,0.76), rgba(5,110,73,0.46)); }
+        .product-bg-herb {
+            background-image: url('https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=1100&q=86') !important;
+        }
+        .product-bg-herb::before { background: linear-gradient(140deg, rgba(104,52,5,0.76), rgba(177,92,13,0.46)); }
+        .product-bg-trade {
+            background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1100&q=86') !important;
+        }
+        .product-bg-trade::before { background: linear-gradient(140deg, rgba(3,24,56,0.80), rgba(21,72,170,0.52)); }
+        .product-bg-content {
+            background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1100&q=86') !important;
+        }
+        .product-bg-content::before { background: linear-gradient(140deg, rgba(64,21,125,0.78), rgba(124,58,237,0.44)); }
+
+        /* 7) Founder and contact sections: image texture without sacrificing legibility. */
+        #ceo.scene-dawn {
+            position: relative;
+            isolation: isolate;
+            background:
+                linear-gradient(100deg, rgba(4,16,34,0.95) 0%, rgba(8,31,57,0.92) 42%, rgba(13,54,92,0.88) 100%),
+                url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2200&q=86') center/cover no-repeat !important;
+        }
+        #ceo.scene-dawn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(3,14,30,0.82) 0%, rgba(3,17,33,0.68) 38%, rgba(5,29,55,0.34) 72%, rgba(8,38,70,0.10) 100%),
+                radial-gradient(circle at 78% 26%, rgba(244,192,74,0.20), transparent 18%),
+                radial-gradient(circle at 82% 72%, rgba(56,189,248,0.14), transparent 24%);
+            z-index: 0;
+        }
+        #ceo.scene-dawn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(1.5px 1.5px at 12% 18%, rgba(255,255,255,0.65), transparent),
+                radial-gradient(1px 1px at 21% 11%, rgba(244,205,86,0.7), transparent),
+                radial-gradient(1px 1px at 36% 24%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 52% 14%, rgba(255,255,255,0.45), transparent),
+                radial-gradient(1px 1px at 69% 22%, rgba(244,205,86,0.65), transparent),
+                radial-gradient(1px 1px at 84% 16%, rgba(255,255,255,0.42), transparent),
+                radial-gradient(1px 1px at 90% 56%, rgba(255,255,255,0.35), transparent);
+        }
+        #ceo .max-w-5xl,
+        #ceo .grid,
+        #ceo .md\:col-span-4,
+        #ceo .md\:col-span-8 {
+            position: relative;
+            z-index: 1;
+        }
+        #ceo .bg-white\/5 {
+            background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05)) !important;
+            border: 1px solid rgba(255,255,255,0.14) !important;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 12px 24px rgba(2,8,23,0.15);
+        }
+        #ceo .text-slate-400 {
+            color: rgba(226,232,240,0.86) !important;
+        }
+        #ceo h2 {
+            text-shadow: 0 6px 20px rgba(0,0,0,0.22);
+        }
+        #ceo .w-48.h-48 {
+            box-shadow: 0 0 0 5px rgba(244,205,86,0.16), 0 18px 50px rgba(2,8,23,0.44);
+        }
+        #ceo .ceo-portrait-shell {
+            position: relative;
+            padding: 14px;
+            border-radius: 9999px;
+            background: linear-gradient(145deg, rgba(244,205,86,0.30), rgba(255,255,255,0.08));
+            box-shadow: 0 10px 30px rgba(244,205,86,0.15);
+        }
+        #contact {
+            position: relative;
+            isolation: isolate;
+            background:
+                linear-gradient(115deg, rgba(242,255,245,0.96), rgba(255,255,255,0.95), rgba(255,250,235,0.94)),
+                url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1800&q=82') center/cover no-repeat !important;
+        }
+        #contact::before { display:none !important; }
+        .contact-form-photo {
+            background:
+                linear-gradient(130deg, rgba(255,255,255,0.97), rgba(248,255,249,0.94)),
+                url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=78') center/cover no-repeat !important;
+            box-shadow: 0 12px 34px rgba(15,23,42,0.10) !important;
+        }
+
+        /* 8) Balance and polish. */
+        #products a, #products .rounded-2xl,
+        #business .business-card-photo, #business .feature-export-card,
+        .quote-card, .stat-photo {
+            transition: transform .3s ease, box-shadow .3s ease, filter .3s ease;
+        }
+        #products a:hover, #products .rounded-2xl:hover,
+        #business .business-card-photo:hover,
+        #business .feature-export-card:hover,
+        .stat-photo:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--photo-shadow-hover) !important;
+        }
+        @media (max-width: 767px) {
+            .scene-grow, .scene-horizon { min-height: 255px; }
+            .stat-photo { min-height: 132px; }
+            #business .business-card-photo::before {
+                background: rgba(255,255,255,0.94);
+            }
+        }
+    </style>
+
 </head>
 <body class="bg-slate-50 text-slate-800 scroll-smooth">
 
@@ -1355,7 +1683,7 @@
                 loop
                 playsinline
                 preload="auto"
-                poster="img_006.png"
+                poster="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2200&q=88"
             >
                 <source src="hero-bg.mp4" type="video/mp4">
                 <source src="hero-bg.webm" type="video/webm">
@@ -1624,19 +1952,19 @@
                     <!-- 수치 -->
                     <div class="lg:col-span-2">
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                            <div class="stat-emerald" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
+                            <div class="stat-emerald stat-photo stat-trade" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
                                 <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">20<span style="font-size:16px;">년+</span></div>
                                 <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">중국 무역<br>실전 경력</div>
                             </div>
-                            <div class="stat-navy" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
+                            <div class="stat-navy stat-photo stat-pickles" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
                                 <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">20<span style="font-size:16px;">종</span></div>
                                 <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">장아찌<br>풀 라인업</div>
                             </div>
-                            <div class="stat-navy" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
+                            <div class="stat-navy stat-photo stat-china" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
                                 <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">15<span style="font-size:16px;">년</span></div>
                                 <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">중국 현지<br>거주 경험</div>
                             </div>
-                            <div class="stat-emerald" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
+                            <div class="stat-emerald stat-photo stat-category" style="color:#fff;border-radius:18px;padding:24px 20px;text-align:center;">
                                 <div style="font-size:32px;font-weight:900;color:#D4AF37;line-height:1;">∞</div>
                                 <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.5;">수입 가능<br>카테고리</div>
                             </div>
@@ -1687,7 +2015,7 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
+                <div class="bg-white business-card-photo business-card-food p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-emerald-50 text-primary items-center justify-center text-2xl shrink-0">
                         <i class="fa-solid fa-prescription-bottle-medical"></i>
                     </div>
@@ -1700,7 +2028,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
+                <div class="bg-white business-card-photo business-card-trade p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-amber-50 text-secondary items-center justify-center text-2xl shrink-0">
                         <i class="fa-solid fa-comments-dollar"></i>
                     </div>
@@ -1713,7 +2041,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
+                <div class="bg-white business-card-photo business-card-herb p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 items-center justify-center text-2xl shrink-0">
                         <i class="fa-solid fa-cubes"></i>
                     </div>
@@ -1726,7 +2054,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
+                <div class="bg-white business-card-photo business-card-content p-8 rounded-3xl shadow-sm hover:shadow-md transition-all border border-slate-100 flex gap-6">
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-purple-50 text-purple-600 items-center justify-center text-2xl shrink-0">
                         <i class="fa-solid fa-pen-nib"></i>
                     </div>
@@ -1740,7 +2068,7 @@
                 </div>
 
                 <!-- 신규 5번째 — 한방바이오교역 중국 수출 역직구 플랫폼 -->
-                <a href="export.html" class="bg-gradient-to-br from-red-900 to-red-800 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all flex gap-6 md:col-span-2 group" style="text-decoration:none;">
+                <a href="export.html" class="feature-export-card bg-gradient-to-br from-red-900 to-red-800 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all flex gap-6 md:col-span-2 group" style="text-decoration:none;">
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-white/15 text-white items-center justify-center text-2xl shrink-0 group-hover:bg-white/25 transition-all flex-shrink-0">
                         <i class="fa-solid fa-earth-asia"></i>
                     </div>
@@ -1876,13 +2204,16 @@
                 
                 <!-- 모바일: 사진 먼저 / 데스크탑: 오른쪽 배치 -->
                 <div class="md:col-span-4 md:order-2 flex flex-col items-center">
-                    <div class="w-48 h-48 rounded-full border-4 border-secondary overflow-hidden bg-slate-800 flex items-center justify-center shadow-xl">
-                        <img src="my_photo.jpg" 
-                             alt="대표 권영환 프로필" 
-                             class="w-full h-full object-cover"
-                             loading="lazy" decoding="async">
+                    <div class="ceo-portrait-shell">
+                        <div class="w-48 h-48 rounded-full border-4 border-secondary overflow-hidden bg-slate-800 flex items-center justify-center shadow-xl">
+                            <img src="my_photo.jpg" 
+                                 alt="대표 권영환 프로필" 
+                                 class="w-full h-full object-cover"
+                                 loading="lazy" decoding="async">
+                        </div>
                     </div>
                     <div class="text-center mt-6">
+                        <div class="text-secondary text-xs font-bold tracking-[0.26em] uppercase mb-2">Founder & Vision</div>
                         <h4 class="text-lg font-bold">대표 권 영 환</h4>
                         <span class="text-secondary text-[10px] font-semibold tracking-widest mt-1 block">FOUNDER & CEO</span>
                     </div>
@@ -1894,6 +2225,9 @@
                         20년 실전 수입 무역의 전문성과<br>
                         고향 제천을 위한 진심
                     </h2>
+                    <p class="text-slate-300 text-sm md:text-base font-light leading-relaxed mb-6" style="max-width:760px;">
+                        도전과 실행, 글로벌 네트워크, 그리고 제천 한방의 미래 가치를 연결하는 비전을 바탕으로<br class="hidden md:block">나음생활건강의 다음 20년을 설계하고 있습니다.
+                    </p>
                     <div class="text-slate-400 text-sm md:text-base mb-6 font-light leading-relaxed" style="display:flex;flex-direction:column;gap:14px;">
                         <p>
                             안녕하세요, <strong style="color:rgba(212,175,55,0.9);"> '나음생활건강' 대표 권영환</strong>입니다.<br><br>
@@ -2334,7 +2668,7 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 bg-slate-50 p-8 rounded-2xl border border-slate-100 shadow-sm">
+                <div class="contact-form-photo lg:col-span-7 bg-slate-50 p-8 rounded-2xl border border-slate-100 shadow-sm">
 
                     <!-- Google Forms 안내 -->
                     <div style="text-align:center; padding:16px 0 24px;">
