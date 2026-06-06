@@ -1362,38 +1362,12 @@
         }
         .product-bg-content::before { background: linear-gradient(140deg, rgba(64,21,125,0.78), rgba(124,58,237,0.44)); }
 
-        /* 7) Founder and contact sections: image texture without sacrificing legibility. */
+        /* ── CEO 섹션 : 밝고 희망적인 자연광 디자인 ── */
         #ceo.scene-dawn {
             position: relative;
             isolation: isolate;
             background:
-                linear-gradient(100deg, rgba(4,16,34,0.95) 0%, rgba(8,31,57,0.92) 42%, rgba(13,54,92,0.88) 100%),
-                url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2200&q=86') center/cover no-repeat !important;
-        }
-        #ceo.scene-dawn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(90deg, rgba(3,14,30,0.82) 0%, rgba(3,17,33,0.68) 38%, rgba(5,29,55,0.34) 72%, rgba(8,38,70,0.10) 100%),
-                radial-gradient(circle at 78% 26%, rgba(244,192,74,0.20), transparent 18%),
-                radial-gradient(circle at 82% 72%, rgba(56,189,248,0.14), transparent 24%);
-            z-index: 0;
-        }
-        #ceo.scene-dawn::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            background-image:
-                radial-gradient(1.5px 1.5px at 12% 18%, rgba(255,255,255,0.65), transparent),
-                radial-gradient(1px 1px at 21% 11%, rgba(244,205,86,0.7), transparent),
-                radial-gradient(1px 1px at 36% 24%, rgba(255,255,255,0.4), transparent),
-                radial-gradient(1.5px 1.5px at 52% 14%, rgba(255,255,255,0.45), transparent),
-                radial-gradient(1px 1px at 69% 22%, rgba(244,205,86,0.65), transparent),
-                radial-gradient(1px 1px at 84% 16%, rgba(255,255,255,0.42), transparent),
-                radial-gradient(1px 1px at 90% 56%, rgba(255,255,255,0.35), transparent);
+                linear-gradient(160deg, #f0fdf4 0%, #ecfdf5 30%, #f0f9ff 65%, #fefce8 100%) !important;
         }
         #ceo .max-w-5xl,
         #ceo .grid,
@@ -1403,27 +1377,34 @@
             z-index: 1;
         }
         #ceo .bg-white\/5 {
-            background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05)) !important;
-            border: 1px solid rgba(255,255,255,0.14) !important;
+            background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(240,253,244,0.90)) !important;
+            border: 1px solid rgba(11,70,25,0.12) !important;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 12px 24px rgba(2,8,23,0.15);
+            box-shadow: 0 8px 24px rgba(11,70,25,0.08);
         }
         #ceo .text-slate-400 {
-            color: rgba(226,232,240,0.86) !important;
+            color: #475569 !important;
         }
         #ceo h2 {
             text-shadow: none;
+            color: #1e3a2f !important;
+        }
+        #ceo .text-white {
+            color: #1e3a2f !important;
+        }
+        #ceo .text-secondary {
+            color: #b45309 !important;
         }
         #ceo .w-48.h-48 {
-            box-shadow: 0 0 0 5px rgba(244,205,86,0.16), 0 18px 50px rgba(2,8,23,0.44);
+            box-shadow: 0 0 0 5px rgba(11,70,25,0.18), 0 12px 36px rgba(11,70,25,0.15);
         }
         #ceo .ceo-portrait-shell {
             position: relative;
             padding: 14px;
             border-radius: 9999px;
-            background: linear-gradient(145deg, rgba(244,205,86,0.30), rgba(255,255,255,0.08));
-            box-shadow: 0 10px 30px rgba(244,205,86,0.15);
+            background: linear-gradient(145deg, rgba(11,70,25,0.15), rgba(212,175,55,0.12));
+            box-shadow: 0 8px 24px rgba(11,70,25,0.12);
         }
         #contact {
             position: relative;
@@ -1459,6 +1440,169 @@
             #business .business-card-photo::before {
                 background: rgba(255,255,255,0.94);
             }
+        }
+    </style>
+
+    <!-- ====== 🌿 BRIGHT REDESIGN OVERRIDE — 밝고 희망적인 리디자인 ====== -->
+    <style id="bright-redesign-2026">
+
+        /* ── 전체 바디 베이스: 크림화이트 ── */
+        body { background: #f8fdf9 !important; }
+
+        /* ── 격언 카드 (scene-grow / scene-horizon) : 어두운 → 밝은 자연광 ── */
+        .scene-grow {
+            background:
+                radial-gradient(85% 80% at 8% 112%, rgba(134,239,172,0.30) 0%, rgba(134,239,172,0) 56%),
+                radial-gradient(60% 55% at 50% 8%, rgba(240,253,244,0.90) 0%, rgba(255,255,255,0) 60%),
+                linear-gradient(152deg, #ecfdf5 0%, #d1fae5 46%, #a7f3d0 100%) !important;
+            color: #1e3a2f !important;
+        }
+        .scene-grow::before {
+            opacity: 0.25;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='none' stroke='%230B4619' stroke-opacity='0.18' stroke-width='2'%3E%3Cpath d='M70 400 C70 300 70 230 70 160' /%3E%3Cpath d='M70 235 C30 220 12 188 14 150 C58 150 84 185 84 224' fill='%230B4619' fill-opacity='0.08'/%3E%3Cpath d='M70 200 C112 188 134 154 132 116 C90 116 62 152 62 192' fill='%230B4619' fill-opacity='0.08'/%3E%3C/g%3E%3C/svg%3E") !important;
+        }
+        .scene-grow .text-white,
+        .scene-grow .text-slate-300,
+        .scene-grow .text-slate-400 { color: #1e3a2f !important; }
+        .scene-grow p, .scene-grow span { color: #2d5a3d !important; }
+
+        .scene-horizon {
+            background:
+                radial-gradient(105% 85% at 78% 118%, rgba(212,175,55,0.25) 0%, rgba(212,175,55,0) 52%),
+                radial-gradient(95% 75% at 18% -12%, rgba(167,243,208,0.30) 0%, rgba(167,243,208,0) 56%),
+                linear-gradient(155deg, #fefce8 0%, #fef3c7 50%, #fffbeb 100%) !important;
+            color: #713f12 !important;
+        }
+        .scene-horizon::before {
+            background-image:
+                radial-gradient(1.5px 1.5px at 14% 16%, rgba(11,70,25,0.5), transparent),
+                radial-gradient(1.5px 1.5px at 32% 9%, rgba(11,70,25,0.4), transparent),
+                radial-gradient(1px 1px at 52% 20%, rgba(212,175,55,0.8), transparent),
+                radial-gradient(1.5px 1.5px at 72% 12%, rgba(212,175,55,0.9), transparent),
+                radial-gradient(1px 1px at 88% 22%, rgba(11,70,25,0.5), transparent) !important;
+        }
+        .scene-horizon .text-white,
+        .scene-horizon .text-slate-300,
+        .scene-horizon .text-slate-400 { color: #713f12 !important; }
+        .scene-horizon p, .scene-horizon span { color: #92400e !important; }
+
+        /* ── stat 박스: 어두운 에메랄드·네이비 → 밝은 그린·앰버 ── */
+        .stat-emerald {
+            background:
+                radial-gradient(90% 80% at 78% 0%, rgba(212,175,55,0.15), transparent 55%),
+                linear-gradient(150deg, #d1fae5 0%, #a7f3d0 100%) !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 6px 18px rgba(11,70,25,0.12);
+            color: #064e3b !important;
+        }
+        .stat-emerald .text-white { color: #064e3b !important; }
+        .stat-emerald .text-slate-300 { color: #065f46 !important; }
+
+        .stat-navy {
+            background:
+                radial-gradient(90% 80% at 78% 0%, rgba(212,175,55,0.20), transparent 55%),
+                linear-gradient(150deg, #fef3c7 0%, #fde68a 100%) !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 6px 18px rgba(180,83,9,0.12);
+            color: #78350f !important;
+        }
+        .stat-navy .text-white { color: #78350f !important; }
+        .stat-navy .text-slate-300 { color: #92400e !important; }
+
+        .stat-emerald::after, .stat-navy::after {
+            background: linear-gradient(90deg, transparent, rgba(11,70,25,0.20), transparent) !important;
+        }
+
+        /* ── CEO 섹션 완전 밝은 재정의 ── */
+        #ceo.scene-dawn {
+            background:
+                radial-gradient(ellipse 70% 55% at 95% 5%, rgba(212,175,55,0.14), transparent 52%),
+                radial-gradient(ellipse 60% 55% at 5% 95%, rgba(134,239,172,0.18), transparent 52%),
+                linear-gradient(160deg, #f0fdf4 0%, #ecfdf5 40%, #f0f9ff 70%, #fefce8 100%) !important;
+        }
+        #ceo.scene-dawn::before { display: none !important; }
+        #ceo.scene-dawn::after { display: none !important; }
+
+        /* CEO 섹션 내부 텍스트 */
+        #ceo h2,
+        #ceo .text-white { color: #1e3a2f !important; }
+        #ceo .text-slate-400 { color: #475569 !important; }
+        #ceo .text-secondary { color: #b45309 !important; }
+        #ceo .bg-white\/5 {
+            background: rgba(255,255,255,0.92) !important;
+            border: 1px solid rgba(11,70,25,0.12) !important;
+            box-shadow: 0 8px 24px rgba(11,70,25,0.08) !important;
+        }
+        #ceo .text-slate-300 { color: #374151 !important; }
+        #ceo .border-white\/20 { border-color: rgba(11,70,25,0.18) !important; }
+        #ceo .text-emerald-400 { color: #059669 !important; }
+
+        /* ── 푸터 완전 밝게 ── */
+        footer.scene-deep,
+        footer {
+            background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%) !important;
+            color: #374151 !important;
+        }
+        footer.scene-deep::before { display: none !important; }
+        footer .text-white { color: #1e3a2f !important; }
+        footer .text-slate-400,
+        footer .text-slate-500 { color: #6b7280 !important; }
+        footer .border-slate-800 { border-color: #d1fae5 !important; }
+        footer a:hover { color: #0B4619 !important; }
+
+        /* ── 히어로 텍스트 강화: 밝은 배경에서도 선명하게 ── */
+        #txt-track .txt-item p {
+            text-shadow: 0 2px 12px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.25) !important;
+        }
+        #hero p[style*="max-width:640px"] {
+            text-shadow: 0 1px 8px rgba(0,0,0,0.30) !important;
+        }
+
+        /* ── 히어로 공식 배지: 밝고 선명하게 ── */
+        .official-site-badge {
+            background: rgba(255,255,255,0.85) !important;
+            border-color: rgba(11,70,25,0.30) !important;
+            color: #1e3a2f !important;
+        }
+        .official-site-badge span { color: #1e3a2f !important; }
+        .official-site-badge .text-secondary { color: #b45309 !important; }
+
+        /* ── 네비 더욱 밝고 선명하게 ── */
+        #main-nav {
+            background: linear-gradient(135deg,
+                rgba(255,255,255,0.99) 0%,
+                rgba(240,253,244,0.99) 50%,
+                rgba(254,252,232,0.99) 100%) !important;
+            box-shadow: 0 2px 20px rgba(11,70,25,0.10) !important;
+        }
+
+        /* ── 섹션 배경 더욱 환하게 ── */
+        #about {
+            background:
+                radial-gradient(ellipse 80% 60% at 10% 0%, rgba(134,239,172,0.14) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 50% at 90% 100%, rgba(167,243,208,0.10) 0%, transparent 55%),
+                linear-gradient(160deg, #ffffff 0%, #f9fefb 35%, #fffef7 65%, #f9fefb 100%) !important;
+        }
+        #business {
+            background:
+                radial-gradient(ellipse 90% 60% at 5% 5%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 80% 60% at 95% 95%, rgba(11,70,25,0.06) 0%, transparent 50%),
+                linear-gradient(160deg, #ffffff 0%, #fffbeb 30%, #f8fafc 65%, #ffffff 100%) !important;
+        }
+        #products {
+            background: linear-gradient(180deg, #f9fefb 0%, #ffffff 50%, #f9fefb 100%) !important;
+        }
+        #news {
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 50%, #f8fafc 100%) !important;
+        }
+        #contact {
+            background:
+                radial-gradient(ellipse 80% 50% at 0% 0%, rgba(134,239,172,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 70% 60% at 100% 100%, rgba(212,175,55,0.10) 0%, transparent 50%),
+                linear-gradient(160deg, #f0fdf4 0%, #ffffff 40%, #fffbeb 70%, #f0fdf4 100%) !important;
+        }
+
+        /* ── 모바일 반응형 stat 밝기 유지 ── */
+        @media (max-width: 767px) {
+            .scene-grow, .scene-horizon { min-height: 255px; }
         }
     </style>
 
@@ -1581,17 +1725,17 @@
             object-position: center;
             display: block;
         }
-        /* 비디오/이미지 위 그라디언트 오버레이 - 자연 이미지 최적화 */
+        /* 비디오/이미지 위 그라디언트 오버레이 - 밝고 희망적인 자연광 */
         #hero-video-overlay {
             position: absolute;
             inset: 0;
             z-index: 3;
             background: linear-gradient(
                 180deg,
-                rgba(0, 20, 10, 0.30) 0%,
-                rgba(0, 15, 8, 0.42) 38%,
-                rgba(0, 12, 5, 0.58) 68%,
-                rgba(0, 10, 4, 0.86) 100%
+                rgba(255, 255, 255, 0.08) 0%,
+                rgba(10, 60, 25, 0.18) 38%,
+                rgba(5, 40, 15, 0.38) 68%,
+                rgba(2, 20, 8, 0.60) 100%
             );
         }
         /* 비디오 로드 실패 시 폴백 이미지 */
@@ -2793,18 +2937,18 @@
         </div>
     </section>
 
-    <footer class="scene-deep border-t border-slate-800 text-slate-400 py-12">
+    <footer class="border-t border-emerald-100 text-slate-600 py-12" style="background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8 border-b border-slate-800 pb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8 border-b border-emerald-100 pb-8">
                 <div>
-                    <span class="text-xl font-bold text-white tracking-wider">나음생활건강</span>
-                    <p class="text-[10px] text-slate-500 mt-1">Professional Wellness & Sourcing Partner | <span class="text-secondary font-medium">www.naumlife.com</span></p>
+                    <span class="text-xl font-bold text-primary tracking-wider">나음생활건강</span>
+                    <p class="text-[10px] text-slate-500 mt-1">Professional Wellness & Sourcing Partner | <span class="text-amber-700 font-medium">www.naumlife.com</span></p>
                 </div>
                 <div class="flex gap-6 text-sm">
-                    <a href="#about" class="hover:text-white transition-colors">회사소개</a>
-                    <a href="#business" class="hover:text-white transition-colors">사업분야</a>
-                    <a href="#products" class="hover:text-white transition-colors">제품소개</a>
-                    <a href="#contact" class="hover:text-white transition-colors">문의하기</a>
+                    <a href="#about" class="hover:text-primary transition-colors">회사소개</a>
+                    <a href="#business" class="hover:text-primary transition-colors">사업분야</a>
+                    <a href="#products" class="hover:text-primary transition-colors">제품소개</a>
+                    <a href="#contact" class="hover:text-primary transition-colors">문의하기</a>
                 </div>
             </div>
             
