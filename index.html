@@ -1151,25 +1151,25 @@
         #hero-video-wrap::after {
             z-index: 0 !important;
             background-image:
-                linear-gradient(90deg, rgba(246,255,244,0.22), rgba(255,255,255,0.08), rgba(255,248,226,0.18)),
-                url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2200&q=88') !important;
+                linear-gradient(90deg, rgba(246,255,244,0.15), rgba(255,255,255,0.05), rgba(255,248,226,0.12)),
+                url('header_bg.png') !important;
             background-size: cover !important;
-            background-position: center !important;
+            background-position: center center !important;
         }
         #hero-bg-video {
             position: relative;
             z-index: 1;
-            filter: brightness(1.28) saturate(1.13) contrast(0.93) !important;
+            filter: brightness(1.05) saturate(1.08) contrast(0.96) !important;
         }
         #hero-video-overlay {
             z-index: 2 !important;
             background:
                 linear-gradient(180deg,
-                    rgba(3, 30, 16, 0.18) 0%,
-                    rgba(2, 24, 13, 0.20) 36%,
-                    rgba(1, 22, 12, 0.30) 68%,
-                    rgba(0, 19, 10, 0.54) 100%),
-                linear-gradient(90deg, rgba(255,255,255,0.04), rgba(11,70,25,0.05), rgba(255,245,214,0.04)) !important;
+                    rgba(2, 28, 14, 0.32) 0%,
+                    rgba(1, 22, 10, 0.42) 35%,
+                    rgba(0, 18, 8, 0.55) 68%,
+                    rgba(0, 14, 6, 0.82) 100%),
+                linear-gradient(90deg, rgba(11,70,25,0.12), rgba(255,255,255,0.03), rgba(212,175,55,0.06)) !important;
         }
         #hero .hero-btn-ghost {
             background: rgba(255,255,255,0.18) !important;
@@ -1532,6 +1532,44 @@
     window.addEventListener('scroll', function(){ closeMobileMenu(); }, { passive: true });
     </script>
 
+    <!-- ===== 헤더 배경이미지 텍스트 가독성 강화 CSS ===== -->
+    <style id="header-bg-readability">
+        /* header_bg.png: 밝은 자연광 이미지 → 텍스트 가독성 강화 */
+        #hero .txt-slide-item p {
+            filter: drop-shadow(0 2px 12px rgba(0,0,0,0.85)) drop-shadow(0 4px 24px rgba(0,0,0,0.70));
+        }
+        #hero p[style*="max-width:640px"] {
+            text-shadow: 0 1px 4px rgba(0,0,0,0.95), 0 2px 16px rgba(0,0,0,0.85), 0 4px 32px rgba(0,0,0,0.60) !important;
+        }
+        /* 서브 태그라인 배지 강화 */
+        #hero span[style*="Natural Wellness"] {
+            background: rgba(0,15,5,0.50) !important;
+            border-color: rgba(212,175,55,0.45) !important;
+            backdrop-filter: blur(16px) !important;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+        }
+        /* 스크롤 힌트 */
+        #hero div[style*="Scroll"] span {
+            text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+        }
+        /* 공식 사이트 배지 강화 */
+        .official-site-badge {
+            background: rgba(0,15,8,0.55) !important;
+            border-color: rgba(212,175,55,0.25) !important;
+            backdrop-filter: blur(18px) !important;
+        }
+        /* CTA 버튼 그림자 강화 */
+        .hero-btn-gold {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.30) !important;
+        }
+        .hero-btn-ghost {
+            background: rgba(0,20,10,0.45) !important;
+            border-color: rgba(255,255,255,0.40) !important;
+            backdrop-filter: blur(14px) !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.40) !important;
+        }
+    </style>
+
     <!-- ===== 헤더: 비디오 배경 (토스토스 스타일) ===== -->
     <style>
         /* ── 비디오 배경 ── */
@@ -1540,25 +1578,32 @@
             inset: 0;
             z-index: 0;
             overflow: hidden;
+            /* header_bg.png 정적 이미지 항상 배경으로 */
+            background-image: url('header_bg.png');
+            background-size: cover;
+            background-position: center 40%;
+            background-repeat: no-repeat;
         }
         #hero-bg-video {
+            position: relative;
+            z-index: 2;
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
             display: block;
         }
-        /* 비디오 위 어두운 그라디언트 오버레이 */
+        /* 비디오/이미지 위 그라디언트 오버레이 - 자연 이미지 최적화 */
         #hero-video-overlay {
             position: absolute;
             inset: 0;
-            z-index: 1;
+            z-index: 3;
             background: linear-gradient(
                 180deg,
-                rgba(0,0,0,0.55) 0%,
-                rgba(0,10,5,0.48) 40%,
-                rgba(0,0,0,0.60) 70%,
-                rgba(0,15,5,0.88) 100%
+                rgba(0, 20, 10, 0.30) 0%,
+                rgba(0, 15, 8, 0.42) 38%,
+                rgba(0, 12, 5, 0.58) 68%,
+                rgba(0, 10, 4, 0.86) 100%
             );
         }
         /* 비디오 로드 실패 시 폴백 이미지 */
@@ -1566,7 +1611,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: url('img_006.png');
+            background-image: url('header_bg.png');
             background-size: cover;
             background-position: center;
             z-index: -1;
@@ -1683,7 +1728,7 @@
                 loop
                 playsinline
                 preload="auto"
-                poster="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2200&q=88"
+                poster="header_bg.png"
             >
                 <source src="hero-bg.mp4" type="video/mp4">
                 <source src="hero-bg.webm" type="video/webm">
