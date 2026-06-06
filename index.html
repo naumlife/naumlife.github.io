@@ -823,44 +823,41 @@
         .scene > * { position: relative; z-index: 2; }
         .scene::before, .scene::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 
-        /* ── 격언 카드 1 : 성장·새벽빛 (没有最好 只有更好) ── */
+        /* ── 격언 카드 1 : 성장·대나무 숲 (没有最好 只有更好) ── */
         .scene-grow {
             background:
-                radial-gradient(115% 95% at 88% -8%, rgba(212,175,55,0.34) 0%, rgba(212,175,55,0) 46%),
-                radial-gradient(85% 80% at 8% 112%, rgba(120,224,150,0.34) 0%, rgba(120,224,150,0) 56%),
-                radial-gradient(60% 55% at 50% 8%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 60%),
-                linear-gradient(152deg, #0a3d18 0%, #14571f 46%, #1f7d36 100%);
+                linear-gradient(152deg,
+                    rgba(6, 30, 10, 0.82) 0%,
+                    rgba(10, 50, 20, 0.72) 45%,
+                    rgba(15, 65, 28, 0.68) 100%),
+                url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85') center/cover no-repeat;
         }
-        /* 떠오르는 새싹 잎 실루엣 + 부드러운 빛줄기 */
         .scene-grow::before {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.10' stroke-width='2'%3E%3Cpath d='M70 400 C70 300 70 230 70 160' /%3E%3Cpath d='M70 235 C30 220 12 188 14 150 C58 150 84 185 84 224' fill='%23ffffff' fill-opacity='0.06'/%3E%3Cpath d='M70 200 C112 188 134 154 132 116 C90 116 62 152 62 192' fill='%23ffffff' fill-opacity='0.06'/%3E%3C/g%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: -28px bottom;
-            background-size: 200px auto;
-            opacity: 0.9;
+            background-image: none;
+            background: radial-gradient(ellipse 80% 60% at 90% 10%, rgba(212,175,55,0.30) 0%, transparent 55%);
+            opacity: 1;
         }
         .scene-grow::after {
-            background: linear-gradient(115deg, transparent 0%, transparent 52%, rgba(255,255,255,0.07) 60%, transparent 68%);
+            background: linear-gradient(115deg, transparent 0%, transparent 52%, rgba(255,255,255,0.05) 60%, transparent 68%);
         }
 
-        /* ── 격언 카드 2 : 전진·지평선의 여명 (멈추면 거기까지가 너의 인생이다) ── */
+        /* ── 격언 카드 2 : 전진·새벽 산길 (멈추면 거기까지가 너의 인생이다) ── */
         .scene-horizon {
             background:
-                radial-gradient(105% 85% at 78% 118%, rgba(212,175,55,0.40) 0%, rgba(212,175,55,0) 52%),
-                radial-gradient(95% 75% at 18% -12%, rgba(96,165,250,0.36) 0%, rgba(96,165,250,0) 56%),
-                radial-gradient(55% 55% at 50% 46%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 70%),
-                linear-gradient(155deg, #0f1f3d 0%, #1b3056 50%, #274570 100%);
+                linear-gradient(155deg,
+                    rgba(8, 14, 28, 0.80) 0%,
+                    rgba(15, 28, 55, 0.72) 50%,
+                    rgba(20, 35, 65, 0.65) 100%),
+                url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85') center/cover no-repeat;
         }
-        /* 새벽 별빛(위는 또렷, 아래로 사라지며 여명으로) */
         .scene-horizon::before {
             background-image:
                 radial-gradient(1.5px 1.5px at 14% 16%, rgba(255,255,255,0.9), transparent),
                 radial-gradient(1.5px 1.5px at 32% 9%, rgba(255,255,255,0.7), transparent),
                 radial-gradient(1px 1px at 52% 20%, rgba(255,255,255,0.8), transparent),
                 radial-gradient(1.5px 1.5px at 72% 12%, rgba(212,175,55,0.9), transparent),
-                radial-gradient(1px 1px at 88% 22%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1px 1px at 24% 30%, rgba(255,255,255,0.5), transparent);
-            opacity: 0.85;
+                radial-gradient(1px 1px at 88% 22%, rgba(255,255,255,0.7), transparent);
+            opacity: 0.6;
         }
         .scene-horizon::after {
             background: radial-gradient(120% 60% at 76% 116%, rgba(212,175,55,0.22) 0%, rgba(212,175,55,0) 58%);
@@ -1192,6 +1189,8 @@
             background: none !important;
         }
         .quote-card {
+            position: relative;
+            overflow: hidden;
             transition: transform .3s ease, box-shadow .3s ease;
         }
         .quote-card:hover {
