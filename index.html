@@ -901,10 +901,247 @@
         footer.scene-deep { position: relative; }
     </style>
 
+    <!-- ====== 섹션별 생동감 배경 & 헤더 개선 ====== -->
+    <style>
+        /* ====== 네비 헤더 : 밝고 생동감 있게 ====== */
+        #main-nav {
+            background: linear-gradient(135deg,
+                rgba(255,255,255,0.97) 0%,
+                rgba(240,253,244,0.97) 50%,
+                rgba(255,255,255,0.97) 100%) !important;
+            border-bottom: 1px solid rgba(11,70,25,0.10) !important;
+            box-shadow: 0 2px 20px rgba(11,70,25,0.08) !important;
+        }
+
+        /* ====== ABOUT 섹션 배경 : 청정 대자연 ====== */
+        #about {
+            background:
+                radial-gradient(ellipse 80% 60% at 10% 0%, rgba(134,239,172,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 50% at 90% 100%, rgba(167,243,208,0.14) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 70% at 50% 50%, rgba(240,253,244,0.8) 0%, transparent 70%),
+                linear-gradient(160deg, #f0fdf4 0%, #fefce8 35%, #f0fdf4 65%, #ecfdf5 100%) !important;
+            position: relative;
+        }
+        #about::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(2px 2px at 8% 15%, rgba(11,70,25,0.12), transparent),
+                radial-gradient(1.5px 1.5px at 22% 8%, rgba(212,175,55,0.25), transparent),
+                radial-gradient(2px 2px at 45% 20%, rgba(11,70,25,0.08), transparent),
+                radial-gradient(1.5px 1.5px at 68% 12%, rgba(212,175,55,0.2), transparent),
+                radial-gradient(2px 2px at 85% 18%, rgba(11,70,25,0.1), transparent),
+                radial-gradient(1px 1px at 15% 45%, rgba(11,70,25,0.06), transparent),
+                radial-gradient(1.5px 1.5px at 78% 55%, rgba(212,175,55,0.12), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+        #about > div { position: relative; z-index: 1; }
+
+        /* ── 사명 카드: 청록 자연광 ── */
+        .mission-card {
+            background:
+                radial-gradient(ellipse 90% 70% at 50% -20%, rgba(167,243,208,0.35) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 0% 100%, rgba(134,239,172,0.20) 0%, transparent 50%),
+                linear-gradient(160deg, #ffffff 0%, #f0fdf4 40%, #fefce8 70%, #f0fdf4 100%) !important;
+            border: 1px solid rgba(11,70,25,0.12) !important;
+            box-shadow: 0 8px 40px rgba(11,70,25,0.08), inset 0 1px 0 rgba(255,255,255,0.8) !important;
+        }
+
+        /* ── 핵심 가치 3카드: 살아있는 테마 배경 ── */
+        .value-card-herb {
+            background:
+                radial-gradient(ellipse 100% 80% at 0% 0%, rgba(134,239,172,0.25) 0%, transparent 55%),
+                radial-gradient(ellipse 80% 80% at 100% 100%, rgba(74,222,128,0.18) 0%, transparent 55%),
+                linear-gradient(145deg, #f0fdf4 0%, #dcfce7 50%, #f0fdf4 100%) !important;
+            border: 1.5px solid rgba(11,70,25,0.15) !important;
+            box-shadow: 0 4px 24px rgba(11,70,25,0.08) !important;
+        }
+        .value-card-herb:hover { box-shadow: 0 12px 40px rgba(11,70,25,0.14) !important; }
+
+        .value-card-trade {
+            background:
+                radial-gradient(ellipse 100% 80% at 0% 0%, rgba(253,230,138,0.28) 0%, transparent 55%),
+                radial-gradient(ellipse 80% 80% at 100% 100%, rgba(212,175,55,0.20) 0%, transparent 55%),
+                linear-gradient(145deg, #fffbeb 0%, #fef3c7 50%, #fffbeb 100%) !important;
+            border: 1.5px solid rgba(212,175,55,0.25) !important;
+            box-shadow: 0 4px 24px rgba(212,175,55,0.10) !important;
+        }
+        .value-card-trade:hover { box-shadow: 0 12px 40px rgba(212,175,55,0.18) !important; }
+
+        .value-card-zero {
+            background:
+                radial-gradient(ellipse 100% 80% at 0% 0%, rgba(191,219,254,0.28) 0%, transparent 55%),
+                radial-gradient(ellipse 80% 80% at 100% 100%, rgba(147,197,253,0.20) 0%, transparent 55%),
+                linear-gradient(145deg, #eff6ff 0%, #dbeafe 50%, #eff6ff 100%) !important;
+            border: 1.5px solid rgba(59,130,246,0.18) !important;
+            box-shadow: 0 4px 24px rgba(59,130,246,0.08) !important;
+        }
+        .value-card-zero:hover { box-shadow: 0 12px 40px rgba(59,130,246,0.14) !important; }
+
+        /* ====== BUSINESS 섹션 : 활기찬 세계무역 분위기 ====== */
+        #business {
+            background:
+                radial-gradient(ellipse 90% 60% at 5% 5%, rgba(212,175,55,0.10) 0%, transparent 50%),
+                radial-gradient(ellipse 80% 60% at 95% 95%, rgba(11,70,25,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 80% at 50% 50%, rgba(241,245,249,0.9) 0%, transparent 80%),
+                linear-gradient(160deg, #f8fafc 0%, #fefce8 30%, #f1f5f9 65%, #f8fafc 100%) !important;
+            position: relative;
+        }
+        #business::before {
+            content: "";
+            position: absolute; inset: 0; pointer-events: none; z-index: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%230B4619' stroke-opacity='0.04' stroke-width='1'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3Cline x1='10' y1='30' x2='50' y2='30'/%3E%3Cline x1='30' y1='10' x2='30' y2='50'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+        #business > div { position: relative; z-index: 1; }
+
+        /* 비즈니스 카드 강화 */
+        #business .bg-white {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fdf9 100%) !important;
+            border: 1px solid rgba(11,70,25,0.08) !important;
+            box-shadow: 0 2px 16px rgba(11,70,25,0.06) !important;
+            transition: all 0.3s ease !important;
+        }
+        #business .bg-white:hover {
+            background: linear-gradient(145deg, #ffffff 0%, #ecfdf5 100%) !important;
+            box-shadow: 0 8px 40px rgba(11,70,25,0.12) !important;
+            transform: translateY(-3px) !important;
+        }
+
+        /* ====== PRODUCTS 섹션 배경 ====== */
+        #products {
+            background:
+                radial-gradient(ellipse 70% 50% at 20% 0%, rgba(167,243,208,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(253,230,138,0.12) 0%, transparent 50%),
+                linear-gradient(180deg, #ffffff 0%, #f8fdf9 50%, #ffffff 100%) !important;
+        }
+
+        /* 제품카드 상단 배경: 장아찌 → 푸른 숲 느낌 */
+        .product-bg-jangajji {
+            background:
+                radial-gradient(ellipse 80% 60% at 30% 30%, rgba(134,239,172,0.45) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 80% at 70% 80%, rgba(16,185,129,0.35) 0%, transparent 55%),
+                linear-gradient(145deg, #065f46 0%, #047857 35%, #059669 65%, #0B4619 100%) !important;
+        }
+        /* 황기·오미자 → 황금빛 약초 */
+        .product-bg-herb {
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(253,211,77,0.50) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 80% at 20% 80%, rgba(180,83,9,0.40) 0%, transparent 55%),
+                linear-gradient(145deg, #78350f 0%, #92400e 35%, #b45309 65%, #d97706 100%) !important;
+        }
+        /* 무역 컨설팅 → 바다 항해 */
+        .product-bg-trade {
+            background:
+                radial-gradient(ellipse 80% 60% at 80% 20%, rgba(56,189,248,0.40) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 80% at 20% 80%, rgba(15,23,42,0.60) 0%, transparent 60%),
+                linear-gradient(145deg, #0c1a2e 0%, #1e3a5f 35%, #1d4ed8 65%, #1e40af 100%) !important;
+        }
+        /* 인스타툰 → 창의적 보라 */
+        .product-bg-content {
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 20%, rgba(216,180,254,0.50) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 80% at 80% 80%, rgba(109,40,217,0.40) 0%, transparent 55%),
+                linear-gradient(145deg, #4c1d95 0%, #5b21b6 35%, #7c3aed 65%, #8b5cf6 100%) !important;
+        }
+
+        /* ====== CONTACT 섹션 배경 : 밝고 따뜻한 소통 공간 ====== */
+        #contact {
+            background:
+                radial-gradient(ellipse 80% 50% at 0% 0%, rgba(134,239,172,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse 70% 60% at 100% 100%, rgba(212,175,55,0.12) 0%, transparent 50%),
+                linear-gradient(160deg, #f0fdf4 0%, #ffffff 40%, #fffbeb 70%, #f0fdf4 100%) !important;
+            position: relative;
+        }
+
+        /* ====== CEO 섹션 강화: 더 풍부한 배경 ====== */
+        #ceo.scene-dawn {
+            background:
+                radial-gradient(ellipse 70% 55% at 95% 5%, rgba(212,175,55,0.22), transparent 52%),
+                radial-gradient(ellipse 60% 55% at 5% 95%, rgba(34,197,94,0.18), transparent 52%),
+                radial-gradient(ellipse 80% 60% at 50% 115%, rgba(56,189,248,0.14), transparent 58%),
+                radial-gradient(ellipse 40% 40% at 25% 25%, rgba(255,255,255,0.05), transparent 55%),
+                linear-gradient(160deg, #091521 0%, #0d1f32 40%, #0f2438 70%, #122840 100%) !important;
+        }
+        /* CEO 섹션 빛나는 입자 추가 */
+        #ceo.scene-dawn::after {
+            content: "";
+            position: absolute; inset: 0; pointer-events: none; z-index: 0;
+            background-image:
+                radial-gradient(1.5px 1.5px at 12% 20%, rgba(212,175,55,0.6), transparent),
+                radial-gradient(1px 1px at 28% 8%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(2px 2px at 55% 15%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 74% 25%, rgba(212,175,55,0.5), transparent),
+                radial-gradient(1.5px 1.5px at 88% 10%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 38% 30%, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 92% 40%, rgba(212,175,55,0.4), transparent),
+                radial-gradient(1px 1px at 6% 55%, rgba(255,255,255,0.3), transparent);
+        }
+
+        /* ====== NEWS 섹션 배경 강화 ====== */
+        #news {
+            background:
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(240,253,244,0.9) 0%, transparent 60%),
+                linear-gradient(180deg, #f8fafc 0%, #ffffff 50%, #f8fafc 100%) !important;
+        }
+
+        /* ====== 섹션 헤더 배지 공통 강화 ====== */
+        .section-tag-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, rgba(11,70,25,0.08), rgba(212,175,55,0.12));
+            border: 1px solid rgba(11,70,25,0.15);
+            border-radius: 100px;
+            padding: 4px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #0B4619;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        /* ====== 사업분야 카드: 아이콘 배경 강화 ====== */
+        #business .bg-emerald-50 {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0) !important;
+        }
+        #business .bg-amber-50 {
+            background: linear-gradient(135deg, #fef3c7, #fde68a) !important;
+        }
+        #business .bg-blue-50 {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+        }
+        #business .bg-purple-50 {
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe) !important;
+        }
+
+        /* ====== 수치 stat 박스 추가 생동감 ====== */
+        .stat-emerald, .stat-navy {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-emerald:hover, .stat-navy:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(11,70,25,0.22) !important;
+        }
+
+        /* ====== CEO 프로필 링 빛나기 ====== */
+        #ceo .border-secondary {
+            box-shadow: 0 0 0 4px rgba(212,175,55,0.20), 0 0 30px rgba(212,175,55,0.15);
+        }
+
+        /* ====== Contact 폼 영역 배경 개선 ====== */
+        #contact .bg-slate-50 {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fdf9 60%, #fffbeb 100%) !important;
+            border: 1px solid rgba(11,70,25,0.10) !important;
+        }
+    </style>
+
 </head>
 <body class="bg-slate-50 text-slate-800 scroll-smooth">
 
-    <nav id="main-nav" class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-slate-100">
+    <nav id="main-nav" class="fixed top-0 left-0 w-full backdrop-blur-md z-50" style="background:linear-gradient(135deg,rgba(255,255,255,0.97) 0%,rgba(240,253,244,0.97) 50%,rgba(255,253,235,0.96) 100%);border-bottom:2px solid rgba(11,70,25,0.10);box-shadow:0 2px 24px rgba(11,70,25,0.09)">
         <div class="nav-inner max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             
             <a href="#" class="flex items-center gap-2.5">
@@ -1320,10 +1557,10 @@
     });
     </script>
 
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20" style="background:radial-gradient(ellipse 80% 60% at 10% 0%,rgba(134,239,172,0.18) 0%,transparent 55%),radial-gradient(ellipse 70% 50% at 90% 100%,rgba(167,243,208,0.14) 0%,transparent 55%),linear-gradient(160deg,#f0fdf4 0%,#fefce8 35%,#f0fdf4 65%,#ecfdf5 100%)">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-sm font-bold text-primary tracking-wider uppercase mb-2">ABOUT NAUM LIFE</h2>
+                <h2 class="text-sm font-bold tracking-wider uppercase mb-2" style="background:linear-gradient(90deg,#0B4619,#16a34a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ABOUT NAUM LIFE</h2>
                 <p class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">더 나은 내일을 위한 가치를 드립니다</p>
                 <div class="w-40 h-1.5 bg-secondary mx-auto mt-5 rounded-full"></div>
             </div>
@@ -1410,30 +1647,30 @@
 
             <!-- ── 3가지 핵심 가치 카드 (기존) ── -->
             <div class="grid lg:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl font-bold mb-6">
+                <div class="value-card-herb p-8 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold mb-6" style="background:linear-gradient(135deg,#0B4619,#16a34a);color:#fff;">
                         <i class="fa-solid fa-seedling"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-900">전통 한방의 가치</h3>
-                    <p class="text-slate-600 leading-relaxed font-light text-sm">
+                    <h3 class="text-xl font-bold mb-3" style="color:#064e1a;">전통 한방의 가치</h3>
+                    <p class="leading-relaxed font-light text-sm" style="color:#166534;">
                         약초의 고장 제천시의 우수한 한방 네트워크를 활용하여 신뢰할 수 있는 우수 원료만을 선별 및 공급합니다.
                     </p>
                 </div>
-                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl font-bold mb-6">
+                <div class="value-card-trade p-8 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold mb-6" style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;">
                         <i class="fa-solid fa-handshake"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-900">공장 직소싱 원가 절감</h3>
-                    <p class="text-slate-600 leading-relaxed font-light text-sm">
+                    <h3 class="text-xl font-bold mb-3" style="color:#78350f;">공장 직소싱 원가 절감</h3>
+                    <p class="leading-relaxed font-light text-sm" style="color:#92400e;">
                         중간 유통 단계를 완전히 생략하고 중국 GMP 인증 공장과의 직거래를 통해 압도적인 원가 경쟁력을 확보합니다.
                     </p>
                 </div>
-                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl font-bold mb-6">
+                <div class="value-card-zero p-8 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold mb-6" style="background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;">
                         <i class="fa-solid fa-file-shield"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-900">수입 무역 리스크 제로</h3>
-                    <p class="text-slate-600 leading-relaxed font-light text-sm">
+                    <h3 class="text-xl font-bold mb-3" style="color:#1e3a8a;">수입 무역 리스크 제로</h3>
+                    <p class="leading-relaxed font-light text-sm" style="color:#1e40af;">
                         20년 실전 현장 통관 경력으로 까다로운 식약처 검역, FTA 관세 절감 서류 준비 등 모든 리스크를 사전 차단합니다.
                     </p>
                 </div>
@@ -1441,10 +1678,10 @@
         </div>
     </section>
 
-    <section id="business" class="py-20 bg-slate-50">
+    <section id="business" class="py-20" style="background:radial-gradient(ellipse 90% 60% at 5% 5%,rgba(212,175,55,0.10) 0%,transparent 50%),radial-gradient(ellipse 80% 60% at 95% 95%,rgba(11,70,25,0.08) 0%,transparent 50%),linear-gradient(160deg,#f8fafc 0%,#fefce8 30%,#f1f5f9 65%,#f8fafc 100%);position:relative;">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-sm font-bold text-primary tracking-wider uppercase mb-2">OUR BUSINESS AREA</h2>
+                <h2 class="text-sm font-bold tracking-wider uppercase mb-2" style="background:linear-gradient(90deg,#0B4619,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">OUR BUSINESS AREA</h2>
                 <p class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">"나음생활건강"의 5대 비즈니스 모델</p>
                 <div class="w-40 h-1.5 bg-secondary mx-auto mt-5 rounded-full"></div>
             </div>
@@ -1528,18 +1765,18 @@
         </div>
     </section>
 
-    <section id="products" class="py-20 bg-white">
+    <section id="products" class="py-20" style="background:radial-gradient(ellipse 70% 50% at 20% 0%,rgba(167,243,208,0.18) 0%,transparent 50%),radial-gradient(ellipse 60% 40% at 80% 100%,rgba(253,230,138,0.14) 0%,transparent 50%),linear-gradient(180deg,#ffffff 0%,#f0fdf4 50%,#ffffff 100%)">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-sm font-bold text-primary tracking-wider uppercase mb-2">PRODUCTS & SERVICES</h2>
+                <h2 class="text-sm font-bold tracking-wider uppercase mb-2" style="background:linear-gradient(90deg,#065f46,#0B4619);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">PRODUCTS & SERVICES</h2>
                 <p class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">대표 제품 및 디지털 서비스</p>
                 <div class="w-12 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <a href="jangajji.html" class="rounded-2xl border-2 border-emerald-700 bg-slate-50 overflow-hidden flex flex-col h-full hover:scale-[1.02] transition-all shadow-md hover:shadow-xl hover:border-emerald-500 group" style="text-decoration:none;">
-                    <div class="h-44 bg-emerald-800 text-white flex items-center justify-center p-6 text-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-emerald-700 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                    <div class="h-44 product-bg-jangajji text-white flex items-center justify-center p-6 text-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background:rgba(255,255,255,0.3);"></div>
                         <div class="flex flex-col items-center gap-3 relative z-10">
                             <span class="text-2xl">🧄</span>
                             <span class="font-extrabold text-base">프리미엄 한방 특제 저염 장아찌</span>
@@ -1563,8 +1800,12 @@
                 </a>
 
                 <div class="rounded-2xl border border-slate-100 bg-slate-50 overflow-hidden flex flex-col h-full hover:scale-[1.02] transition-transform shadow-sm">
-                    <div class="h-44 bg-amber-800 text-white flex items-center justify-center p-6 text-center">
-                        <span class="font-extrabold text-base">제천 황기·오미자 웰니스</span>
+                    <div class="h-44 product-bg-herb text-white flex items-center justify-center p-6 text-center relative overflow-hidden">
+                        <div class="flex flex-col items-center gap-3 relative z-10">
+                            <span class="text-3xl">🌾</span>
+                            <span class="font-extrabold text-base">제천 황기·오미자 웰니스</span>
+                            <span class="text-[10px] bg-yellow-300 text-amber-900 font-bold px-3 py-1 rounded-full tracking-wide">제천 로컬 특산품</span>
+                        </div>
                     </div>
                     <div class="p-5 flex flex-col justify-between flex-grow">
                         <div>
@@ -1580,8 +1821,8 @@
                 </div>
 
                 <a href="trade.html" class="rounded-2xl border-2 border-slate-700 bg-slate-50 overflow-hidden flex flex-col h-full hover:scale-[1.02] transition-all shadow-md hover:shadow-xl hover:border-slate-500 group" style="text-decoration:none;">
-                    <div class="h-44 bg-slate-800 text-white flex items-center justify-center p-6 text-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-slate-600 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                    <div class="h-44 product-bg-trade text-white flex items-center justify-center p-6 text-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300" style="background:rgba(255,255,255,0.2);"></div>
                         <div class="flex flex-col items-center gap-3 relative z-10">
                             <span class="text-2xl">🚢</span>
                             <span class="font-extrabold text-base">중국 무역 전문 컨설팅<br>안전하고 신속한 수입대행</span>
@@ -1605,8 +1846,12 @@
                 </a>
 
                 <div class="rounded-2xl border border-slate-100 bg-slate-50 overflow-hidden flex flex-col h-full hover:scale-[1.02] transition-transform shadow-sm">
-                    <div class="h-44 bg-purple-800 text-white flex items-center justify-center p-6 text-center">
-                        <span class="font-extrabold text-base">한방 브랜드 스토리<br>인스타툰</span>
+                    <div class="h-44 product-bg-content text-white flex items-center justify-center p-6 text-center relative overflow-hidden">
+                        <div class="flex flex-col items-center gap-3 relative z-10">
+                            <span class="text-3xl">🎨</span>
+                            <span class="font-extrabold text-base">한방 브랜드 스토리<br>인스타툰</span>
+                            <span class="text-[10px] bg-purple-200 text-purple-900 font-bold px-3 py-1 rounded-full tracking-wide">SNS 마케팅</span>
+                        </div>
                     </div>
                     <div class="p-5 flex flex-col justify-between flex-grow">
                         <div>
@@ -2047,10 +2292,10 @@
     });
     </script>
 
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20" style="background:radial-gradient(ellipse 80% 50% at 0% 0%,rgba(134,239,172,0.15) 0%,transparent 50%),radial-gradient(ellipse 70% 60% at 100% 100%,rgba(212,175,55,0.12) 0%,transparent 50%),linear-gradient(160deg,#f0fdf4 0%,#ffffff 40%,#fffbeb 70%,#f0fdf4 100%);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-sm font-bold text-primary tracking-wider uppercase mb-2">CONTACT US</h2>
+                <h2 class="text-sm font-bold tracking-wider uppercase mb-2" style="background:linear-gradient(90deg,#0B4619,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">CONTACT US</h2>
                 <p class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">협업 및 제휴 문의하기</p>
                 <div class="w-12 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
             </div>
