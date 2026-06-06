@@ -1147,12 +1147,10 @@
             --photo-shadow-hover: 0 20px 48px rgba(15, 23, 42, 0.20);
         }
 
-        /* 1) HERO: retain video but make it considerably brighter and more welcoming. */
+        /* 1) HERO: original image shown without any overlay effects */
         #hero-video-wrap::after {
             z-index: 0 !important;
-            background-image:
-                linear-gradient(90deg, rgba(246,255,244,0.15), rgba(255,255,255,0.05), rgba(255,248,226,0.12)),
-                url('header_bg.png') !important;
+            background-image: url('header_bg.png') !important;
             background-size: cover !important;
             background-position: center center !important;
         }
@@ -1163,15 +1161,8 @@
         }
         #hero-video-overlay {
             z-index: 2 !important;
-            background:
-                linear-gradient(180deg,
-                    rgba(2, 28, 14, 0.32) 0%,
-                    rgba(1, 22, 10, 0.42) 35%,
-                    rgba(0, 18, 8, 0.55) 68%,
-                    rgba(0, 14, 6, 0.82) 100%),
-                linear-gradient(90deg, rgba(11,70,25,0.12), rgba(255,255,255,0.03), rgba(212,175,55,0.06)) !important;
+            background: none !important;
         }
-        /* hero-btn-ghost override removed */
         #hero .official-site-badge {
             background: rgba(7,37,22,0.34) !important;
             border-color: rgba(255,255,255,0.24) !important;
@@ -1531,8 +1522,6 @@
             border: 1px solid rgba(11,70,25,0.12) !important;
             box-shadow: 0 8px 24px rgba(11,70,25,0.08) !important;
         }
-        #ceo .text-slate-300 { color: #374151 !important; }
-        #ceo .border-white\/20 { border-color: rgba(11,70,25,0.18) !important; }
         #ceo .text-emerald-400 { color: #059669 !important; }
 
         /* ── 푸터 완전 밝게 ── */
@@ -1725,18 +1714,12 @@
             object-position: center;
             display: block;
         }
-        /* 비디오/이미지 위 그라디언트 오버레이 - 밝고 희망적인 자연광 */
+        /* 비디오/이미지 위 그라디언트 오버레이 - 완전 투명 (원본 이미지 그대로) */
         #hero-video-overlay {
             position: absolute;
             inset: 0;
             z-index: 3;
-            background: linear-gradient(
-                180deg,
-                rgba(255, 255, 255, 0.08) 0%,
-                rgba(10, 60, 25, 0.18) 38%,
-                rgba(5, 40, 15, 0.38) 68%,
-                rgba(2, 20, 8, 0.60) 100%
-            );
+            background: none;
         }
         /* 비디오 로드 실패 시 폴백 이미지 */
         #hero-video-wrap::after {
@@ -2381,95 +2364,151 @@
 
     <section id="ceo" class="scene-dawn py-20 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        <div class="max-w-5xl mx-auto px-6 relative z-10">
-            <div class="grid md:grid-cols-12 gap-12 items-center">
-                
-                <!-- 모바일: 사진 먼저 / 데스크탑: 오른쪽 배치 -->
-                <div class="md:col-span-4 md:order-2 flex flex-col items-center">
-                    <div class="ceo-portrait-shell">
-                        <div class="w-48 h-48 rounded-full border-4 border-secondary overflow-hidden bg-slate-800 flex items-center justify-center shadow-xl">
-                            <img src="my_photo.jpg" 
-                                 alt="대표 권영환 프로필" 
-                                 class="w-full h-full object-cover"
-                                 loading="lazy" decoding="async">
-                        </div>
-                    </div>
-                    <div class="text-center mt-6">
-                        <div class="text-secondary text-xs font-bold tracking-[0.26em] uppercase mb-2">Founder & Vision</div>
-                        <h4 class="text-lg font-bold">대표 권 영 환</h4>
-                        <span class="text-secondary text-[10px] font-semibold tracking-widest mt-1 block">FOUNDER & CEO</span>
-                    </div>
-                </div>
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
 
-                <div class="md:col-span-8 md:order-1 flex flex-col justify-center">
-                    <span class="text-secondary font-bold tracking-wider text-xs mb-2 uppercase">MEET THE FOUNDER</span>
-                    <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-4">
+            <!-- MEET THE FOUNDER 상단 태그 -->
+            <p class="text-secondary font-bold text-xs tracking-widest uppercase mb-3">MEET THE FOUNDER</p>
+
+            <!-- 메인 그리드: 소개글+카드 | 사진 -->
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+
+                <!-- 왼쪽: 소개 텍스트 + 4카드 (lg:col-span-8) -->
+                <div class="lg:col-span-8">
+                    <!-- 헤드라인 -->
+                    <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-5" style="line-height:1.35;">
                         20년 실전 수입 무역의 전문성과<br>
-                        고향 제천을 위한 진심
+                        고향 제천을 위한 전심
                     </h2>
-                    <p class="text-slate-300 text-sm md:text-base font-light leading-relaxed mb-6" style="max-width:760px;">
-                        도전과 실행, 글로벌 네트워크, 그리고 제천 한방의 미래 가치를 연결하는 비전을 바탕으로<br class="hidden md:block">나음생활건강의 다음 20년을 설계하고 있습니다.
-                    </p>
-                    <div class="text-slate-400 text-sm md:text-base mb-6 font-light leading-relaxed" style="display:flex;flex-direction:column;gap:14px;">
+
+                    <!-- 본문 -->
+                    <div style="color:#e2e8f0;font-size:14px;line-height:1.9;display:flex;flex-direction:column;gap:14px;margin-bottom:28px;">
                         <p>
-                            안녕하세요, <strong style="color:rgba(212,175,55,0.9);"> '나음생활건강' 대표 권영환</strong>입니다.<br><br>
-                            저는 중국 수입무역 분야에서 20년간 HS코드 분류, FTA 원산지 증명,
-                            현지 공급사 협상, 수출입 통관까지 직접 수행해 온 실전 전문가입니다.<br><br>
-                            상해·광저우 현지에서 직접 발로 뛰며 협상해 온 경험을 바탕으로,
-                            비즈니스 수준의 중국어 회화는 물론, 딸과 한족 사위가 서안(西安)에
-                            거주하고 있어 중국 현지 유통 네트워크를 즉시 활용할 수 있는
-                            강점을 갖추고 있습니다.
+                            안녕하세요. 나음생활건강 대표 권영환입니다.<br><br>
+                            저는 중국 상무부록 분야에서 20년간 HS코드 분류, FTA 원산지 증명,
+                            현지 공급사 협상, 수출입 통관까지 직접 수행해 온 실전 전문가입니다.
                         </p>
                         <p>
-                            전국 최대 한방 약초 집산지이자 국가 지정 한방특구인 제천에 살면서,
-                            저는 이 지역 소상공인들이 훌륭한 제품을 가지고도 중국 수출 경로를
-                          찾지 못하는 현실을 오랫동안 목격해 왔습니다. <br><br>저는 20년간 쌓아 온 
-                            무역 실무와 중국 현지 네트워크, 그리고 제천이라는 지역 기반을 하나로
-                            모아 <strong style="color:rgba(212,175,55,0.9);">'제천 한방 소상공인의 중국 수출 허브'</strong>를 만드는 것이 저의 목표입니다.
+                            상해·광저우 현지에서 직접 발로 뛰며 협상해 온 경험을 바탕으로, 비즈니스 수준의 중국어 회화는 물론,
+                            딸과 한족 사위가 서안(西安)에 거주하고 있어 중국 현지 유통 네트워크를 즉시 활용할 수 있는
+                            강점을 갖추고 있습니다. 이는 여러분의 수출이 안전하고 성공적으로 진행될 수 있는 강력한 기반이 됩니다.
                         </p>
                         <p>
-현재 중국의 건강기능식품 시장은 2024년 약 92조 원 규모로<strong style="color:rgba(212,175,55,0.9);"> 매년 10% 이상</strong> 성장 중입니다 <br>
-샤오홍슈·더우인에서 한국 한방 제품 관련 콘텐츠가 폭발적 조회수를 기록하며,  <br><br>현지 왕홍들이 자발적으로 한국 한방 식품을 소개하는 현상이 나타나고 있는 등 한국 건강식품이 중국에 진출하기에 좋은 여건을 갖추고 있습니다. 
+                            전국 최대 한방 약초 원산지이자 국가 지정 한방특구인 제천에 살면서, 저는 이 지역
+                            소상공인들이 훌륭한 제품을 가지고도 중국 수출 경로를 찾지 못하는 현실을 목격해 왔습니다.
+                            저는 20년간 쌓아온 무역 실무와 중국 현지 네트워크, 그리고 제천이라는 지역 기반을 하나로
+                            모아 <strong style="color:#D4AF37;">'제천 한방 소상공인의 중국 수출 허브'</strong>를 만드는 것이 저의 목표입니다.
                         </p>
                         <p>
-                            아울러 저는 제천 한방의 정수를 한국인에게 가장 친숙한 밥상 음식인
-                            장아찌에 접목한 <br>
-<strong style="color:rgba(212,175,55,0.9);">'프리미엄 한방 장아찌'</strong>를 개발하고 있습니다. <br><br>
-지금 세계는<strong style="color:rgba(212,175,55,0.9);"> K-FOOD</strong>에 열광하고 있습니다. 
-                            <strong style="color:rgba(212,175,55,0.9);">"세계인의 식탁으로"</strong>라는 슬로건 아래,<br>
-                            제천 한방의 깊은 맛을 전 세계에 알리는 것이 저의 또 다른 꿈입니다.
+                            <strong style="color:#D4AF37;">지금 세계는 K-FOOD와 웰빙 라이프스타일을 주목하고 있습니다.</strong><br>
+                            "세계인의 식탁으로 만드는 글로벌 미래", 제천 한방의 깊은 맛을 전 세계에 알리는 것이
+                            저의 또 다른 사람입니다.
                         </p>
                         <p>
-                            중국 수출에 관심 있는 기업과 소상공인 여러분께 진정한 동반자가 되어 드리겠습니다.<br>
-                            많은 응원과 성원 부탁드립니다. 감사합니다. 
+                            중국 수출에 관심 있는 기업과 소상공인 여러분께 진정한 동반자가 되어드리겠습니다.<br>
+                            많은 응원과 성원 부탁드립니다. 감사합니다.
                         </p>
                     </div>
-                    
+
+                    <!-- 4개 카드 2×2 -->
                     <div class="grid sm:grid-cols-2 gap-4">
-                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                            <div class="text-secondary text-base mb-1"><i class="fa-solid fa-graduation-cap"></i></div>
-                            <span class="text-[10px] text-slate-400 block">학력 사항</span>
-                            <span class="text-xs font-semibold">한양대학교 중어중문학 졸업</span>
+                        <!-- 카드 1: 전문 거처 -->
+                        <div class="bg-white/5 p-5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="text-secondary text-lg"><i class="fa-solid fa-graduation-cap"></i></div>
+                                <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">학력 사항</span>
+                            </div>
+                            <span class="text-sm font-bold" style="color:#f1f5f9;">한양대학교 중어중문학 졸업</span>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                            <div class="text-secondary text-base mb-1"><i class="fa-solid fa-building-user"></i></div>
-                            <span class="text-[10px] text-slate-400 block">공기업 이력</span>
-                            <span class="text-xs font-semibold">한국토지공사 10년 실무 경력</span>
+                        <!-- 카드 2: 실전 경력 -->
+                        <div class="bg-white/5 p-5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="text-secondary text-lg"><i class="fa-solid fa-building-user"></i></div>
+                                <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">공기업 이력</span>
+                            </div>
+                            <span class="text-sm font-bold" style="color:#f1f5f9;">한국토지공사 10년 실무 경력</span>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                            <div class="text-secondary text-base mb-1"><i class="fa-solid fa-earth-asia"></i></div>
-                            <span class="text-[10px] text-slate-400 block">무역 실전</span>
-                            <span class="text-xs font-semibold">중국 무역 20년 현업 경력</span>
+                        <!-- 카드 3: 현지 네트워크 -->
+                        <div class="bg-white/5 p-5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="text-secondary text-lg"><i class="fa-solid fa-earth-asia"></i></div>
+                                <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">무역 실전</span>
+                            </div>
+                            <span class="text-sm font-bold" style="color:#f1f5f9;">중국 무역 20년 현업 경력</span>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                            <div class="text-secondary text-base mb-1"><i class="fa-solid fa-circle-check"></i></div>
-                            <span class="text-[10px] text-slate-400 block">고객 소통</span>
-                            <span class="text-xs font-semibold">중국 현지 실시간 바이어 직통 대응</span>
+                        <!-- 카드 4: 위기 대응 -->
+                        <div class="bg-white/5 p-5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="text-secondary text-lg"><i class="fa-solid fa-circle-check"></i></div>
+                                <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">고객 소통</span>
+                            </div>
+                            <span class="text-sm font-bold" style="color:#f1f5f9;">중국 현지 실시간 바이어 직통 대응</span>
                         </div>
                     </div>
                 </div>
 
-            </div>
+                <!-- 오른쪽: 프로필 사진 (lg:col-span-4) -->
+                <div class="lg:col-span-4 flex flex-col items-center lg:items-end">
+                    <div class="w-56 h-56 md:w-64 md:h-64 rounded-full border-4 overflow-hidden shadow-2xl" style="border-color:#D4AF37;">
+                        <img src="my_photo.jpg"
+                             alt="대표 권영환 프로필"
+                             class="w-full h-full object-cover"
+                             loading="lazy" decoding="async">
+                    </div>
+                    <div class="text-center mt-5">
+                        <p class="text-secondary text-xs font-bold tracking-widest uppercase mb-3">Founder & CEO</p>
+                        <!-- 영문 캘리그래피 SVG 서명 -->
+                        <svg viewBox="0 0 260 80" xmlns="http://www.w3.org/2000/svg"
+                             style="width:220px;height:68px;display:block;margin:0 auto 6px;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.35));">
+                          <defs>
+                            <style>
+                              .sig-stroke {
+                                fill: none;
+                                stroke: #1a1a1a;
+                                stroke-linecap: round;
+                                stroke-linejoin: round;
+                              }
+                            </style>
+                          </defs>
+                          <!-- K -->
+                          <path class="sig-stroke" stroke-width="2.8"
+                            d="M12,10 L12,68 M12,38 Q22,30 30,22 M12,38 Q22,46 32,68"/>
+                          <!-- w -->
+                          <path class="sig-stroke" stroke-width="2.4"
+                            d="M36,28 Q38,50 42,55 Q46,42 49,55 Q52,42 56,55 Q59,42 62,28"/>
+                          <!-- o -->
+                          <path class="sig-stroke" stroke-width="2.4"
+                            d="M76,42 Q75,28 82,26 Q90,25 92,35 Q94,48 88,56 Q82,62 76,56 Q72,50 76,42"/>
+                          <!-- n -->
+                          <path class="sig-stroke" stroke-width="2.4"
+                            d="M98,55 L98,28 Q100,24 106,26 Q114,28 114,38 L114,55"/>
+                          <!-- Y -->
+                          <path class="sig-stroke" stroke-width="2.6"
+                            d="M128,10 Q134,22 138,34 M148,10 Q142,22 138,34 L138,68"/>
+                          <!-- o -->
+                          <path class="sig-stroke" stroke-width="2.4"
+                            d="M164,42 Q163,28 170,26 Q178,25 180,35 Q182,48 176,56 Q170,62 164,56 Q160,50 164,42"/>
+                          <!-- u -->
+                          <path class="sig-stroke" stroke-width="2.4"
+                            d="M186,28 L186,50 Q187,58 192,57 Q198,56 200,50 L200,28"/>
+                          <!-- n -->
+                          <path class="sig-stroke" stroke-width="2.4"
+                            d="M206,55 L206,28 Q208,24 214,26 Q222,28 222,38 L222,55"/>
+                          <!-- g -->
+                          <path class="sig-stroke" stroke-width="2.4"
+                            d="M240,32 Q238,24 234,24 Q228,24 227,34 Q226,44 230,50 Q234,56 240,52 L241,64 Q240,72 233,72"/>
+                          <!-- h -->
+                          <path class="sig-stroke" stroke-width="2.4"
+                            d="M248,10 L248,55 M248,36 Q250,28 256,28 Q260,28 261,36 L261,55"/>
+                          <!-- 아래 밑줄 장식 -->
+                          <path fill="none" stroke="#D4AF37" stroke-width="1.6" stroke-linecap="round"
+                            d="M8,74 Q70,70 136,73 Q195,76 256,72"/>
+                        </svg>
+                        <p style="font-size:17px;font-weight:800;color:#111111;letter-spacing:0.01em;margin-bottom:3px;">대표 권영환</p>
+                        <span style="font-size:10px;font-weight:700;color:#D4AF37;letter-spacing:0.18em;text-transform:uppercase;display:block;">FOUNDER & CEO</span>
+                    </div>
+                </div>
+
+            </div><!-- /grid -->
         </div>
     </section>
 
