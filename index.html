@@ -2005,6 +2005,333 @@
         }
     </style>
 
+
+    <!-- ====== BALANCED FOUNDER SECTION: portrait + greeting harmony ====== -->
+    <style id="balanced-founder-section-2026">
+        #ceo.ceo-founder-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(76px, 8vw, 108px) 0 clamp(68px, 7vw, 96px) !important;
+            color: #23352e !important;
+            background:
+                radial-gradient(ellipse 66% 62% at 100% 4%, rgba(212,175,55,0.17) 0%, rgba(212,175,55,0) 58%),
+                radial-gradient(ellipse 72% 68% at 0% 100%, rgba(110,180,137,0.17) 0%, rgba(110,180,137,0) 58%),
+                linear-gradient(138deg, #f7fbf5 0%, #f3f9f1 45%, #f7fbf7 72%, #fffdf3 100%) !important;
+        }
+        #ceo.ceo-founder-section::before {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 230px;
+            z-index: -2;
+            pointer-events: none;
+            opacity: .58;
+            background:
+                linear-gradient(164deg, transparent 0 46%, rgba(92,130,104,.11) 46.5% 53%, transparent 53.5%),
+                linear-gradient(195deg, transparent 0 48%, rgba(126,156,132,.10) 48.5% 58%, transparent 58.5%);
+            transform: scaleX(1.25);
+            transform-origin: bottom center;
+        }
+        #ceo.ceo-founder-section::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: .72;
+            background:
+                radial-gradient(circle at 7% 14%, rgba(212,175,55,.22) 0 1.5px, transparent 2px),
+                radial-gradient(circle at 82% 18%, rgba(31,92,58,.12) 0 1.2px, transparent 1.7px),
+                radial-gradient(circle at 94% 74%, rgba(212,175,55,.17) 0 1.4px, transparent 2px),
+                radial-gradient(circle at 18% 82%, rgba(31,92,58,.10) 0 1px, transparent 1.6px);
+        }
+        #ceo .ceo-founder-wrap {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 1280px);
+            margin: 0 auto;
+            padding-left: var(--page-x, 24px);
+            padding-right: var(--page-x, 24px);
+        }
+        #ceo .ceo-founder-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.43fr) minmax(330px, .82fr);
+            align-items: center;
+            gap: clamp(44px, 6.2vw, 94px);
+        }
+        #ceo .ceo-founder-copy {
+            min-width: 0;
+            max-width: 790px;
+        }
+        #ceo .ceo-founder-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 16px;
+            color: #b45309 !important;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+        }
+        #ceo .ceo-founder-eyebrow::after {
+            content: "";
+            width: 96px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(180,83,9,.78), rgba(180,83,9,0));
+        }
+        #ceo .ceo-founder-heading {
+            margin: 0;
+            color: #153b2a !important;
+            font-family: 'Noto Serif KR', 'Noto Sans KR', sans-serif;
+            font-size: clamp(31px, 3.3vw, 49px);
+            font-weight: 900;
+            line-height: 1.34;
+            letter-spacing: -.065em;
+            text-wrap: balance;
+            word-break: keep-all;
+        }
+        #ceo .ceo-founder-ornament {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: min(100%, 190px);
+            margin: 20px 0 22px;
+        }
+        #ceo .ceo-founder-ornament::before,
+        #ceo .ceo-founder-ornament::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: rgba(180,83,9,.45);
+        }
+        #ceo .ceo-founder-ornament span {
+            color: #b88718;
+            font-size: 13px;
+            line-height: 1;
+        }
+        #ceo .ceo-greeting-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 760px;
+            margin: 0 !important;
+            color: #33453d !important;
+            font-size: 14px !important;
+            font-weight: 400;
+            line-height: 1.9 !important;
+            letter-spacing: -.022em;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            text-wrap: pretty;
+        }
+        #ceo .ceo-greeting-copy p {
+            margin: 0;
+            color: #33453d !important;
+        }
+        #ceo .ceo-greeting-copy strong {
+            color: #c2760c !important;
+            font-weight: 800;
+        }
+        #ceo .ceo-founder-profile {
+            justify-self: end;
+            width: min(100%, 400px);
+            text-align: center;
+        }
+        #ceo .ceo-profile-panel {
+            position: relative;
+            padding: 22px 22px 25px;
+            border: 1px solid rgba(11,70,25,.11);
+            border-radius: 999px 999px 32px 32px;
+            background: linear-gradient(145deg, rgba(255,255,255,.74), rgba(245,251,244,.58));
+            box-shadow: 0 20px 52px rgba(25,70,45,.12);
+            backdrop-filter: blur(9px);
+            -webkit-backdrop-filter: blur(9px);
+        }
+        #ceo .ceo-profile-photo-frame {
+            position: relative;
+            width: min(100%, 324px);
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 3px solid #d6a51f;
+            border-radius: 50%;
+            background: #edf5ec;
+            box-shadow:
+                0 0 0 8px rgba(212,175,55,.12),
+                0 18px 38px rgba(24,68,44,.18);
+        }
+        #ceo .ceo-profile-photo-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+        #ceo .ceo-profile-title {
+            margin: 26px 0 3px;
+            color: #b45309 !important;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+        }
+        #ceo .ceo-profile-signature {
+            display: block;
+            margin: 0 auto;
+            color: #26352f !important;
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(43px, 4vw, 58px);
+            line-height: 1;
+            letter-spacing: .015em;
+            white-space: nowrap;
+        }
+        #ceo .ceo-profile-divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: min(92%, 270px);
+            margin: 10px auto 11px;
+        }
+        #ceo .ceo-profile-divider::before,
+        #ceo .ceo-profile-divider::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: rgba(180,83,9,.62);
+        }
+        #ceo .ceo-profile-divider span {
+            width: 8px;
+            height: 8px;
+            transform: rotate(45deg);
+            background: #b88718;
+        }
+        #ceo .ceo-profile-name {
+            margin: 0;
+            color: #16382a !important;
+            font-family: 'Noto Serif KR', 'Noto Sans KR', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -.045em;
+        }
+        #ceo .ceo-profile-subtitle {
+            display: block;
+            margin-top: 8px;
+            color: #b88718 !important;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .24em;
+            text-transform: uppercase;
+        }
+        #ceo .ceo-credential-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 13px;
+            margin-top: clamp(34px, 4.6vw, 58px);
+        }
+        #ceo .ceo-credential-card {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-height: 86px;
+            padding: 17px 16px;
+            border: 1px solid rgba(11,70,25,.11);
+            border-radius: 17px;
+            background: rgba(255,255,255,.72);
+            box-shadow: 0 7px 20px rgba(24,68,44,.06);
+            transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+        }
+        #ceo .ceo-credential-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,.92);
+            box-shadow: 0 13px 28px rgba(24,68,44,.10);
+        }
+        #ceo .ceo-credential-icon {
+            display: flex;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 13px;
+            color: #b45309;
+            background: linear-gradient(145deg, #fff8dc, #f4e0a2);
+            font-size: 16px;
+        }
+        #ceo .ceo-credential-label {
+            display: block;
+            margin-bottom: 3px;
+            color: #8a7561 !important;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+        #ceo .ceo-credential-value {
+            display: block;
+            color: #26352f !important;
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.48;
+            word-break: keep-all;
+        }
+        @media (max-width: 1023px) {
+            #ceo .ceo-founder-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 38px;
+            }
+            #ceo .ceo-founder-copy { max-width: 850px; }
+            #ceo .ceo-founder-profile {
+                justify-self: center;
+                width: min(100%, 390px);
+            }
+            #ceo .ceo-credential-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 767px) {
+            #ceo.ceo-founder-section {
+                padding-top: 64px !important;
+                padding-bottom: 62px !important;
+            }
+            #ceo .ceo-founder-eyebrow {
+                margin-bottom: 13px;
+                font-size: 10px;
+                letter-spacing: .18em;
+            }
+            #ceo .ceo-founder-eyebrow::after { width: 62px; }
+            #ceo .ceo-founder-heading {
+                font-size: clamp(28px, 8.3vw, 37px);
+                line-height: 1.4;
+            }
+            #ceo .ceo-founder-ornament { margin: 17px 0 18px; }
+            #ceo .ceo-greeting-copy {
+                gap: 13px;
+                font-size: 13px !important;
+                line-height: 1.86 !important;
+            }
+            #ceo .ceo-desktop-break { display: none; }
+            #ceo .ceo-profile-panel { padding: 18px 18px 22px; }
+            #ceo .ceo-profile-photo-frame { width: min(100%, 270px); }
+            #ceo .ceo-profile-title { margin-top: 23px; }
+            #ceo .ceo-profile-signature { font-size: 48px; }
+            #ceo .ceo-credential-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 31px;
+            }
+            #ceo .ceo-credential-card {
+                min-height: 72px;
+                padding: 14px 15px;
+            }
+        }
+        @media (max-width: 390px) {
+            #ceo .ceo-profile-signature { font-size: 43px; }
+            #ceo .ceo-profile-name { font-size: 20px; }
+        }
+    </style>
+
 </head>
 <body class="bg-slate-50 text-slate-800 scroll-smooth">
 
@@ -2510,13 +2837,13 @@
                     <div class="lg:col-span-3">
                         <p style="font-size:11px;font-weight:700;color:#0B4619;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">COMPANY STORY</p>
                         <h3 style="font-family:'Noto Sans KR',sans-serif;font-size:clamp(18px,2.5vw,24px);font-weight:900;color:#111;line-height:1.5;margin-bottom:16px;">
-                            제천의 청정 한방 인프라와<br>20년 중국 직소싱 노하우의 결합
+                            제천의 청정 한방 인프라와<br>20년 중국 무역 경험 노하우의 결합
                         </h3>
                         <p style="font-size:14px;color:#555;line-height:2;margin-bottom:16px;">
-                            중국 상해·광저우 현지에 15년간 거주하며 직접 발로 뛰어 쌓은 수입 무역 20년 노하우를, 약초의 고장 제천의 풍부한 한방 인프라와 결합하여 새로운 가치를 창출합니다.
+                            중국 상해·광저우 현지에 15년간 거주하며 직접 발로 뛰어 쌓은 수입 무역 20년 노하우를,<br> 약초의 고장 제천의 풍부한 한방 인프라와 결합하여 새로운 가치를 창출합니다.
                         </p>
                         <p style="font-size:14px;color:#555;line-height:2;margin-bottom:20px;">
-                            <strong style="color:#0B4619;">프리미엄 한방 저염 장아찌</strong>를 시작으로, 제천 특산 원료 기반의 건강식품과 중국 직소싱 무역 컨설팅까지 — 나음생활건강은 멈추지 않고 더 나은 방향으로 확장해 나갑니다.
+                            <strong style="color:#0B4619;">프리미엄 한방 저염 장아찌</strong>를 시작으로, 제천 특산 원료 기반의 건강식품과 중국 직소싱 무역 컨설팅까지<br> — 나음생활건강은 멈추지 않고 더 나은 방향으로 확장해 나갑니다.
                         </p>
                         <div style="display:flex;flex-wrap:wrap;gap:10px;">
                             <span style="background:#e8f5e9;color:#0B4619;font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;border:1px solid #c6e8d0;">🌿 제천 바이오밸리 입주 기업</span>
@@ -2601,7 +2928,7 @@
                         <h3 class="text-xl font-bold text-slate-900 mb-2">건강식품(장아찌 등)<br>개발 및 유통</h3>
                         <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
                             엄선된 우수 원료를 지역 농가에서 직접 공수·가공하여
-                            스마트스토어, 쿠팡, 크라우드 펀딩 등 다양한
+                            스마트스토어, 쿠팡, 크라우드 펀딩 등<br> 다양한
                             온·오프라인 채널에 유통합니다.
                         </p>
                         <span class="text-xs bg-emerald-100 text-primary px-3 py-1 rounded-full font-medium">B2C 유통</span>
@@ -2631,7 +2958,7 @@
                         <h3 class="text-xl font-bold text-slate-900 mb-2">한방 원료<br>소싱 에이전시</h3>
                         <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
                             제약사 및 식품 제조사를 대상으로 제천의 고품질 약재와
-                            해외 우수 원자재를 독점 중개하고
+                            해외 우수 원자재를 독점 중개하고<br>
                             안정적으로 공급합니다.
                         </p>
                         <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">B2B 소싱대행</span>
@@ -2645,8 +2972,8 @@
                     <div class="service-card-body">
                         <h3 class="text-xl font-bold text-slate-900 mb-2">콘텐츠 &<br>에듀테인먼트</h3>
                         <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
-                            무역 실전 전자책 발행은 물론, 제천 한방 원료
-                            (황기, 오미자 등) 캐릭터를 활용한 인스타툰과 숏폼으로
+                            무역 실전 전자책 발행은 물론, 제천 한방 원료<br>
+                            (황기, 오미자 등) 캐릭터를 활용한 <br>인스타툰과 숏폼으로
                             MZ세대와 소통합니다.
                         </p>
                         <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">미디어 커머스</span>
@@ -2789,125 +3116,85 @@
         </div>
     </section>
 
-    <section id="ceo" class="scene-dawn py-20 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-
-            <!-- MEET THE FOUNDER 상단 태그 -->
-            <p class="text-secondary font-bold text-xs tracking-widest uppercase mb-3">MEET THE FOUNDER</p>
-
-            <!-- 메인 그리드: 소개글+카드 | 사진 -->
-            <div class="grid lg:grid-cols-12 gap-10 items-start">
-
-                <!-- 왼쪽: 소개 텍스트 + 4카드 (lg:col-span-8) -->
-                <div class="lg:col-span-8">
-                    <!-- 헤드라인 -->
-                    <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-5" style="line-height:1.35;">
+    <section id="ceo" class="ceo-founder-section">
+        <div class="ceo-founder-wrap">
+            <div class="ceo-founder-grid">
+                <!-- 왼쪽: 대표 인삿말 -->
+                <div class="ceo-founder-copy">
+                    <p class="ceo-founder-eyebrow">MEET THE FOUNDER</p>
+                    <h2 class="ceo-founder-heading">
                         20년 실전 수입 무역의 전문성과<br>
                         고향 제천을 위한 전심
                     </h2>
+                    <div class="ceo-founder-ornament" aria-hidden="true"><span>◆</span></div>
 
-                    <!-- 본문 -->
-                    <div style="color:#1a1a1a;font-size:14px;line-height:1.9;display:flex;flex-direction:column;gap:14px;margin-bottom:28px;">
+                    <div class="ceo-greeting-copy">
+                        <p>안녕하세요. 나음생활건강 대표 권영환입니다.</p>
                         <p>
-                            안녕하세요. 나음생활건강 대표 권영환입니다.<br><br>
-                            저는 중국 상무부록 분야에서 20년간 HS코드 분류, FTA 원산지 증명,
+                            저는 중국 상무부록 분야에서 20년간 HS코드 분류, FTA 원산지 증명,<br class="ceo-desktop-break">
                             현지 공급사 협상, 수출입 통관까지 직접 수행해 온 실전 전문가입니다.
                         </p>
                         <p>
-                            상해·광저우 현지에서 직접 발로 뛰며 협상해 온 경험을 바탕으로, 비즈니스 수준의 중국어 회화는 물론,
-                            딸과 한족 사위가 서안(西安)에 거주하고 있어 중국 현지 유통 네트워크를 즉시 활용할 수 있는
-                            강점을 갖추고 있습니다. 이는 여러분의 수출이 안전하고 성공적으로 진행될 수 있는 강력한 기반이 됩니다.
+                            상해·광저우 현지에서 직접 발로 뛰며 협상해 온 경험을 바탕으로,<br class="ceo-desktop-break">
+                            비즈니스 수준의 중국어 회화는 물론, 딸과 한족 사위가 서안(西安)에 거주하고 있어<br class="ceo-desktop-break">
+                            중국 현지 유통 네트워크를 즉시 활용할 수 있는 강점을 갖추고 있습니다.<br class="ceo-desktop-break">
+                            이는 여러분의 수출이 안전하고 성공적으로 진행될 수 있는 강력한 기반이 됩니다.
                         </p>
                         <p>
-                            전국 최대 한방 약초 원산지이자 국가 지정 한방특구인 제천에 살면서, 저는 이 지역
-                            소상공인들이 훌륭한 제품을 가지고도 중국 수출 경로를 찾지 못하는 현실을 목격해 왔습니다.
-                            저는 20년간 쌓아온 무역 실무와 중국 현지 네트워크, 그리고 제천이라는 지역 기반을 하나로
-                            모아 <strong style="color:#D4AF37;">'제천 한방 소상공인의 중국 수출 허브'</strong>를 만드는 것이 저의 목표입니다.
+                            전국 최대 한방 약초 원산지이자 국가 지정 한방특구인 제천에 살면서,<br class="ceo-desktop-break">
+                            저는 이 지역 소상공인들이 훌륭한 제품을 가지고도 중국 수출 경로를 찾지 못하는 현실을 목격해 왔습니다.<br class="ceo-desktop-break">
+                            저는 20년간 쌓아온 무역 실무와 중국 현지 네트워크, 그리고 제천이라는 지역 기반을 하나로 모아<br class="ceo-desktop-break">
+                            <strong>'제천 한방 소상공인의 중국 수출 허브'</strong>를 만드는 것이 저의 목표입니다.
                         </p>
                         <p>
-                            <strong style="color:#D4AF37;">지금 세계는 K-FOOD와 웰빙 라이프스타일을 주목하고 있습니다.</strong><br>
-                            "세계인의 식탁으로 만드는 글로벌 미래", 제천 한방의 깊은 맛을 전 세계에 알리는 것이
-                            저의 또 다른 꿈입니다.
+                            <strong>지금 세계는 K-FOOD와 웰빙 라이프스타일을 주목하고 있습니다.</strong><br>
+                            "세계인의 식탁으로 만드는 글로벌 미래",<br class="ceo-desktop-break">
+                            제천 한방의 깊은 맛을 전 세계에 알리는 것이 저의 또 다른 꿈입니다.
                         </p>
                         <p>
-                            중국 수출에 관심 있는 기업과 소상공인 여러분께 진정한 동반자가 되어드리겠습니다.<br>
+                            중국 수출에 관심 있는 기업과 소상공인 여러분께 진정한 동반자가 되어드리겠습니다.<br class="ceo-desktop-break">
                             많은 응원과 성원 부탁드립니다. 감사합니다.
                         </p>
                     </div>
-
-                    <!-- 4개 카드 2×2 -->
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <!-- 카드 1: 전문 거처 -->
-                        <div class="bg-white/5 p-5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                            <div class="flex items-center gap-2 mb-2">
-                                <div class="text-secondary text-lg"><i class="fa-solid fa-graduation-cap"></i></div>
-                                <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">학력 사항</span>
-                            </div>
-                            <span class="text-sm font-bold" style="color:#111111;">한양대학교 중어중문학 졸업</span>
-                        </div>
-                        <!-- 카드 2: 실전 경력 -->
-                        <div class="bg-white/5 p-5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                            <div class="flex items-center gap-2 mb-2">
-                                <div class="text-secondary text-lg"><i class="fa-solid fa-building-user"></i></div>
-                                <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">공기업 이력</span>
-                            </div>
-                            <span class="text-sm font-bold" style="color:#111111;">한국토지공사 10년 실무 경력</span>
-                        </div>
-                        <!-- 카드 3: 현지 네트워크 -->
-                        <div class="bg-white/5 p-5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                            <div class="flex items-center gap-2 mb-2">
-                                <div class="text-secondary text-lg"><i class="fa-solid fa-earth-asia"></i></div>
-                                <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">무역 실전</span>
-                            </div>
-                            <span class="text-sm font-bold" style="color:#111111;">중국 무역 20년 현업 경력</span>
-                        </div>
-                        <!-- 카드 4: 위기 대응 -->
-                        <div class="bg-white/5 p-5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                            <div class="flex items-center gap-2 mb-2">
-                                <div class="text-secondary text-lg"><i class="fa-solid fa-circle-check"></i></div>
-                                <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">고객 소통</span>
-                            </div>
-                            <span class="text-sm font-bold" style="color:#111111;">중국 현지 실시간 바이어 직통 대응</span>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- 오른쪽: 프로필 사진 (lg:col-span-4) -->
-                <div class="lg:col-span-4 flex flex-col items-center lg:items-end">
-                    <div class="w-56 h-56 md:w-64 md:h-64 rounded-full border-4 overflow-hidden shadow-2xl" style="border-color:#D4AF37;">
-                        <img src="my_photo.jpg"
-                             alt="대표 권영환 프로필"
-                             class="w-full h-full object-cover"
-                             loading="lazy" decoding="async">
-                    </div>
-                    <div class="text-center mt-5">
-                        <p class="text-secondary text-xs font-bold tracking-widest uppercase mb-3">Founder & CEO</p>
-                        <!-- 영문 캘리그래피 서명 (Pinyon Script 웹폰트) -->
-                        <div style="position:relative;display:inline-block;margin:0 auto 8px;">
-                            <span style="
-                                font-family:'Pinyon Script', cursive;
-                                font-size:42px;
-                                color:#1a1a1a;
-                                display:block;
-                                line-height:1.15;
-                                letter-spacing:0.02em;
-                                filter:drop-shadow(0 2px 6px rgba(0,0,0,0.18));
-                                white-space:nowrap;
-                            ">Kwon Younghwan</span>
-                            <!-- 골드 밑줄 장식 -->
-                            <svg viewBox="0 0 280 12" xmlns="http://www.w3.org/2000/svg"
-                                 style="width:100%;height:10px;display:block;margin-top:-4px;">
-                                <path fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round"
-                                    d="M4,6 Q70,2 140,5 Q210,8 276,4"/>
-                            </svg>
+                <!-- 오른쪽: 대표 이미지와 서명 -->
+                <aside class="ceo-founder-profile" aria-label="대표 권영환 프로필">
+                    <div class="ceo-profile-panel">
+                        <div class="ceo-profile-photo-frame">
+                            <img src="my_photo.jpg"
+                                 alt="나음생활건강 대표 권영환 프로필"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
-                        <p style="font-size:17px;font-weight:800;color:#111111;letter-spacing:0.01em;margin-bottom:3px;">대표 권영환</p>
-                        <span style="font-size:10px;font-weight:700;color:#D4AF37;letter-spacing:0.18em;text-transform:uppercase;display:block;">FOUNDER & CEO</span>
+                        <p class="ceo-profile-title">Founder &amp; CEO</p>
+                        <span class="ceo-profile-signature">Kwon Younghwan</span>
+                        <div class="ceo-profile-divider" aria-hidden="true"><span></span></div>
+                        <p class="ceo-profile-name">대표 권영환</p>
+                        <span class="ceo-profile-subtitle">Founder &amp; CEO</span>
                     </div>
-                </div>
+                </aside>
+            </div>
 
-            </div><!-- /grid -->
+            <!-- 대표 핵심 이력: 소개글 아래로 이동하여 좌우 시각 무게를 안정적으로 조정 -->
+            <div class="ceo-credential-grid" aria-label="대표 핵심 이력">
+                <div class="ceo-credential-card">
+                    <span class="ceo-credential-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+                    <span><span class="ceo-credential-label">학력 사항</span><span class="ceo-credential-value">한양대학교 중어중문학 졸업</span></span>
+                </div>
+                <div class="ceo-credential-card">
+                    <span class="ceo-credential-icon"><i class="fa-solid fa-building-user"></i></span>
+                    <span><span class="ceo-credential-label">공기업 이력</span><span class="ceo-credential-value">한국토지공사 10년 실무 경력</span></span>
+                </div>
+                <div class="ceo-credential-card">
+                    <span class="ceo-credential-icon"><i class="fa-solid fa-earth-asia"></i></span>
+                    <span><span class="ceo-credential-label">무역 실전</span><span class="ceo-credential-value">중국 무역 20년 현업 경력</span></span>
+                </div>
+                <div class="ceo-credential-card">
+                    <span class="ceo-credential-icon"><i class="fa-solid fa-circle-check"></i></span>
+                    <span><span class="ceo-credential-label">고객 소통</span><span class="ceo-credential-value">중국 현지 실시간 바이어 직통 대응</span></span>
+                </div>
+            </div>
         </div>
     </section>
 
