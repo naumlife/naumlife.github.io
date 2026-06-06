@@ -1302,22 +1302,41 @@
             background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80') !important;
         }
 
-        /* Flagship export platform: premium visual story instead of a flat burgundy block. */
+        /* Flagship export platform: bg-015.png — Korea · China · herbal export visual. */
         #business .feature-export-card {
             position: relative;
             isolation: isolate;
             overflow: hidden;
-            background:
-                linear-gradient(95deg, rgba(114,12,18,0.96) 0%, rgba(137,21,25,0.89) 52%, rgba(84,14,21,0.60) 100%),
-                url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1800&q=86') center/cover no-repeat !important;
+            min-height: 352px;
+            background: url('bg-015.png') right center / cover no-repeat !important;
             box-shadow: 0 18px 42px rgba(127,29,29,0.24) !important;
+        }
+        #business .feature-export-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(90deg,
+                rgba(83, 8, 16, 0.96) 0%,
+                rgba(104, 12, 20, 0.92) 35%,
+                rgba(115, 18, 24, 0.80) 56%,
+                rgba(79, 15, 20, 0.48) 72%,
+                rgba(48, 10, 14, 0.18) 100%);
         }
         #business .feature-export-card::after {
             content: '';
             position: absolute;
             inset: 0;
-            z-index: -1;
-            background: radial-gradient(circle at 88% 50%, rgba(255,208,92,0.20), transparent 34%);
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 88% 52%, rgba(255,208,92,0.20), transparent 30%),
+                linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.16));
+        }
+        #business .feature-export-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         /* 6) PRODUCT CARDS: photographic hero images for all four products/services. */
@@ -1796,6 +1815,193 @@
         @media (max-width: 420px) {
             .generated-value-card { min-height: 278px; }
             .generated-value-card .value-card-copy { max-width: 80%; }
+        }
+    </style>
+
+
+    <!-- ====== GENERATED BUSINESS CARD BACKGROUNDS: bg-010 / bg-011 / bg-012 / bg-014 ====== -->
+    <style id="generated-business-card-backgrounds">
+        /*
+          GitHub 루트 폴더에 index.html과 bg-010.png, bg-011.png,
+          bg-012.png, bg-014.png를 함께 업로드하세요.
+          순서: 건강식품 / 무역컨설팅 / 한방원료소싱 / 콘텐츠
+        */
+        #business .business-card-photo {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: 284px;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            background-position: center center !important;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12) !important;
+        }
+        #business .business-card-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(90deg,
+                rgba(255,255,255,0.94) 0%,
+                rgba(255,255,255,0.90) 38%,
+                rgba(255,255,255,0.76) 58%,
+                rgba(255,255,255,0.38) 78%,
+                rgba(255,255,255,0.14) 100%) !important;
+        }
+        #business .business-card-photo > * {
+            position: relative;
+            z-index: 1;
+        }
+        #business .business-card-food {
+            background-image: url('bg-010.png') !important;
+        }
+        #business .business-card-trade {
+            background-image: url('bg-011.png') !important;
+        }
+        #business .business-card-herb {
+            background-image: url('bg-012.png') !important;
+        }
+        #business .business-card-content {
+            background-image: url('bg-014.png') !important;
+        }
+        #business .service-card-body {
+            max-width: min(100%, 560px);
+        }
+        #business .service-card-body h3 {
+            line-height: 1.34 !important;
+            text-wrap: balance;
+            word-break: keep-all;
+            margin-bottom: 10px !important;
+        }
+        #business .service-card-body p {
+            max-width: 42ch;
+            line-height: 1.88 !important;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+        #business .service-card-body span[class*="bg-"] {
+            white-space: nowrap;
+        }
+        @media (max-width: 1023px) {
+            #business .business-card-photo {
+                min-height: 260px;
+            }
+        }
+        @media (max-width: 767px) {
+            #business .business-card-photo {
+                min-height: 238px;
+                background-position: center center !important;
+            }
+            #business .business-card-photo::before {
+                background: linear-gradient(180deg,
+                    rgba(255,255,255,0.94) 0%,
+                    rgba(255,255,255,0.90) 48%,
+                    rgba(255,255,255,0.70) 76%,
+                    rgba(255,255,255,0.42) 100%) !important;
+            }
+            #business .service-card-body h3 {
+                font-size: 1.25rem !important;
+            }
+            #business .service-card-body p {
+                max-width: 100%;
+                font-size: 13px !important;
+                line-height: 1.8 !important;
+            }
+        }
+    </style>
+
+    <!-- ====== GENERATED EXPORT PLATFORM BACKGROUND: bg-015.png ====== -->
+    <style id="generated-export-platform-bg015">
+        /* GitHub 루트 폴더에 index.html과 bg-015.png를 함께 업로드하세요. */
+        #business .feature-export-copy {
+            max-width: min(100%, 930px);
+            padding: 2px 0;
+        }
+        #business .feature-export-title {
+            line-height: 1.34 !important;
+            letter-spacing: -0.035em;
+            word-break: keep-all;
+            text-wrap: balance;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.30);
+        }
+        #business .feature-export-description {
+            max-width: 78ch;
+            line-height: 1.85 !important;
+            letter-spacing: -0.018em;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.28);
+        }
+        #business .feature-export-new {
+            flex-shrink: 0;
+            margin-top: 4px;
+            white-space: nowrap;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+        }
+        #business .feature-export-tags span {
+            border: 1px solid rgba(255,255,255,0.13);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            white-space: nowrap;
+        }
+        #business .feature-export-link {
+            text-shadow: 0 1px 8px rgba(0,0,0,0.34);
+        }
+        @media (max-width: 1023px) {
+            #business .feature-export-card {
+                min-height: 348px;
+                background-position: 64% center !important;
+            }
+            #business .feature-export-card::before {
+                background: linear-gradient(90deg,
+                    rgba(83, 8, 16, 0.97) 0%,
+                    rgba(104, 12, 20, 0.93) 43%,
+                    rgba(100, 16, 23, 0.80) 66%,
+                    rgba(60, 12, 17, 0.44) 100%);
+            }
+        }
+        @media (max-width: 767px) {
+            #business .feature-export-card {
+                min-height: 470px;
+                padding: 24px 22px !important;
+                align-items: flex-end;
+                background-position: 69% center !important;
+            }
+            #business .feature-export-card::before {
+                background: linear-gradient(180deg,
+                    rgba(73, 8, 15, 0.66) 0%,
+                    rgba(83, 10, 17, 0.78) 30%,
+                    rgba(89, 11, 18, 0.94) 63%,
+                    rgba(73, 8, 15, 0.98) 100%);
+            }
+            #business .feature-export-title {
+                font-size: 1.25rem !important;
+                line-height: 1.42 !important;
+            }
+            #business .feature-export-description {
+                font-size: 13px !important;
+                line-height: 1.78 !important;
+                max-width: 100%;
+            }
+            #business .feature-export-description .block {
+                display: inline;
+            }
+            #business .feature-export-description .block::after {
+                content: ' ';
+            }
+            #business .feature-export-description .mt-1 {
+                margin-top: 0 !important;
+            }
+            #business .feature-export-tags {
+                gap: 7px !important;
+            }
+        }
+        @media (max-width: 420px) {
+            #business .feature-export-card { min-height: 510px; }
+            #business .feature-export-title { font-size: 1.12rem !important; }
+            #business .feature-export-new { font-size: 10px !important; }
+            #business .feature-export-tags span { font-size: 10px !important; }
         }
     </style>
 
@@ -2391,10 +2597,12 @@
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-emerald-50 text-primary items-center justify-center text-2xl shrink-0">
                         <i class="fa-solid fa-prescription-bottle-medical"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">건강식품(장아찌 등) 개발 및 유통</h3>
+                    <div class="service-card-body">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">건강식품(장아찌 등)<br>개발 및 유통</h3>
                         <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
-                            엄선된 우수 원료를 지역 농가에서 직접 공수 가공하여 스마트스토어, 쿠팡, 크라우드 펀딩 등 다양한 온오프라인 채널에 유통합니다.
+                            엄선된 우수 원료를 지역 농가에서 직접 공수·가공하여
+                            스마트스토어, 쿠팡, 크라우드 펀딩 등 다양한
+                            온·오프라인 채널에 유통합니다.
                         </p>
                         <span class="text-xs bg-emerald-100 text-primary px-3 py-1 rounded-full font-medium">B2C 유통</span>
                     </div>
@@ -2404,10 +2612,12 @@
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-amber-50 text-secondary items-center justify-center text-2xl shrink-0">
                         <i class="fa-solid fa-comments-dollar"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">중국 무역 전문 컨설팅/안전하고 신속한 수입대행</h3>
+                    <div class="service-card-body">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">중국 무역 전문 컨설팅/<br>안전하고 신속한 수입대행</h3>
                         <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
-                            HS코드 분류, FTA 원산지 증명, 수입 요건 분석 등 복잡한 실무를 지원하여 수입 초보 기업의 무역 실패 확률을 원천 차단합니다.
+                            HS코드 분류, FTA 원산지 증명, 수입 요건 분석 등
+                            복잡한 실무를 지원하여 수입 초보 기업의
+                            무역 실패 확률을 원천 차단합니다.
                         </p>
                         <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-medium">B2B 무역자문</span>
                     </div>
@@ -2417,10 +2627,12 @@
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 items-center justify-center text-2xl shrink-0">
                         <i class="fa-solid fa-cubes"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">한방 원료 소싱 에이전시</h3>
+                    <div class="service-card-body">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">한방 원료<br>소싱 에이전시</h3>
                         <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
-                            제약사 및 식품 제조사를 대상으로 제천의 고품질 약재 및 해외 우수 원자재를 독점 중개하고 안정적으로 공급합니다.
+                            제약사 및 식품 제조사를 대상으로 제천의 고품질 약재와
+                            해외 우수 원자재를 독점 중개하고
+                            안정적으로 공급합니다.
                         </p>
                         <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">B2B 소싱대행</span>
                     </div>
@@ -2430,35 +2642,43 @@
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-purple-50 text-purple-600 items-center justify-center text-2xl shrink-0">
                         <i class="fa-solid fa-pen-nib"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">콘텐츠 & 에듀테인먼트</h3>
+                    <div class="service-card-body">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">콘텐츠 &<br>에듀테인먼트</h3>
                         <p class="text-slate-600 font-light leading-relaxed mb-3 text-sm">
-                            무역 실전 전자책 발행은 물론, 제천 한방 원료(황기, 오미자 등) 캐릭터를 활용한 인스타툰과 숏폼으로 MZ세대와 소통합니다.
+                            무역 실전 전자책 발행은 물론, 제천 한방 원료
+                            (황기, 오미자 등) 캐릭터를 활용한 인스타툰과 숏폼으로
+                            MZ세대와 소통합니다.
                         </p>
                         <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">미디어 커머스</span>
                     </div>
                 </div>
 
                 <!-- 신규 5번째 — 한방바이오교역 중국 수출 역직구 플랫폼 -->
-                <a href="export.html" class="feature-export-card bg-gradient-to-br from-red-900 to-red-800 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all flex gap-6 md:col-span-2 group" style="text-decoration:none;">
+                <a href="export.html" class="feature-export-card p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all flex gap-6 md:col-span-2 group" style="text-decoration:none;">
                     <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-white/15 text-white items-center justify-center text-2xl shrink-0 group-hover:bg-white/25 transition-all flex-shrink-0">
                         <i class="fa-solid fa-earth-asia"></i>
                     </div>
-                    <div class="flex-grow">
-                        <div class="flex flex-wrap items-center gap-3 mb-2">
-                            <h3 class="text-xl font-bold text-white">한방바이오교역 (韓方BIO交易) — 제천 한방 중국 수출 역직구 플랫폼</h3>
-                            <span class="text-xs bg-yellow-400 text-slate-900 font-bold px-3 py-1 rounded-full">NEW ★ 핵심 신사업</span>
+                    <div class="feature-export-copy flex-grow">
+                        <div class="feature-export-title-row flex flex-wrap items-start gap-3 mb-3">
+                            <h3 class="feature-export-title text-xl md:text-2xl font-extrabold text-white">
+                                <span class="block">한방바이오교역 (韓方BIO交易)</span>
+                                <span class="block mt-1">제천 한방 중국 수출 역직구 플랫폼</span>
+                            </h3>
+                            <span class="feature-export-new text-xs bg-yellow-400 text-slate-900 font-bold px-3 py-1 rounded-full">NEW ★ 핵심 신사업</span>
                         </div>
-                        <p class="text-red-100 font-light leading-relaxed mb-4 text-sm">
-                            제천 한방특구 소상공인의 건강식품을 중국 현지 네트워크로 직접 수출하는 역직구 대행 플랫폼. 20년 수출입 통관 전문성 + 중국 시안(西安) 현지 거점(딸·사위)을 활용해 소상공인은 제품 공급에만 집중하고 통관·바이어 연결·현지 유통을 전담 처리합니다.
+                        <p class="feature-export-description text-red-50 font-normal mb-5 text-sm md:text-base">
+                            <span class="block">제천 한방특구 소상공인의 건강식품을</span>
+                            <span class="block">중국 현지 네트워크로 직접 수출하는 역직구 대행 플랫폼입니다.</span>
+                            <span class="block mt-1">20년 수출입 통관 전문성과 중국 시안(西安) 현지 거점을 활용해</span>
+                            <span class="block">소상공인은 제품 공급에 집중하고, 통관·바이어 연결·현지 유통은 전담 처리합니다.</span>
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
+                        <div class="feature-export-tags flex flex-wrap gap-2 mb-5">
                             <span class="text-xs bg-white/20 text-white px-3 py-1 rounded-full font-medium">🇨🇳 중국 수출대행</span>
                             <span class="text-xs bg-white/20 text-white px-3 py-1 rounded-full font-medium">📦 GACC 통관 일괄</span>
                             <span class="text-xs bg-white/20 text-white px-3 py-1 rounded-full font-medium">🌿 제천 한방특구 브랜드</span>
                             <span class="text-xs bg-white/20 text-white px-3 py-1 rounded-full font-medium">🏪 소상공인 전용</span>
                         </div>
-                        <span class="text-yellow-300 font-bold text-sm group-hover:underline">상세 서비스 보기 →</span>
+                        <span class="feature-export-link text-yellow-300 font-bold text-sm group-hover:underline">상세 서비스 보기 →</span>
                     </div>
                 </a>
             </div>
