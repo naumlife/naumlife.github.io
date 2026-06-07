@@ -163,7 +163,7 @@
     <!-- 영문 캘리그래피 서명 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Corinthia:wght@400;700&family=Great+Vibes&family=Pinyon+Script&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -2138,6 +2138,7 @@
             justify-self: end;
             width: min(100%, 400px);
             text-align: center;
+            overflow: visible;
         }
         #ceo .ceo-profile-panel {
             position: relative;
@@ -2150,6 +2151,7 @@
                 0 0 0 1px rgba(212,175,55,.12) inset;
             backdrop-filter: blur(9px);
             -webkit-backdrop-filter: blur(9px);
+            overflow: visible;
         }
         #ceo .ceo-profile-photo-frame {
             position: relative;
@@ -2172,25 +2174,38 @@
             object-position: center center;
         }
         #ceo .ceo-profile-title {
-            margin: 26px 0 3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 26px 0 0;
             color: rgba(212,175,55,0.88) !important;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
-            letter-spacing: .22em;
+            letter-spacing: .26em;
             text-transform: uppercase;
+            white-space: nowrap;
+        }
+        #ceo .ceo-profile-title::before,
+        #ceo .ceo-profile-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(212,175,55,0.40);
         }
         #ceo .ceo-profile-signature {
             display: block;
-            margin: 4px auto 0;
-            color: #f8f4ee !important;
-            font-family: 'Great Vibes', 'Pinyon Script', cursive;
-            font-size: clamp(46px, 5.5vw, 68px);
-            line-height: 1.05;
-            letter-spacing: .02em;
+            margin: 2px auto 0;
+            color: #f5f0e8 !important;
+            font-family: 'Corinthia', 'Great Vibes', 'Pinyon Script', cursive;
+            font-weight: 700;
+            font-size: clamp(58px, 7vw, 82px);
+            line-height: 1.0;
+            letter-spacing: .01em;
             white-space: nowrap;
+            overflow: visible;
             text-shadow:
-                0 2px 18px rgba(255,255,255,0.18),
-                0 1px 3px rgba(0,0,0,0.22);
+                0 2px 24px rgba(255,255,255,0.20),
+                0 1px 4px rgba(0,0,0,0.30);
         }
         #ceo .ceo-profile-divider {
             display: flex;
@@ -2320,7 +2335,7 @@
             #ceo .ceo-profile-panel { padding: 18px 18px 22px; }
             #ceo .ceo-profile-photo-frame { width: min(100%, 270px); }
             #ceo .ceo-profile-title { margin-top: 23px; }
-            #ceo .ceo-profile-signature { font-size: 52px; }
+            #ceo .ceo-profile-signature { font-size: 64px; }
             #ceo .ceo-credential-grid {
                 grid-template-columns: 1fr;
                 gap: 10px;
@@ -2332,8 +2347,115 @@
             }
         }
         @media (max-width: 390px) {
-            #ceo .ceo-profile-signature { font-size: 46px; }
+            #ceo .ceo-profile-signature { font-size: 56px; }
             #ceo .ceo-profile-name { font-size: 20px; }
+        }
+    </style>
+
+
+
+    <!-- ====== CEO SIGNATURE WORDMARK: reference-style handwritten gold signature ====== -->
+    <style id="ceo-signature-wordmark-reference">
+        /*
+          첨부 예시처럼 사진 아래에 영문 서명을 중심으로 배치합니다.
+          별도 이미지 파일 없이 웹폰트와 CSS만으로 표시되므로 GitHub 업로드 시
+          index.html을 그대로 교체하면 됩니다.
+        */
+        #ceo .ceo-founder-profile {
+            width: min(100%, 410px);
+        }
+        #ceo .ceo-profile-panel {
+            padding: 4px 8px 12px;
+            border: none !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        #ceo .ceo-profile-photo-frame {
+            width: min(100%, 324px);
+        }
+        #ceo .ceo-profile-title,
+        #ceo .ceo-profile-divider {
+            display: none !important;
+        }
+        #ceo .ceo-profile-signature {
+            display: block;
+            width: 100%;
+            margin: 18px auto 2px;
+            padding: 0 2px;
+            color: #1a1a1a !important;
+            background: none;
+            -webkit-background-clip: border-box;
+            background-clip: border-box;
+            -webkit-text-fill-color: #1a1a1a;
+            font-family: 'Alex Brush', 'Great Vibes', 'Allura', 'Pinyon Script', cursive;
+            font-size: clamp(28px, 3vw, 42px);
+            font-weight: 400;
+            line-height: .92;
+            letter-spacing: .005em;
+            white-space: nowrap;
+            text-align: center;
+            transform: rotate(-1deg);
+            transform-origin: center center;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,.15));
+        }
+        #ceo .ceo-profile-name {
+            margin: 16px 0 0;
+            color: #1a1a1a !important;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 25px;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: .04em;
+            text-shadow: none;
+        }
+        #ceo .ceo-profile-subtitle {
+            display: block;
+            margin-top: 9px;
+            color: #92600e !important;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            text-shadow: none;
+        }
+        @media (max-width: 1023px) {
+            #ceo .ceo-founder-profile { width: min(100%, 390px); }
+            #ceo .ceo-profile-signature {
+                margin-top: 18px;
+                font-size: clamp(29px, 4.3vw, 38px);
+            }
+            #ceo .ceo-profile-name { font-size: 26px; }
+        }
+        @media (max-width: 767px) {
+            #ceo .ceo-founder-profile { width: min(100%, 354px); }
+            #ceo .ceo-profile-panel { padding: 4px 10px 16px; }
+            #ceo .ceo-profile-photo-frame { width: min(100%, 270px); }
+            #ceo .ceo-profile-signature {
+                margin-top: 16px;
+                font-size: clamp(27px, 8.2vw, 34px);
+            }
+            #ceo .ceo-profile-name { margin-top: 12px; font-size: 24px; }
+            #ceo .ceo-profile-subtitle { margin-top: 7px; font-size: 11px; }
+        }
+        @media (max-width: 390px) {
+            #ceo .ceo-founder-profile { width: min(100%, 328px); }
+            #ceo .ceo-profile-panel { padding: 4px 8px 14px; }
+            #ceo .ceo-profile-photo-frame { width: min(100%, 244px); }
+            #ceo .ceo-profile-signature {
+                margin-top: 14px;
+                font-size: clamp(25px, 8vw, 30px);
+                letter-spacing: 0;
+            }
+            #ceo .ceo-profile-name { font-size: 22px; }
+            #ceo .ceo-profile-subtitle { font-size: 10.5px; }
+        }
+        @media (max-width: 340px) {
+            #ceo .ceo-profile-signature { font-size: 25px; }
         }
     </style>
 
@@ -3172,10 +3294,8 @@
                                  loading="lazy"
                                  decoding="async">
                         </div>
-                        <p class="ceo-profile-title">Founder &amp; CEO</p>
-                        <span class="ceo-profile-signature">Kwon Younghwan</span>
-                        <div class="ceo-profile-divider" aria-hidden="true"><span></span></div>
-                        <p class="ceo-profile-name">대표 권영환</p>
+                        <span class="ceo-profile-signature" aria-label="Kwon Younghwan signature">Kwon Younghwan</span>
+                        <p class="ceo-profile-name">대표 권 영 환</p>
                         <span class="ceo-profile-subtitle">Founder &amp; CEO</span>
                     </div>
                 </aside>
