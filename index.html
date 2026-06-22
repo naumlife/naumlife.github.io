@@ -3667,6 +3667,10 @@
     // ── 피처드 카드 (1번째 소식) ──
     function makeFeatured(item, num, idx) {
         const c = cfg(item.category);
+        // 쉼표로 구분된 경우 첫 번째 이미지만 대표 이미지로 사용
+        const firstImg = item.image ? item.image.split(',')[0].trim() : '';
+        const imgCount = item.image ? item.image.split(',').filter(u=>u.trim()).length : 0;
+        const thumbUrl = firstImg || c.img;
         return `
         <div class="nf-card" style="cursor:pointer;" onclick="openNewsModal(${idx})">
             <div class="nf-left">
@@ -3680,15 +3684,15 @@
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:18px;border-top:1px solid #f1f5f9;">
                     <span class="n-date"><i class="fa-regular fa-calendar"></i> ${fmtDate(item.date)}</span>
-                    <span class="n-link" style="cursor:pointer;">자세히 보기 <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></span>
+                    <span class="n-link" style="cursor:pointer;">자세히 보기 <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i>${imgCount > 1 ? ` <span style="background:#0B4619;color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:100px;margin-left:4px;">📷 ${imgCount}</span>` : ''}</span>
                 </div>
             </div>
             <div class="nf-right">
-                <div class="nf-right-bg" style="background-image:url('${item.image || c.img}');position:absolute;inset:0;"></div>
+                <div class="nf-right-bg" style="background-image:url('${thumbUrl}');position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-color:#f8f9fa;"></div>
                 <div class="nf-right-overlay"></div>
                 <div style="position:absolute;bottom:24px;left:24px;right:24px;">
                     <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.3);">
-                        최신 소식
+                        ${imgCount > 1 ? '📷 ' + imgCount + '장의 사진' : '최신 소식'}
                     </span>
                 </div>
             </div>
@@ -3701,7 +3705,16 @@
         return `
         <div class="ng-card" style="cursor:pointer;" onclick="openNewsModal(${idx})">
             <div class="ng-top-bar" style="background:${c.bar};"></div>
-            ${item.image ? `<div style="overflow:hidden;background:#f8f9fa;border-bottom:2px solid #f1f5f9;"><img src="${item.image}" alt="${item.title}" style="width:100%;height:auto;object-fit:contain;display:block;" onerror="this.parentElement.style.display='none'"></div>` : ''}
+            ${(() => {
+                if (!item.image) return '';
+                const imgs = item.image.split(',').filter(u=>u.trim());
+                const first = imgs[0].trim();
+                const count = imgs.length;
+                return `<div style="position:relative;overflow:hidden;background:#f8f9fa;border-bottom:2px solid #f1f5f9;">
+                    <img src="${first}" alt="${item.title}" style="width:100%;height:180px;object-fit:cover;display:block;" onerror="this.parentElement.style.display='none'">
+                    ${count > 1 ? `<span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;">📷 ${count}</span>` : ''}
+                </div>`;
+            })()}
             <div class="ng-body">
                 <p class="n-num">NO.${String(num).padStart(2,'0')}</p>
                 <span class="n-badge" style="background:${c.bg};color:${c.color};">
