@@ -3437,16 +3437,53 @@
             position:relative;
         }
         @keyframes slideUp { from{transform:translateY(40px);opacity:0} to{transform:translateY(0);opacity:1} }
-        /* 모달 이미지 영역 */
-        #news-modal-media-wrap {
-            border-bottom: 1px solid #f1f5f9;
+        /* ── 슬라이드쇼 ── */
+        #news-slideshow {
+            position:relative; background:#f8f9fa;
+            border-bottom:3px solid #e2e8f0;
+            overflow:hidden;
         }
-        #news-modal-img {
-            width:100%; height:auto; max-height:none;
-            object-fit:contain; display:block;
+        #news-slideshow-track {
+            display:flex; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .ns-slide {
+            min-width:100%; display:flex;
+            align-items:center; justify-content:center;
             background:#f8f9fa;
         }
-        #news-modal-img-placeholder { width:100%; height:180px; display:flex; align-items:center; justify-content:center; font-size:60px; }
+        .ns-slide img {
+            width:100%; height:auto; max-height:480px;
+            object-fit:contain; display:block;
+        }
+        .ns-arrow {
+            position:absolute; top:50%; transform:translateY(-50%);
+            width:40px; height:40px; border-radius:50%; border:none;
+            background:rgba(15,23,42,0.5); color:#fff; font-size:16px;
+            cursor:pointer; display:flex; align-items:center; justify-content:center;
+            z-index:10; transition:background 0.2s;
+        }
+        .ns-arrow:hover { background:rgba(15,23,42,0.85); }
+        #ns-prev { left:12px; }
+        #ns-next { right:12px; }
+        #ns-dots {
+            display:flex; justify-content:center; gap:8px;
+            padding:10px 0 12px; background:#f8f9fa;
+        }
+        .ns-dot {
+            width:8px; height:8px; border-radius:50%; border:none;
+            background:#cbd5e1; cursor:pointer; transition:background 0.2s, transform 0.2s;
+        }
+        .ns-dot.active { background:#0B4619; transform:scale(1.3); }
+        #ns-counter {
+            position:absolute; top:12px; right:14px;
+            background:rgba(15,23,42,0.55); color:#fff;
+            font-size:11px; font-weight:700; padding:4px 10px;
+            border-radius:100px; z-index:10;
+        }
+        #news-modal-img-placeholder {
+            width:100%; height:160px;
+            display:flex; align-items:center; justify-content:center; font-size:60px;
+        }
         /* 모달 본문 */
         #news-modal-body { padding:32px 36px 36px; }
         /* 이미지·본문 구분선 */
@@ -3532,18 +3569,27 @@
         if (!item) return;
         const c = cfg(item.category);
 
-        // 이미지 영역
+        // 이미지 슬라이드쇼
         const media = document.getElementById('news-modal-media');
         const divider = document.getElementById('news-modal-divider');
-        if (item.image) {
-            media.style.borderBottom = '3px solid #e2e8f0';
-            media.innerHTML = `<img id="news-modal-img" src="${item.image}" alt="${item.title}"
-                style="width:100%;height:auto;max-height:none;object-fit:contain;display:block;background:#f8f9fa;"
-                onerror="this.parentElement.innerHTML='<div id=\\'news-modal-img-placeholder\\' style=\\'background:${c.bg};height:160px;display:flex;align-items:center;justify-content:center;\\'><i class=\\'fa-solid ${c.icon}\\' style=\\'color:${c.color};font-size:48px;\\'></i></div>';document.getElementById('news-modal-divider').style.display='none';">`;
+        if (item.image && item.image.trim()) {
+            const imgList = item.image.split(',').map(u => u.trim()).filter(Boolean);
+            if (imgList.length === 1) {
+                media.innerHTML = `<div id="news-slideshow"><div id="news-slideshow-track"><div class="ns-slide"><img src="${imgList[0]}" alt="${item.title}" onerror="this.parentElement.parentElement.parentElement.style.display='none';document.getElementById('news-modal-divider').style.display='none'"></div></div></div>`;
+            } else {
+                const slides = imgList.map((url, i) =>
+                    `<div class="ns-slide"><img src="${url}" alt="${item.title} ${i+1}" onerror="this.parentElement.style.background='#f1f5f9'"></div>`
+                ).join('');
+                const dots = imgList.map((_, i) =>
+                    `<button class="ns-dot${i===0?' active':''}" onclick="nsGoto(${i})"></button>`
+                ).join('');
+                media.innerHTML = `<div id="news-slideshow"><div id="news-slideshow-track">${slides}</div><button class="ns-arrow" id="ns-prev" onclick="nsMove(-1)">&#8249;</button><button class="ns-arrow" id="ns-next" onclick="nsMove(1)">&#8250;</button><div id="ns-counter">1 / ${imgList.length}</div></div><div id="ns-dots">${dots}</div>`;
+                window._nsTotal = imgList.length;
+                window._nsCur = 0;
+            }
             divider.style.display = 'flex';
         } else {
-            media.style.borderBottom = 'none';
-            media.innerHTML = `<div id="news-modal-img-placeholder" style="background:${c.bg};height:120px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid ${c.icon}" style="color:${c.color};font-size:48px;"></i></div>`;
+            media.innerHTML = `<div id="news-modal-img-placeholder" style="background:${c.bg};"><i class="fa-solid ${c.icon}" style="color:${c.color};font-size:48px;"></i></div>`;
             divider.style.display = 'none';
         }
 
@@ -3583,7 +3629,36 @@
     }
 
     // ESC 키로 닫기
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNewsModal(); });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeNewsModal();
+        if (e.key === 'ArrowLeft')  nsMove(-1);
+        if (e.key === 'ArrowRight') nsMove(1);
+    });
+
+    // ── 슬라이드쇼 제어 함수 ──
+    function nsUpdateUI() {
+        const track = document.getElementById('news-slideshow-track');
+        if (!track) return;
+        const cur = window._nsCur || 0;
+        track.style.transform = `translateX(-${cur * 100}%)`;
+        const counter = document.getElementById('ns-counter');
+        if (counter) counter.textContent = `${cur + 1} / ${window._nsTotal}`;
+        document.querySelectorAll('.ns-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === cur);
+        });
+    }
+    function nsMove(dir) {
+        const total = window._nsTotal;
+        if (!total || total <= 1) return;
+        window._nsCur = (window._nsCur + dir + total) % total;
+        nsUpdateUI();
+    }
+    function nsGoto(idx) {
+        window._nsTotal = window._nsTotal || 0;
+        if (idx < 0 || idx >= window._nsTotal) return;
+        window._nsCur = idx;
+        nsUpdateUI();
+    }
 
     // ── 피처드 카드 (1번째 소식) ──
     function makeFeatured(item, num, idx) {
