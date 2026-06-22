@@ -186,6 +186,10 @@
             word-break: keep-all;
             overflow-wrap: break-word;
         }
+        @keyframes newPulse {
+            0%, 100% { opacity:1; transform:scale(1); }
+            50%       { opacity:0.7; transform:scale(1.1); }
+        }
         .cn-font {
             font-family: 'Noto Sans SC', 'Noto Sans KR', sans-serif !important;
             letter-spacing: -0.02em;
@@ -2477,7 +2481,7 @@
                 <a href="#about" class="hover:text-primary transition-colors">회사소개</a>
                 <a href="#business" class="hover:text-primary transition-colors">사업분야</a>
                 <a href="#products" class="hover:text-primary transition-colors">제품 및 서비스</a>
-                <a href="#news" class="hover:text-primary transition-colors">최신 소식</a>
+                <a href="#news" class="hover:text-primary transition-colors" id="nav-news-link" style="position:relative;">최신 소식<span id="nav-new-badge" style="display:none;position:absolute;top:-8px;right:-28px;background:#ef4444;color:#fff;font-size:9px;font-weight:800;padding:2px 5px;border-radius:100px;letter-spacing:0.05em;animation:newPulse 1.5s infinite;">NEW</span></a>
                 <a href="#ceo" class="hover:text-primary transition-colors">대표소개</a>
                 <a href="#contact" class="bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-emerald-900 transition-all shadow-md hover:shadow-lg text-sm">문의하기</a>
             </div>
@@ -2496,7 +2500,7 @@
         <a href="#about"    class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fa-solid fa-building"></i> 회사소개</a>
         <a href="#business" class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i> 사업분야</a>
         <a href="#products" class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fa-solid fa-box-open"></i> 제품 및 서비스</a>
-        <a href="#news"     class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fa-solid fa-newspaper"></i> 최신 소식</a>
+        <a href="#news"     class="mobile-menu-link" onclick="closeMobileMenu()" style="position:relative;"><i class="fa-solid fa-newspaper"></i> 최신 소식<span id="mobile-new-badge" style="display:none;background:#ef4444;color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px;margin-left:10px;animation:newPulse 1.5s infinite;">NEW</span></a>
         <a href="#ceo"      class="mobile-menu-link" onclick="closeMobileMenu()"><i class="fa-solid fa-user-tie"></i> 대표소개</a>
         <a href="#contact"  class="mobile-menu-cta"  onclick="closeMobileMenu()"><i class="fa-solid fa-paper-plane"></i> 협업·파트너 문의하기</a>
     </div>
@@ -3743,6 +3747,21 @@
 
     function showMoreNews() { shownCount += 6; renderNews(); }
 
+    // ── NEW 뱃지: 7일 이내 소식 있으면 표시 ──
+    function checkNewBadge(newsList) {
+        const now = new Date();
+        const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        const hasNew = newsList.some(item => {
+            if (!item.date) return false;
+            const d = new Date(item.date);
+            return !isNaN(d) && d >= sevenDaysAgo;
+        });
+        ['nav-new-badge','mobile-new-badge'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = hasNew ? 'inline-block' : 'none';
+        });
+    }
+
     // ── PapaParse CSV fetch ──
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSF8X3GfU_1OjZ3rTgDy6yL5ybNYVkAY346OwdBuglxunMxMm2QHFrWhsZewywtPs3YqCUx-577Hy1A/pub?gid=0&single=true&output=csv';
 
@@ -3757,6 +3776,7 @@
                 document.getElementById('news-empty').style.display = 'block';
             } else {
                 renderNews();
+                checkNewBadge(allNews);
             }
         },
         error: function() {
