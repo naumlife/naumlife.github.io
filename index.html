@@ -3437,9 +3437,27 @@
             position:relative;
         }
         @keyframes slideUp { from{transform:translateY(40px);opacity:0} to{transform:translateY(0);opacity:1} }
-        #news-modal-img { width:100%; height:260px; object-fit:cover; display:block; }
+        /* 모달 이미지 영역 */
+        #news-modal-media-wrap {
+            border-bottom: 1px solid #f1f5f9;
+        }
+        #news-modal-img {
+            width:100%; height:auto; max-height:none;
+            object-fit:contain; display:block;
+            background:#f8f9fa;
+        }
         #news-modal-img-placeholder { width:100%; height:180px; display:flex; align-items:center; justify-content:center; font-size:60px; }
+        /* 모달 본문 */
         #news-modal-body { padding:32px 36px 36px; }
+        /* 이미지·본문 구분선 */
+        #news-modal-divider {
+            display:flex; align-items:center; gap:12px;
+            margin:0 36px 24px;
+            color:#94a3b8; font-size:12px; font-weight:600; letter-spacing:0.08em;
+        }
+        #news-modal-divider::before, #news-modal-divider::after {
+            content:''; flex:1; height:1px; background:#e2e8f0;
+        }
         #news-modal-close {
             position:absolute; top:16px; right:16px; z-index:10;
             width:36px; height:36px; border-radius:50%; border:none;
@@ -3450,7 +3468,7 @@
         #news-modal-close:hover { background:rgba(15,23,42,0.85); }
         @media(max-width:600px){
             #news-modal-body { padding:22px 20px 28px; }
-            #news-modal-img { height:200px; }
+            #news-modal-divider { margin:0 20px 20px; }
         }
     </style>
 
@@ -3458,12 +3476,19 @@
     <div id="news-modal-overlay" onclick="closeModal(event)">
         <div id="news-modal-box">
             <button id="news-modal-close" onclick="closeNewsModal()">✕</button>
+
+            <!-- 이미지 영역 -->
             <div id="news-modal-media"></div>
+
+            <!-- 이미지·본문 구분선 (이미지 있을 때만 JS로 표시) -->
+            <div id="news-modal-divider" style="display:none;">📋 상세 내용</div>
+
+            <!-- 본문 영역 -->
             <div id="news-modal-body">
                 <div id="news-modal-badge" class="n-badge" style="margin-bottom:14px;"></div>
                 <h2 id="news-modal-title" style="font-size:22px;font-weight:900;color:#0f172a;line-height:1.4;margin-bottom:14px;"></h2>
                 <p id="news-modal-date" class="n-date" style="margin-bottom:20px;"></p>
-                <div id="news-modal-content" style="font-size:15px;color:#374151;line-height:1.9;white-space:pre-wrap;border-top:1px solid #f1f5f9;padding-top:20px;"></div>
+                <div id="news-modal-content" style="font-size:15px;color:#374151;line-height:1.9;white-space:pre-wrap;background:#f8fafc;border-left:4px solid #0B4619;border-radius:8px;padding:20px;"></div>
                 <div id="news-modal-link-wrap" style="margin-top:24px;display:none;">
                     <a id="news-modal-link" href="#" target="_blank"
                        style="display:inline-flex;align-items:center;gap:8px;background:#0B4619;color:#fff;font-size:13px;font-weight:700;padding:12px 24px;border-radius:12px;text-decoration:none;">
@@ -3507,12 +3532,19 @@
         if (!item) return;
         const c = cfg(item.category);
 
-        // 이미지
+        // 이미지 영역
         const media = document.getElementById('news-modal-media');
+        const divider = document.getElementById('news-modal-divider');
         if (item.image) {
-            media.innerHTML = `<img id="news-modal-img" src="${item.image}" alt="${item.title}" onerror="this.parentElement.innerHTML='<div id=\\'news-modal-img-placeholder\\' style=\\'background:${c.bg};\\'>'+c.icon+'</div>'">`;
+            media.style.borderBottom = '3px solid #e2e8f0';
+            media.innerHTML = `<img id="news-modal-img" src="${item.image}" alt="${item.title}"
+                style="width:100%;height:auto;max-height:none;object-fit:contain;display:block;background:#f8f9fa;"
+                onerror="this.parentElement.innerHTML='<div id=\\'news-modal-img-placeholder\\' style=\\'background:${c.bg};height:160px;display:flex;align-items:center;justify-content:center;\\'><i class=\\'fa-solid ${c.icon}\\' style=\\'color:${c.color};font-size:48px;\\'></i></div>';document.getElementById('news-modal-divider').style.display='none';">`;
+            divider.style.display = 'flex';
         } else {
-            media.innerHTML = `<div id="news-modal-img-placeholder" style="background:${c.bg};"><i class="fa-solid ${c.icon}" style="color:${c.color};font-size:48px;"></i></div>`;
+            media.style.borderBottom = 'none';
+            media.innerHTML = `<div id="news-modal-img-placeholder" style="background:${c.bg};height:120px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid ${c.icon}" style="color:${c.color};font-size:48px;"></i></div>`;
+            divider.style.display = 'none';
         }
 
         // 배지
@@ -3590,7 +3622,7 @@
         return `
         <div class="ng-card" style="cursor:pointer;" onclick="openNewsModal(${idx})">
             <div class="ng-top-bar" style="background:${c.bar};"></div>
-            ${item.image ? `<div style="height:160px;overflow:hidden;"><img src="${item.image}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none'"></div>` : ''}
+            ${item.image ? `<div style="overflow:hidden;background:#f8f9fa;border-bottom:2px solid #f1f5f9;"><img src="${item.image}" alt="${item.title}" style="width:100%;height:auto;object-fit:contain;display:block;" onerror="this.parentElement.style.display='none'"></div>` : ''}
             <div class="ng-body">
                 <p class="n-num">NO.${String(num).padStart(2,'0')}</p>
                 <span class="n-badge" style="background:${c.bg};color:${c.color};">
