@@ -3442,10 +3442,14 @@
         }
         .nf-card:hover { box-shadow:0 16px 48px rgba(11,70,25,0.16); transform:translateY(-3px); }
         .nf-left { padding:40px 44px; display:flex; flex-direction:column; justify-content:space-between; background:#fff; }
-        .nf-right { position:relative; overflow:hidden; min-height:260px; }
-        .nf-right-bg { width:100%; height:100%; background-size:cover; background-position:center; filter:brightness(0.85); transition:transform 6s ease; }
-        .nf-card:hover .nf-right-bg { transform:scale(1.04); }
-        .nf-right-overlay { position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,70,25,0.55),rgba(11,70,25,0.25)); }
+        .nf-right { position:relative; overflow:hidden; min-height:260px; background:#f0f4f0; }
+        .nf-right-img {
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            object-fit:cover; object-position:center;
+            display:block; filter:brightness(0.85); transition:transform 6s ease;
+        }
+        .nf-card:hover .nf-right-img { transform:scale(1.04); }
+        .nf-right-overlay { position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(11,70,25,0.55),rgba(11,70,25,0.25)); }
 
         /* 일반 카드 */
         .ng-card {
@@ -3456,6 +3460,20 @@
         }
         .ng-card:hover { box-shadow:0 12px 36px rgba(11,70,25,0.12); transform:translateY(-4px); }
         .ng-top-bar { height:5px; }
+        .ng-img-wrap {
+            position:relative; overflow:hidden;
+            background:#f8f9fa; border-bottom:2px solid #f1f5f9;
+            height:180px; display:block;
+            -webkit-transform:translateZ(0); transform:translateZ(0);
+        }
+        .ng-img-wrap img {
+            position:absolute; top:0; left:0;
+            width:100%; height:100%;
+            -o-object-fit:cover; object-fit:cover;
+            object-position:center;
+            display:block;
+            -webkit-transform:translateZ(0); transform:translateZ(0);
+        }
         .ng-body { padding:22px 22px 0; flex-grow:1; }
         .ng-footer { padding:14px 22px 20px; border-top:1px solid #f1f5f9; margin-top:16px;
                      display:flex; justify-content:space-between; align-items:center; }
@@ -3477,7 +3495,8 @@
 
         @media(max-width:720px){
             .nf-card { grid-template-columns:1fr; }
-            .nf-right { min-height:180px; }
+            .nf-right { min-height:200px; }
+            .nf-right-img { position:relative; width:100%; height:200px; top:auto; left:auto; }
         }
 
         /* ── 소식 상세 모달 ── */
@@ -3491,6 +3510,7 @@
         #news-modal-box {
             background:#fff; border-radius:24px; overflow:hidden;
             max-width:680px; width:100%; max-height:90vh; overflow-y:auto;
+            -webkit-overflow-scrolling:touch;
             box-shadow:0 32px 80px rgba(0,0,0,0.35);
             animation:slideUp 0.28s cubic-bezier(0.34,1.56,0.64,1);
             position:relative;
@@ -3501,18 +3521,42 @@
             position:relative; background:#f8f9fa;
             border-bottom:3px solid #e2e8f0;
             overflow:hidden;
+            min-height:220px;
         }
         #news-slideshow-track {
-            display:flex; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            display:-webkit-box;
+            display:-webkit-flex;
+            display:flex;
+            -webkit-transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            will-change:transform;
         }
         .ns-slide {
-            min-width:100%; display:flex;
-            align-items:center; justify-content:center;
+            -webkit-flex:0 0 100%;
+            flex:0 0 100%;
+            width:100%;
+            min-width:0;
+            display:-webkit-box;
+            display:-webkit-flex;
+            display:flex;
+            -webkit-box-align:center;
+            -webkit-align-items:center;
+            align-items:center;
+            -webkit-box-pack:center;
+            -webkit-justify-content:center;
+            justify-content:center;
             background:#f8f9fa;
+            overflow:hidden;
         }
         .ns-slide img {
-            width:100%; height:auto; max-height:480px;
-            object-fit:contain; display:block;
+            width:100%;
+            height:auto;
+            max-height:460px;
+            -o-object-fit:contain;
+            object-fit:contain;
+            display:block;
+            -webkit-transform:translateZ(0);
+            transform:translateZ(0);
         }
         .ns-arrow {
             position:absolute; top:50%; transform:translateY(-50%);
@@ -3632,23 +3676,43 @@
         const media = document.getElementById('news-modal-media');
         const divider = document.getElementById('news-modal-divider');
         if (item.image && item.image.trim()) {
-            const imgList = item.image.split(',').map(u => u.trim()).filter(Boolean);
-            if (imgList.length === 1) {
-                media.innerHTML = `<div id="news-slideshow"><div id="news-slideshow-track"><div class="ns-slide"><img src="${imgList[0]}" alt="${item.title}" onerror="this.parentElement.parentElement.parentElement.style.display='none';document.getElementById('news-modal-divider').style.display='none'"></div></div></div>`;
-            } else {
-                const slides = imgList.map((url, i) =>
-                    `<div class="ns-slide"><img src="${url}" alt="${item.title} ${i+1}" onerror="this.parentElement.style.background='#f1f5f9'"></div>`
-                ).join('');
-                const dots = imgList.map((_, i) =>
-                    `<button class="ns-dot${i===0?' active':''}" onclick="nsGoto(${i})"></button>`
-                ).join('');
-                media.innerHTML = `<div id="news-slideshow"><div id="news-slideshow-track">${slides}</div><button class="ns-arrow" id="ns-prev" onclick="nsMove(-1)">&#8249;</button><button class="ns-arrow" id="ns-next" onclick="nsMove(1)">&#8250;</button><div id="ns-counter">1 / ${imgList.length}</div></div><div id="ns-dots">${dots}</div>`;
-                window._nsTotal = imgList.length;
-                window._nsCur = 0;
-            }
+            const imgList = item.image.split(',').map(function(u){ return u.trim(); }).filter(Boolean);
+            const total = imgList.length;
+            // 단일/복수 모두 동일한 슬라이드쇼 구조로 통일
+            var slidesHtml = imgList.map(function(url, i){
+                return '<div class="ns-slide">'
+                    + '<img src="' + url + '" alt="' + (item.title||'') + (total>1?' '+(i+1):'') + '"'
+                    + ' style="-webkit-transform:translateZ(0);transform:translateZ(0);"'
+                    + ' loading="eager" decoding="sync"'
+                    + ' onerror="var p=this.parentNode;if(p)p.style.background=\'#f1f5f9\';">'
+                    + '</div>';
+            }).join('');
+            var dotsHtml = total > 1 ? imgList.map(function(_,i){
+                return '<button class="ns-dot' + (i===0?' active':'') + '" onclick="nsGoto(' + i + ')"></button>';
+            }).join('') : '';
+            var navHtml = total > 1
+                ? '<button class="ns-arrow" id="ns-prev" onclick="nsMove(-1)">&#8249;</button>'
+                  + '<button class="ns-arrow" id="ns-next" onclick="nsMove(1)">&#8250;</button>'
+                  + '<div id="ns-counter">1 / ' + total + '</div>'
+                : '';
+            media.innerHTML = '<div id="news-slideshow">'
+                + '<div id="news-slideshow-track">' + slidesHtml + '</div>'
+                + navHtml
+                + '</div>'
+                + (dotsHtml ? '<div id="ns-dots">' + dotsHtml + '</div>' : '');
+            window._nsTotal = total;
+            window._nsCur = 0;
+            // RAF: DOM 완성 후 초기 위치 강제 세팅
+            requestAnimationFrame(function(){
+                requestAnimationFrame(function(){
+                    nsUpdateUI();
+                });
+            });
             divider.style.display = 'flex';
         } else {
-            media.innerHTML = `<div id="news-modal-img-placeholder" style="background:${c.bg};"><i class="fa-solid ${c.icon}" style="color:${c.color};font-size:48px;"></i></div>`;
+            media.innerHTML = '<div id="news-modal-img-placeholder" style="background:' + c.bg + ';">'
+                + '<i class="fa-solid ' + c.icon + '" style="color:' + c.color + ';font-size:48px;"></i>'
+                + '</div>';
             divider.style.display = 'none';
         }
 
@@ -3676,6 +3740,8 @@
         const overlay = document.getElementById('news-modal-overlay');
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
+        // 아이패드: 모달 오픈 애니메이션(280ms) 완료 후 슬라이드 너비 재계산
+        setTimeout(function(){ nsUpdateUI(); }, 320);
     }
 
     function closeNewsModal() {
@@ -3696,25 +3762,32 @@
 
     // ── 슬라이드쇼 제어 함수 ──
     function nsUpdateUI() {
-        const track = document.getElementById('news-slideshow-track');
+        var track = document.getElementById('news-slideshow-track');
         if (!track) return;
-        const cur = window._nsCur || 0;
-        track.style.transform = `translateX(-${cur * 100}%)`;
-        const counter = document.getElementById('ns-counter');
-        if (counter) counter.textContent = `${cur + 1} / ${window._nsTotal}`;
-        document.querySelectorAll('.ns-dot').forEach((d, i) => {
-            d.classList.toggle('active', i === cur);
-        });
+        var cur = window._nsCur || 0;
+        // 아이패드 Safari: % 기준 대신 첫 번째 슬라이드 실제 px 너비로 계산
+        var slides = track.getElementsByClassName('ns-slide');
+        var slideW = slides.length > 0 ? slides[0].offsetWidth : track.offsetWidth;
+        var offset = cur * slideW;
+        track.style.webkitTransform = 'translateX(-' + offset + 'px)';
+        track.style.transform       = 'translateX(-' + offset + 'px)';
+        var counter = document.getElementById('ns-counter');
+        if (counter) counter.textContent = (cur + 1) + ' / ' + (window._nsTotal || 1);
+        var dots = document.querySelectorAll('.ns-dot');
+        for (var i = 0; i < dots.length; i++) {
+            if (i === cur) dots[i].classList.add('active');
+            else dots[i].classList.remove('active');
+        }
     }
     function nsMove(dir) {
-        const total = window._nsTotal;
+        var total = window._nsTotal || 0;
         if (!total || total <= 1) return;
-        window._nsCur = (window._nsCur + dir + total) % total;
+        window._nsCur = ((window._nsCur || 0) + dir + total) % total;
         nsUpdateUI();
     }
     function nsGoto(idx) {
-        window._nsTotal = window._nsTotal || 0;
-        if (idx < 0 || idx >= window._nsTotal) return;
+        var total = window._nsTotal || 0;
+        if (idx < 0 || idx >= total) return;
         window._nsCur = idx;
         nsUpdateUI();
     }
@@ -3743,7 +3816,7 @@
                 </div>
             </div>
             <div class="nf-right">
-                <div class="nf-right-bg" style="background-image:url('${thumbUrl}');position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-color:#f8f9fa;"></div>
+                <img class="nf-right-img" src="${thumbUrl}" alt="${item.title}" loading="eager" decoding="async" onerror="this.style.display='none'">
                 <div class="nf-right-overlay"></div>
                 <div style="position:absolute;bottom:24px;left:24px;right:24px;">
                     <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.3);">
@@ -3762,12 +3835,11 @@
             var imgs = item.image.split(',').map(function(u){ return u.trim(); }).filter(Boolean);
             var first = imgs[0];
             var count = imgs.length;
-            imgHtml = '<div style="position:relative;overflow:hidden;background:#f8f9fa;border-bottom:2px solid #f1f5f9;height:180px;">'
+            imgHtml = '<div class="ng-img-wrap">'
                 + '<img src="' + first + '" alt="' + item.title + '"'
-                + ' style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"'
-                + ' loading="lazy" decoding="async"'
-                + ' onerror="this.closest(\'div\').style.display=\'none\'">'
-                + (count > 1 ? '<span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.60);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;">📷 ' + count + '</span>' : '')
+                + ' loading="eager" decoding="sync"'
+                + ' onerror="var p=this.parentNode;if(p)p.style.display=\'none\';">'
+                + (count > 1 ? '<span style="position:absolute;bottom:8px;right:8px;z-index:2;background:rgba(0,0,0,0.60);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;">📷 ' + count + '</span>' : '')
                 + '</div>';
         }
         return '<div class="ng-card" style="cursor:pointer;" onclick="openNewsModal(' + idx + ')">'
