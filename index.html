@@ -3862,6 +3862,46 @@
         return `${dt.getFullYear()}.${String(dt.getMonth()+1).padStart(2,'0')}.${String(dt.getDate()).padStart(2,'0')}`;
     }
 
+    // ── 구글 스프레드시트 image 셀 파싱 ──
+    // 한 셀에 여러 이미지 주소를 쉼표(,), 줄바꿈 또는 전각 쉼표(，)로 입력할 수 있습니다.
+    // 카드에는 첫 번째 사진을 표시하고, 상세보기에서는 전체 사진을 슬라이드로 보여 줍니다.
+    function parseNewsImageUrls(value) {
+        if (value === null || value === undefined) return [];
+
+        var raw = String(value)
+            .replace(/\u00A0/g, ' ')
+            .replace(/^\s*["']|["']\s*$/g, '')
+            .trim();
+
+        if (!raw) return [];
+
+        var urls = raw.split(/[\n\r,，]+/).map(function(url) {
+            url = String(url || '')
+                .trim()
+                .replace(/^['"]+|['"]+$/g, '')
+                .replace(/[\s;]+$/g, '');
+
+            if (!url) return '';
+            if (url.indexOf('//') === 0) url = 'https:' + url;
+
+            // 일반 Google Drive 공유주소도 이미지 표시용 주소로 자동 변환
+            var match = url.match(/drive\.google\.com\/file\/d\/([^/?#]+)/i);
+            if (match && match[1]) return 'https://lh3.googleusercontent.com/d/' + match[1];
+
+            match = url.match(/drive\.google\.com\/(?:open|uc)\?(?:[^#]*&)?id=([^&#]+)/i);
+            if (match && match[1]) return 'https://lh3.googleusercontent.com/d/' + match[1];
+
+            return url;
+        }).filter(function(url) {
+            return /^https?:\/\//i.test(url);
+        });
+
+        // 같은 주소가 중복 입력된 경우 한 번만 표시
+        return urls.filter(function(url, index) {
+            return urls.indexOf(url) === index;
+        });
+    }
+
     // ── 모달 열기/닫기 ──
     function openNewsModal(idx) {
         const item = allNews[idx];
@@ -3872,14 +3912,14 @@
         const media = document.getElementById('news-modal-media');
         const divider = document.getElementById('news-modal-divider');
         if (item.image && item.image.trim()) {
-            const imgList = item.image.split(',').map(function(u){ return u.trim(); }).filter(Boolean);
+            const imgList = parseNewsImageUrls(item.image);
             const total = imgList.length;
             // 단일/복수 모두 동일한 슬라이드쇼 구조로 통일
             var slidesHtml = imgList.map(function(url, i){
                 return '<div class="ns-slide">'
                     + '<img src="' + url + '" alt="' + (item.title||'') + (total>1?' '+(i+1):'') + '"'
                     + ' style="-webkit-transform:translateZ(0);transform:translateZ(0);"'
-                    + ' loading="eager" decoding="async" draggable="false"'
+                    + ' loading="eager" decoding="async" draggable="false" referrerpolicy="no-referrer"'
                     + ' onload="nsUpdateUI()"'
                     + ' onerror="var p=this.parentNode;if(p)p.style.background=\'#f1f5f9\';">'
                     + '</div>';
@@ -4033,8 +4073,9 @@
     function makeFeatured(item, num, idx) {
         const c = cfg(item.category);
         // 쉼표로 구분된 경우 첫 번째 이미지만 대표 이미지로 사용
-        const firstImg = item.image ? item.image.split(',')[0].trim() : '';
-        const imgCount = item.image ? item.image.split(',').filter(u=>u.trim()).length : 0;
+        const featuredImages = parseNewsImageUrls(item.image);
+        const firstImg = featuredImages[0] || '';
+        const imgCount = featuredImages.length;
         const thumbUrl = firstImg || c.img;
         return `
         <div class="nf-card" style="cursor:pointer;" onclick="openNewsModal(${idx})">
@@ -4053,7 +4094,7 @@
                 </div>
             </div>
             <div class="nf-right">
-                <img class="nf-right-img" src="${thumbUrl}" alt="${item.title}" loading="eager" decoding="async" draggable="false" onerror="this.style.display='none'">
+                <img class="nf-right-img" src="${thumbUrl}" alt="${item.title}" loading="eager" decoding="async" draggable="false" referrerpolicy="no-referrer" onerror="this.style.display='none'">
                 <div class="nf-right-overlay"></div>
                 <div style="position:absolute;bottom:24px;left:24px;right:24px;">
                     <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.3);">
@@ -4069,12 +4110,12 @@
         const c = cfg(item.category);
         var imgHtml = '';
         if (item.image && item.image.trim()) {
-            var imgs = item.image.split(',').map(function(u){ return u.trim(); }).filter(Boolean);
+            var imgs = parseNewsImageUrls(item.image);
             var first = imgs[0];
             var count = imgs.length;
             imgHtml = '<div class="ng-img-wrap">'
                 + '<img src="' + first + '" alt="' + item.title + '"'
-                + ' loading="eager" decoding="async" draggable="false"'
+                + ' loading="eager" decoding="async" draggable="false" referrerpolicy="no-referrer"'
                 + ' onerror="var p=this.parentNode;if(p)p.style.display=\'none\';">'
                 + (count > 1 ? '<span style="position:absolute;bottom:8px;right:8px;z-index:2;background:rgba(0,0,0,0.60);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;">📷 ' + count + '</span>' : '')
                 + '</div>';
@@ -4142,7 +4183,8 @@
         });
     }
 
-    // ── PapaParse CSV fetch ──
+    // ── Google 스프레드시트 공개 CSV 불러오기 ──
+    // image 열의 쉼표는 Google CSV에서 자동으로 따옴표 처리되며 PapaParse가 한 셀로 읽습니다.
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSF8X3GfU_1OjZ3rTgDy6yL5ybNYVkAY346OwdBuglxunMxMm2QHFrWhsZewywtPs3YqCUx-577Hy1A/pub?gid=0&single=true&output=csv';
 
     Papa.parse(CSV_URL, {
