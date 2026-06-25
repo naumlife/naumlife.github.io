@@ -3612,6 +3612,202 @@
         }
     </style>
 
+
+
+    <!-- ====== iPad Pro 최신 소식 이미지 최적화 ====== -->
+    <style id="ipad-pro-news-image-optimization">
+        /*
+          iPad Pro 세로·가로 화면에서 최신 소식 이미지를 잘리지 않게 표시합니다.
+          카드에서는 원본 전체를 보여 주고, 상세 모달은 화면을 넓게 사용합니다.
+        */
+        #news .nf-right,
+        #news .ng-img-wrap,
+        #news-slideshow,
+        #news-modal-media {
+            background:
+                linear-gradient(135deg, #f8fafc 0%, #ffffff 55%, #f0fdf4 100%);
+        }
+
+        /* 썸네일을 임의로 확대·절단하지 않고 전체 표시 */
+        #news .nf-right-img,
+        #news .ng-img-wrap img {
+            object-fit: contain !important;
+            object-position: center center !important;
+            background: transparent;
+        }
+        #news .nf-right-overlay {
+            background: linear-gradient(180deg, rgba(11,70,25,0.02), rgba(11,70,25,0.10)) !important;
+            pointer-events: none;
+        }
+
+        /* 상세 보기 이미지는 원본 비율 유지 */
+        #news-slideshow-track,
+        .ns-slide {
+            width: 100%;
+        }
+        .ns-slide {
+            min-height: min(58dvh, 620px);
+            padding: 14px;
+            box-sizing: border-box;
+        }
+        .ns-slide img {
+            width: 100% !important;
+            height: 100% !important;
+            max-height: min(58dvh, 620px) !important;
+            object-fit: contain !important;
+            object-position: center center !important;
+            border-radius: 10px;
+        }
+
+        /* iPad 및 태블릿 공통 */
+        @media (min-width: 768px) and (max-width: 1366px) {
+            #news {
+                padding-top: 72px !important;
+                padding-bottom: 72px !important;
+            }
+            #news > div {
+                max-width: 1180px !important;
+                padding-left: 28px !important;
+                padding-right: 28px !important;
+            }
+            #news-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 20px !important;
+            }
+            .nf-card {
+                grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr) !important;
+                min-height: 360px !important;
+            }
+            .nf-right {
+                min-height: 360px !important;
+            }
+            .nf-right-img {
+                padding: 12px;
+                box-sizing: border-box;
+            }
+            .ng-img-wrap {
+                height: auto !important;
+                min-height: 250px !important;
+                aspect-ratio: 4 / 3;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+            .ng-img-wrap img {
+                inset: 10px !important;
+                width: calc(100% - 20px) !important;
+                height: calc(100% - 20px) !important;
+                border-radius: 10px;
+            }
+
+            #news-modal-overlay.open {
+                padding:
+                    max(22px, env(safe-area-inset-top))
+                    max(28px, env(safe-area-inset-right))
+                    max(22px, env(safe-area-inset-bottom))
+                    max(28px, env(safe-area-inset-left)) !important;
+                align-items: center !important;
+            }
+            #news-modal-box {
+                width: min(960px, calc(100vw - 56px)) !important;
+                max-width: 960px !important;
+                max-height: min(92dvh, 1024px) !important;
+                border-radius: 24px !important;
+            }
+            #news-slideshow {
+                min-height: min(58dvh, 620px) !important;
+            }
+            #news-modal-body {
+                padding: 28px 34px 36px !important;
+            }
+            #news-modal-divider {
+                margin-left: 34px !important;
+                margin-right: 34px !important;
+            }
+            .ns-arrow {
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 22px !important;
+            }
+            #ns-prev { left: 16px !important; }
+            #ns-next { right: 16px !important; }
+            .ns-dot {
+                width: 10px !important;
+                height: 10px !important;
+                min-width: 32px;
+                min-height: 32px;
+                background-clip: content-box;
+                padding: 11px;
+                box-sizing: border-box;
+            }
+            #news-modal-close {
+                width: 44px !important;
+                height: 44px !important;
+                top: 14px !important;
+                right: 14px !important;
+                font-size: 18px !important;
+            }
+        }
+
+        /* iPad Pro 가로 화면에서는 3열로 넓게 활용 */
+        @media (min-width: 1180px) and (max-width: 1366px) and (orientation: landscape) {
+            #news-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            }
+            .ng-img-wrap {
+                min-height: 220px !important;
+            }
+            #news-modal-box {
+                width: min(1040px, calc(100vw - 72px)) !important;
+                max-width: 1040px !important;
+            }
+            .ns-slide,
+            .ns-slide img,
+            #news-slideshow {
+                max-height: min(62dvh, 650px) !important;
+            }
+        }
+
+        /* iPad Pro 세로 화면: 사진 크기와 본문 가독성 우선 */
+        @media (min-width: 768px) and (max-width: 1100px) and (orientation: portrait) {
+            .nf-card {
+                grid-template-columns: 1fr !important;
+            }
+            .nf-right {
+                order: -1;
+                min-height: 430px !important;
+            }
+            .nf-left {
+                padding: 30px 32px !important;
+            }
+            #news-modal-box {
+                width: calc(100vw - 48px) !important;
+            }
+            .ns-slide,
+            .ns-slide img,
+            #news-slideshow {
+                max-height: min(55dvh, 610px) !important;
+            }
+        }
+
+        /* 손가락 제스처 사용 시 선택/드래그 방지 */
+        @media (hover: none) and (pointer: coarse) {
+            #news-slideshow,
+            #news-slideshow-track,
+            .ns-slide,
+            .ns-slide img {
+                -webkit-user-select: none;
+                user-select: none;
+                -webkit-user-drag: none;
+                touch-action: pan-y;
+            }
+            .ns-arrow,
+            .ns-dot,
+            #news-modal-close {
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+    </style>
+
     <!-- ── 소식 상세 모달 DOM ── -->
     <div id="news-modal-overlay" onclick="closeModal(event)">
         <div id="news-modal-box">
@@ -3683,7 +3879,8 @@
                 return '<div class="ns-slide">'
                     + '<img src="' + url + '" alt="' + (item.title||'') + (total>1?' '+(i+1):'') + '"'
                     + ' style="-webkit-transform:translateZ(0);transform:translateZ(0);"'
-                    + ' loading="eager" decoding="sync"'
+                    + ' loading="eager" decoding="async" draggable="false"'
+                    + ' onload="nsUpdateUI()"'
                     + ' onerror="var p=this.parentNode;if(p)p.style.background=\'#f1f5f9\';">'
                     + '</div>';
             }).join('');
@@ -3705,6 +3902,7 @@
             // RAF: DOM 완성 후 초기 위치 강제 세팅
             requestAnimationFrame(function(){
                 requestAnimationFrame(function(){
+                    bindNewsSwipe();
                     nsUpdateUI();
                 });
             });
@@ -3792,6 +3990,45 @@
         nsUpdateUI();
     }
 
+
+    // ── iPad Pro: 손가락 좌우 스와이프로 사진 넘기기 ──
+    function bindNewsSwipe() {
+        var area = document.getElementById('news-slideshow');
+        if (!area || area.dataset.swipeBound === '1') return;
+        area.dataset.swipeBound = '1';
+        var startX = 0, startY = 0, moving = false;
+
+        area.addEventListener('touchstart', function(e) {
+            if (!e.touches || e.touches.length !== 1) return;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            moving = true;
+        }, { passive: true });
+
+        area.addEventListener('touchend', function(e) {
+            if (!moving || !e.changedTouches || !e.changedTouches.length) return;
+            moving = false;
+            var dx = e.changedTouches[0].clientX - startX;
+            var dy = e.changedTouches[0].clientY - startY;
+            if (Math.abs(dx) < 48 || Math.abs(dx) <= Math.abs(dy)) return;
+            nsMove(dx < 0 ? 1 : -1);
+        }, { passive: true });
+    }
+
+    // 화면 회전·분할 화면 변경 후 슬라이드 위치를 다시 계산
+    var newsResizeTimer = null;
+    function refreshNewsSliderLayout() {
+        clearTimeout(newsResizeTimer);
+        newsResizeTimer = setTimeout(function() {
+            nsUpdateUI();
+        }, 140);
+    }
+    window.addEventListener('resize', refreshNewsSliderLayout, { passive: true });
+    window.addEventListener('orientationchange', function() {
+        setTimeout(nsUpdateUI, 260);
+        setTimeout(nsUpdateUI, 620);
+    }, { passive: true });
+
     // ── 피처드 카드 (1번째 소식) ──
     function makeFeatured(item, num, idx) {
         const c = cfg(item.category);
@@ -3816,7 +4053,7 @@
                 </div>
             </div>
             <div class="nf-right">
-                <img class="nf-right-img" src="${thumbUrl}" alt="${item.title}" loading="eager" decoding="async" onerror="this.style.display='none'">
+                <img class="nf-right-img" src="${thumbUrl}" alt="${item.title}" loading="eager" decoding="async" draggable="false" onerror="this.style.display='none'">
                 <div class="nf-right-overlay"></div>
                 <div style="position:absolute;bottom:24px;left:24px;right:24px;">
                     <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.3);">
@@ -3837,7 +4074,7 @@
             var count = imgs.length;
             imgHtml = '<div class="ng-img-wrap">'
                 + '<img src="' + first + '" alt="' + item.title + '"'
-                + ' loading="eager" decoding="sync"'
+                + ' loading="eager" decoding="async" draggable="false"'
                 + ' onerror="var p=this.parentNode;if(p)p.style.display=\'none\';">'
                 + (count > 1 ? '<span style="position:absolute;bottom:8px;right:8px;z-index:2;background:rgba(0,0,0,0.60);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;">📷 ' + count + '</span>' : '')
                 + '</div>';
