@@ -3614,6 +3614,35 @@
 
 
 
+    <!-- ====== 최신 소식 이미지 오류 대체 UI ====== -->
+    <style id="news-image-fallback-ui">
+        #news .nf-right,
+        #news .ng-img-wrap,
+        #news-modal-media .ns-slide {
+            position: relative;
+        }
+        .news-image-error-note {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            min-height: 120px;
+            padding: 18px;
+            color: #64748b;
+            text-align: center;
+            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 58%, #f8fafc 100%);
+            pointer-events: none;
+        }
+        .news-image-error-note span { font-size: 34px; line-height: 1; }
+        .news-image-error-note small { font-size: 12px; font-weight: 700; }
+        .ns-slide .news-image-error-note { margin: 12px; border-radius: 12px; }
+        .news-image-failed { opacity: 0 !important; }
+    </style>
+
     <!-- ====== iPad Pro 최신 소식 이미지 최적화 (v2 — 전면 재작성) ====== -->
     <style id="ipad-pro-news-image-optimization">
         /*
@@ -4142,44 +4171,180 @@
         return `${dt.getFullYear()}.${String(dt.getMonth()+1).padStart(2,'0')}.${String(dt.getDate()).padStart(2,'0')}`;
     }
 
-    // ── 구글 스프레드시트 image 셀 파싱 ──
-    // 한 셀에 여러 이미지 주소를 쉼표(,), 줄바꿈 또는 전각 쉼표(，)로 입력할 수 있습니다.
-    // 카드에는 첫 번째 사진을 표시하고, 상세보기에서는 전체 사진을 슬라이드로 보여 줍니다.
+    // ── 구글 스프레드시트 image 셀 파싱 / iPad·인앱브라우저 호환 ──
+    // 한 셀에 URL1,URL2,URL3 또는 줄바꿈으로 여러 이미지를 입력할 수 있습니다.
+    // URL 내부의 쉼표는 보존하고, "다음 http 주소 앞의 쉼표"만 구분자로 처리합니다.
+    function decodeNewsEntities(value) {
+        var text = String(value == null ? '' : value);
+        if (typeof document === 'undefined') return text;
+        var el = document.createElement('textarea');
+        el.innerHTML = text;
+        return el.value;
+    }
+
+    function escapeNewsAttr(value) {
+        return String(value == null ? '' : value)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    function extractGoogleDriveId(url) {
+        var value = String(url || '');
+        var patterns = [
+            /drive\.google\.com\/file\/d\/([A-Za-z0-9_-]{10,})/i,
+            /drive\.google\.com\/(?:open|uc|thumbnail)[^#]*[?&]id=([A-Za-z0-9_-]{10,})/i,
+            /drive\.usercontent\.google\.com\/download[^#]*[?&]id=([A-Za-z0-9_-]{10,})/i,
+            /(?:lh3|lh4|lh5|lh6)\.googleusercontent\.com\/d\/([A-Za-z0-9_-]{10,})/i
+        ];
+        for (var i = 0; i < patterns.length; i++) {
+            var match = value.match(patterns[i]);
+            if (match && match[1]) return match[1];
+        }
+        return '';
+    }
+
+    function normalizeNewsImageUrl(value) {
+        var url = decodeNewsEntities(value)
+            .replace(/[\u200B-\u200D\uFEFF]/g, '')
+            .trim()
+            .replace(/^\s*[<'"`]+|[>'"`]+\s*$/g, '')
+            .replace(/[\s;,，]+$/g, '');
+
+        if (!url) return '';
+        if (url.indexOf('//') === 0) url = 'https:' + url;
+        if (/^www\./i.test(url)) url = 'https://' + url;
+
+        // GitHub의 보기 페이지 주소는 실제 원본 이미지 주소로 변환
+        var github = url.match(/^https?:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/i);
+        if (github) {
+            url = 'https://raw.githubusercontent.com/' + github[1] + '/' + github[2] + '/' + github[3] + '/' + github[4];
+        }
+
+        // Dropbox 공유주소를 직접 이미지 주소로 변환
+        if (/^https?:\/\/(?:www\.)?dropbox\.com\//i.test(url)) {
+            url = url.replace(/^https?:\/\/(?:www\.)?dropbox\.com/i, 'https://dl.dropboxusercontent.com');
+            url = url.replace(/([?&])dl=0(?:&|$)/i, '$1raw=1&').replace(/[?&]$/, '');
+            if (!/[?&]raw=1(?:&|$)/i.test(url)) url += (url.indexOf('?') >= 0 ? '&' : '?') + 'raw=1';
+        }
+
+        try {
+            return encodeURI(url);
+        } catch (e) {
+            return url;
+        }
+    }
+
     function parseNewsImageUrls(value) {
         if (value === null || value === undefined) return [];
 
-        var raw = String(value)
-            .replace(/\u00A0/g, ' ')
-            .replace(/^\s*["']|["']\s*$/g, '')
+        var raw = decodeNewsEntities(value)
+            .replace(/[\u200B-\u200D\uFEFF]/g, '')
+            .replace(/<br\s*\/?>/gi, '\n')
+            .replace(/\r\n?/g, '\n')
             .trim();
 
         if (!raw) return [];
 
-        var urls = raw.split(/[\n\r,，]+/).map(function(url) {
-            url = String(url || '')
-                .trim()
-                .replace(/^['"]+|['"]+$/g, '')
-                .replace(/[\s;]+$/g, '');
+        // 쉼표가 다음 URL 바로 앞에 있을 때만 이미지 구분자로 바꿉니다.
+        raw = raw.replace(/\s*[,，]\s*(?=(?:["'(<\[]\s*)?(?:https?:\/\/|\/\/|www\.))/gi, '\n');
 
-            if (!url) return '';
-            if (url.indexOf('//') === 0) url = 'https:' + url;
+        var candidates = raw.split(/\n+/);
+        var urls = [];
 
-            // 일반 Google Drive 공유주소도 이미지 표시용 주소로 자동 변환
-            var match = url.match(/drive\.google\.com\/file\/d\/([^/?#]+)/i);
-            if (match && match[1]) return 'https://lh3.googleusercontent.com/d/' + match[1];
+        candidates.forEach(function(part) {
+            // HYPERLINK(), 마크다운, 따옴표 안에 든 주소도 추출
+            var found = String(part || '').match(/(?:https?:\/\/|\/\/|www\.)[^\s"'<>\])}]+/gi) || [];
+            if (!found.length) found = [part];
 
-            match = url.match(/drive\.google\.com\/(?:open|uc)\?(?:[^#]*&)?id=([^&#]+)/i);
-            if (match && match[1]) return 'https://lh3.googleusercontent.com/d/' + match[1];
-
-            return url;
-        }).filter(function(url) {
-            return /^https?:\/\//i.test(url);
+            found.forEach(function(item) {
+                var url = normalizeNewsImageUrl(item);
+                if (!/^https?:\/\//i.test(url)) return;
+                if (urls.indexOf(url) === -1) urls.push(url);
+            });
         });
 
-        // 같은 주소가 중복 입력된 경우 한 번만 표시
-        return urls.filter(function(url, index) {
-            return urls.indexOf(url) === index;
-        });
+        return urls;
+    }
+
+    // 동일한 이미지에 대해 브라우저별로 통과율이 높은 주소를 순차 시도합니다.
+    // 특히 Google Drive 공유주소는 iPad/Naver 인앱브라우저에서 lh3 주소가 실패할 수 있어
+    // thumbnail → lh3 → uc 순서로 자동 대체합니다.
+    function buildNewsImageCandidates(rawUrl, finalFallback) {
+        var original = normalizeNewsImageUrl(rawUrl);
+        var list = [];
+        var driveId = extractGoogleDriveId(original);
+
+        function add(url) {
+            url = normalizeNewsImageUrl(url);
+            if (url && /^https?:\/\//i.test(url) && list.indexOf(url) === -1) list.push(url);
+        }
+
+        if (driveId) {
+            add('https://drive.google.com/thumbnail?id=' + driveId + '&sz=w2000');
+            add('https://lh3.googleusercontent.com/d/' + driveId + '=w2000');
+            add('https://drive.google.com/uc?export=view&id=' + driveId);
+            add(original);
+        } else {
+            add(original);
+        }
+
+        // 네이버 이미지 주소는 원본 쿼리와 넓은 표시용 쿼리를 모두 시도
+        if (/\.(?:pstatic\.net|naver\.net)\//i.test(original)) {
+            add(original.replace(/([?&])type=[^&]*/i, '$1type=w1600'));
+        }
+
+        add(finalFallback || '');
+        return list;
+    }
+
+    function newsImageAttributes(rawUrl, finalFallback) {
+        var candidates = buildNewsImageCandidates(rawUrl, finalFallback);
+        if (!candidates.length) return '';
+        return ' src="' + escapeNewsAttr(candidates[0]) + '"'
+            + ' data-news-candidates="' + escapeNewsAttr(encodeURIComponent(JSON.stringify(candidates))) + '"'
+            + ' data-news-index="0"'
+            + ' onerror="newsImageFallback(this)"'
+            + ' onload="newsImageLoaded(this)"';
+    }
+
+    function newsImageLoaded(img) {
+        if (!img) return;
+        img.classList.remove('news-image-failed');
+        img.style.visibility = 'visible';
+        if (typeof nsUpdateUI === 'function' && img.closest && img.closest('#news-modal-media')) {
+            setTimeout(nsUpdateUI, 0);
+        }
+    }
+
+    function newsImageFallback(img) {
+        if (!img) return;
+        var candidates = [];
+        try {
+            candidates = JSON.parse(decodeURIComponent(img.getAttribute('data-news-candidates') || ''));
+        } catch (e) {
+            candidates = [];
+        }
+
+        var next = Number(img.getAttribute('data-news-index') || 0) + 1;
+        if (next < candidates.length) {
+            img.setAttribute('data-news-index', String(next));
+            img.src = candidates[next];
+            return;
+        }
+
+        // 끝까지 실패해도 엑스박스는 노출하지 않고 안내 배경으로 정리
+        img.onerror = null;
+        img.classList.add('news-image-failed');
+        img.style.visibility = 'hidden';
+        var parent = img.parentNode;
+        if (parent && !parent.querySelector('.news-image-error-note')) {
+            var note = document.createElement('div');
+            note.className = 'news-image-error-note';
+            note.innerHTML = '<span aria-hidden="true">🖼️</span><small>이미지를 불러오지 못했습니다</small>';
+            parent.appendChild(note);
+        }
     }
 
     // ── 모달 열기/닫기 ──
@@ -4188,50 +4353,56 @@
         if (!item) return;
         const c = cfg(item.category);
 
-        // 이미지 슬라이드쇼
+        // 이미지 주소를 먼저 검증한 뒤 슬라이드쇼를 생성합니다.
+        // 원문이 있어도 유효 URL이 0개이면 src="undefined"를 만들지 않습니다.
         const media = document.getElementById('news-modal-media');
         const divider = document.getElementById('news-modal-divider');
-        if (item.image && item.image.trim()) {
-            const imgList = parseNewsImageUrls(item.image);
+        const imgList = parseNewsImageUrls(item.image);
+
+        if (imgList.length > 0) {
             const total = imgList.length;
-            // 단일/복수 모두 동일한 슬라이드쇼 구조로 통일
+            var safeTitle = escapeNewsAttr(item.title || '나음생활건강 최신 소식');
             var slidesHtml = imgList.map(function(url, i){
+                var alt = safeTitle + (total > 1 ? ' ' + (i + 1) : '');
                 return '<div class="ns-slide">'
-                    + '<img src="' + url + '" alt="' + (item.title||'') + (total>1?' '+(i+1):'') + '"'
+                    + '<img' + newsImageAttributes(url, c.img)
+                    + ' alt="' + alt + '"'
                     + ' style="-webkit-transform:translateZ(0);transform:translateZ(0);"'
-                    + ' loading="eager" decoding="async" draggable="false" referrerpolicy="no-referrer"'
-                    + ' onload="nsUpdateUI()"'
-                    + ' onerror="var p=this.parentNode;if(p)p.style.background=\'#f1f5f9\';">'
+                    + ' loading="eager" draggable="false">'
                     + '</div>';
             }).join('');
+
             var dotsHtml = total > 1 ? imgList.map(function(_,i){
-                return '<button class="ns-dot' + (i===0?' active':'') + '" onclick="nsGoto(' + i + ')"></button>';
+                return '<button type="button" class="ns-dot' + (i===0?' active':'')
+                    + '" aria-label="' + (i+1) + '번째 사진" onclick="nsGoto(' + i + ')"></button>';
             }).join('') : '';
+
             var navHtml = total > 1
-                ? '<button class="ns-arrow" id="ns-prev" onclick="nsMove(-1)">&#8249;</button>'
-                  + '<button class="ns-arrow" id="ns-next" onclick="nsMove(1)">&#8250;</button>'
+                ? '<button type="button" class="ns-arrow" id="ns-prev" aria-label="이전 사진" onclick="nsMove(-1)">&#8249;</button>'
+                  + '<button type="button" class="ns-arrow" id="ns-next" aria-label="다음 사진" onclick="nsMove(1)">&#8250;</button>'
                   + '<div id="ns-counter">1 / ' + total + '</div>'
                 : '';
+
             media.innerHTML = '<div id="news-slideshow">'
                 + '<div id="news-slideshow-track">' + slidesHtml + '</div>'
                 + navHtml
                 + '</div>'
                 + (dotsHtml ? '<div id="ns-dots">' + dotsHtml + '</div>' : '');
+
             window._nsTotal = total;
             window._nsCur = 0;
-            // RAF × 2: DOM 페인트 완료 후 초기 위치 세팅
-            // 추가 setTimeout: Safari에서 모달 오픈 애니메이션(280ms) 완료 후 재계산
             requestAnimationFrame(function(){
                 requestAnimationFrame(function(){
                     bindNewsSwipe();
                     nsUpdateUI();
-                    // iPad Safari: 모달 슬라이드인 애니메이션 후 너비 재확인
                     setTimeout(nsUpdateUI, 100);
                     setTimeout(nsUpdateUI, 320);
                 });
             });
             divider.style.display = 'flex';
         } else {
+            window._nsTotal = 0;
+            window._nsCur = 0;
             media.innerHTML = '<div id="news-modal-img-placeholder" style="background:' + c.bg + ';">'
                 + '<i class="fa-solid ' + c.icon + '" style="color:' + c.color + ';font-size:48px;"></i>'
                 + '</div>';
@@ -4242,17 +4413,18 @@
         const badge = document.getElementById('news-modal-badge');
         badge.style.background = c.bg;
         badge.style.color = c.color;
-        badge.innerHTML = `<i class="fa-solid ${c.icon}" style="font-size:10px;"></i> ${item.category || '소식'}`;
+        badge.innerHTML = '<i class="fa-solid ' + c.icon + '" style="font-size:10px;"></i> '
+            + escapeNewsAttr(item.category || '소식');
 
         // 제목·날짜·내용
         document.getElementById('news-modal-title').textContent = item.title || '';
-        document.getElementById('news-modal-date').innerHTML = `<i class="fa-regular fa-calendar"></i> ${fmtDate(item.date)}`;
+        document.getElementById('news-modal-date').innerHTML = '<i class="fa-regular fa-calendar"></i> ' + fmtDate(item.date);
         document.getElementById('news-modal-content').textContent = item.content || '';
 
         // 외부 링크 (있을 때만)
         const linkWrap = document.getElementById('news-modal-link-wrap');
-        if (item.link && item.link.trim()) {
-            document.getElementById('news-modal-link').href = item.link.trim();
+        if (item.link && String(item.link).trim()) {
+            document.getElementById('news-modal-link').href = String(item.link).trim();
             linkWrap.style.display = 'block';
         } else {
             linkWrap.style.display = 'none';
@@ -4262,7 +4434,6 @@
         const overlay = document.getElementById('news-modal-overlay');
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
-        // 아이패드: 모달 오픈 애니메이션(280ms) 완료 후 슬라이드 너비 재계산
         setTimeout(function(){ nsUpdateUI(); }, 320);
     }
 
@@ -4384,11 +4555,12 @@
     // ── 피처드 카드 (1번째 소식) ──
     function makeFeatured(item, num, idx) {
         const c = cfg(item.category);
-        // 쉼표로 구분된 경우 첫 번째 이미지만 대표 이미지로 사용
         const featuredImages = parseNewsImageUrls(item.image);
-        const firstImg = featuredImages[0] || '';
+        const firstImg = featuredImages[0] || c.img;
         const imgCount = featuredImages.length;
-        const thumbUrl = firstImg || c.img;
+        const imageAttrs = newsImageAttributes(firstImg, c.img);
+        const safeTitle = escapeNewsAttr(item.title || '나음생활건강 최신 소식');
+
         return `
         <div class="nf-card" style="cursor:pointer;" onclick="openNewsModal(${idx})">
             <div class="nf-left">
@@ -4406,10 +4578,10 @@
                 </div>
             </div>
             <div class="nf-right">
-                <img class="nf-right-img" src="${thumbUrl}" alt="${item.title}" loading="eager" decoding="async" draggable="false" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+                <img class="nf-right-img"${imageAttrs} alt="${safeTitle}" loading="eager" draggable="false">
                 <div class="nf-right-overlay"></div>
-                <div style="position:absolute;bottom:24px;left:24px;right:24px;">
-                    <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.3);">
+                <div style="position:absolute;bottom:24px;left:24px;right:24px;z-index:3;">
+                    <span style="background:rgba(15,23,42,0.52);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.3);">
                         ${imgCount > 1 ? '📷 ' + imgCount + '장의 사진' : '최신 소식'}
                     </span>
                 </div>
@@ -4421,17 +4593,19 @@
     function makeCard(item, num, idx) {
         const c = cfg(item.category);
         var imgHtml = '';
-        if (item.image && item.image.trim()) {
-            var imgs = parseNewsImageUrls(item.image);
+        var imgs = parseNewsImageUrls(item.image);
+        var count = imgs.length;
+
+        if (count > 0) {
             var first = imgs[0];
-            var count = imgs.length;
             imgHtml = '<div class="ng-img-wrap">'
-                + '<img src="' + first + '" alt="' + item.title + '"'
-                + ' loading="eager" decoding="async" draggable="false" referrerpolicy="no-referrer"'
-                + ' onerror="var p=this.parentNode;if(p)p.style.display=\'none\';">'
-                + (count > 1 ? '<span style="position:absolute;bottom:8px;right:8px;z-index:2;background:rgba(0,0,0,0.60);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;">📷 ' + count + '</span>' : '')
+                + '<img' + newsImageAttributes(first, c.img)
+                + ' alt="' + escapeNewsAttr(item.title || '나음생활건강 최신 소식') + '"'
+                + ' loading="eager" draggable="false">'
+                + (count > 1 ? '<span style="position:absolute;bottom:8px;right:8px;z-index:3;background:rgba(0,0,0,0.60);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;">📷 ' + count + '</span>' : '')
                 + '</div>';
         }
+
         return '<div class="ng-card" style="cursor:pointer;" onclick="openNewsModal(' + idx + ')">'
             + '<div class="ng-top-bar" style="background:' + c.bar + ';"></div>'
             + imgHtml
