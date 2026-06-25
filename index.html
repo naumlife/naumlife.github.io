@@ -4205,6 +4205,12 @@
         return '';
     }
 
+    function extractGoogleDriveResourceKey(url) {
+        var value = String(url || '');
+        var match = value.match(/[?&]resourcekey=([^&#]+)/i);
+        return match && match[1] ? match[1] : '';
+    }
+
     function normalizeNewsImageUrl(value) {
         var url = decodeNewsEntities(value)
             .replace(/[\u200B-\u200D\uFEFF]/g, '')
@@ -4271,10 +4277,12 @@
     // 동일한 이미지에 대해 브라우저별로 통과율이 높은 주소를 순차 시도합니다.
     // 특히 Google Drive 공유주소는 iPad/Naver 인앱브라우저에서 lh3 주소가 실패할 수 있어
     // thumbnail → lh3 → uc 순서로 자동 대체합니다.
-    function buildNewsImageCandidates(rawUrl, finalFallback) {
+    function buildNewsImageCandidates(rawUrl) {
         var original = normalizeNewsImageUrl(rawUrl);
         var list = [];
         var driveId = extractGoogleDriveId(original);
+        var resourceKey = extractGoogleDriveResourceKey(original);
+        var resourceKeyParam = resourceKey ? '&resourcekey=' + encodeURIComponent(resourceKey) : '';
 
         function add(url) {
             url = normalizeNewsImageUrl(url);
@@ -4282,25 +4290,27 @@
         }
 
         if (driveId) {
-            add('https://drive.google.com/thumbnail?id=' + driveId + '&sz=w2000');
+            // 같은 등록 이미지만 여러 Google Drive 표시 주소로 재시도합니다.
+            // 다른 임의 사진으로는 절대 대체하지 않습니다.
+            add('https://drive.google.com/thumbnail?id=' + driveId + '&sz=w2000' + resourceKeyParam);
+            add('https://drive.usercontent.google.com/download?id=' + driveId + '&export=view&authuser=0' + resourceKeyParam);
+            add('https://drive.google.com/uc?export=view&id=' + driveId + resourceKeyParam);
             add('https://lh3.googleusercontent.com/d/' + driveId + '=w2000');
-            add('https://drive.google.com/uc?export=view&id=' + driveId);
             add(original);
         } else {
             add(original);
         }
 
-        // 네이버 이미지 주소는 원본 쿼리와 넓은 표시용 쿼리를 모두 시도
+        // 네이버 이미지 주소는 같은 원본 이미지의 넓은 표시용 주소만 추가 시도
         if (/\.(?:pstatic\.net|naver\.net)\//i.test(original)) {
             add(original.replace(/([?&])type=[^&]*/i, '$1type=w1600'));
         }
 
-        add(finalFallback || '');
         return list;
     }
 
-    function newsImageAttributes(rawUrl, finalFallback) {
-        var candidates = buildNewsImageCandidates(rawUrl, finalFallback);
+    function newsImageAttributes(rawUrl) {
+        var candidates = buildNewsImageCandidates(rawUrl);
         if (!candidates.length) return '';
         return ' src="' + escapeNewsAttr(candidates[0]) + '"'
             + ' data-news-candidates="' + escapeNewsAttr(encodeURIComponent(JSON.stringify(candidates))) + '"'
@@ -4342,7 +4352,7 @@
         if (parent && !parent.querySelector('.news-image-error-note')) {
             var note = document.createElement('div');
             note.className = 'news-image-error-note';
-            note.innerHTML = '<span aria-hidden="true">🖼️</span><small>이미지를 불러오지 못했습니다</small>';
+            note.innerHTML = '<span aria-hidden="true">🖼️</span><small>등록한 이미지를 불러오지 못했습니다<br>Google Drive 공개 권한을 확인해 주세요</small>';
             parent.appendChild(note);
         }
     }
@@ -4365,7 +4375,7 @@
             var slidesHtml = imgList.map(function(url, i){
                 var alt = safeTitle + (total > 1 ? ' ' + (i + 1) : '');
                 return '<div class="ns-slide">'
-                    + '<img' + newsImageAttributes(url, c.img)
+                    + '<img' + newsImageAttributes(url)
                     + ' alt="' + alt + '"'
                     + ' style="-webkit-transform:translateZ(0);transform:translateZ(0);"'
                     + ' loading="eager" draggable="false">'
@@ -4556,10 +4566,13 @@
     function makeFeatured(item, num, idx) {
         const c = cfg(item.category);
         const featuredImages = parseNewsImageUrls(item.image);
-        const firstImg = featuredImages[0] || c.img;
+        const firstImg = featuredImages[0] || '';
         const imgCount = featuredImages.length;
-        const imageAttrs = newsImageAttributes(firstImg, c.img);
+        const imageAttrs = firstImg ? newsImageAttributes(firstImg) : '';
         const safeTitle = escapeNewsAttr(item.title || '나음생활건강 최신 소식');
+        const featuredImageHtml = firstImg
+            ? `<img class="nf-right-img"${imageAttrs} alt="${safeTitle}" loading="eager" draggable="false">`
+            : `<div class="news-image-error-note"><span aria-hidden="true">🖼️</span><small>등록된 이미지가 없습니다</small></div>`;
 
         return `
         <div class="nf-card" style="cursor:pointer;" onclick="openNewsModal(${idx})">
@@ -4578,11 +4591,11 @@
                 </div>
             </div>
             <div class="nf-right">
-                <img class="nf-right-img"${imageAttrs} alt="${safeTitle}" loading="eager" draggable="false">
-                <div class="nf-right-overlay"></div>
+                ${featuredImageHtml}
+                ${firstImg ? '<div class="nf-right-overlay"></div>' : ''}
                 <div style="position:absolute;bottom:24px;left:24px;right:24px;z-index:3;">
                     <span style="background:rgba(15,23,42,0.52);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.3);">
-                        ${imgCount > 1 ? '📷 ' + imgCount + '장의 사진' : '최신 소식'}
+                        ${imgCount > 1 ? '📷 ' + imgCount + '장의 사진' : (imgCount === 1 ? '📷 등록 사진' : '이미지 없음')}
                     </span>
                 </div>
             </div>
@@ -4599,7 +4612,7 @@
         if (count > 0) {
             var first = imgs[0];
             imgHtml = '<div class="ng-img-wrap">'
-                + '<img' + newsImageAttributes(first, c.img)
+                + '<img' + newsImageAttributes(first)
                 + ' alt="' + escapeNewsAttr(item.title || '나음생활건강 최신 소식') + '"'
                 + ' loading="eager" draggable="false">'
                 + (count > 1 ? '<span style="position:absolute;bottom:8px;right:8px;z-index:3;background:rgba(0,0,0,0.60);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;">📷 ' + count + '</span>' : '')
