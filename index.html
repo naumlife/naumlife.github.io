@@ -2555,7 +2555,7 @@
         <a href="#about"    onclick="closeMobileMenu()"><i class="fa-solid fa-building"></i> 회사소개</a>
         <a href="#business" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i> 사업분야</a>
         <a href="#products" onclick="closeMobileMenu()"><i class="fa-solid fa-box-open"></i> 제품·서비스</a>
-        <a href="#news"     onclick="closeMobileMenu()"><i class="fa-solid fa-newspaper"></i> 최신소식</a>
+        <a href="#news"     onclick="closeMobileMenu()" style="position:relative;"><i class="fa-solid fa-newspaper"></i> 최신소식<span id="mobile-top-nav-new-badge" style="display:none;position:absolute;top:6px;right:2px;background:#ef4444;color:#fff;font-size:8px;font-weight:800;padding:2px 5px;border-radius:100px;letter-spacing:0.04em;line-height:1;animation:newPulse 1.5s infinite;">NEW</span></a>
         <a href="#ceo"      onclick="closeMobileMenu()"><i class="fa-solid fa-user-tie"></i> 대표소개</a>
         <a href="#contact"  onclick="closeMobileMenu()" style="color:#0B4619;border-bottom-color:#0B4619;"><i class="fa-solid fa-paper-plane"></i> 문의하기</a>
     </nav>
@@ -3827,7 +3827,7 @@
             const d = new Date(item.date);
             return !isNaN(d) && d >= sevenDaysAgo;
         });
-        ['nav-new-badge','mobile-new-badge'].forEach(id => {
+        ['nav-new-badge','mobile-new-badge','mobile-top-nav-new-badge'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.style.display = hasNew ? 'inline-block' : 'none';
         });
