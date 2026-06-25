@@ -230,7 +230,7 @@
         #mobile-menu {
             display: none;
             position: fixed;
-            top: 80px;
+            top: calc(80px + 42px);
             left: 0; right: 0; bottom: 0;
             background: rgba(255,255,255,0.98);
             backdrop-filter: blur(20px);
@@ -278,6 +278,51 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* ====== 모바일 상단 카테고리 바 ====== */
+        #mobile-top-nav {
+            display: none;
+        }
+        @media (max-width: 1023px) {
+            #mobile-top-nav {
+                display: flex;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                gap: 0;
+                background: linear-gradient(90deg, rgba(255,255,255,0.99), rgba(240,253,244,0.99));
+                border-bottom: 1px solid rgba(11,70,25,0.10);
+                padding: 0 12px;
+                position: fixed;
+                top: var(--nav-h, 68px);
+                left: 0;
+                right: 0;
+                z-index: 48;
+                box-shadow: 0 2px 8px rgba(11,70,25,0.06);
+            }
+            #mobile-top-nav::-webkit-scrollbar { display: none; }
+            #mobile-top-nav a {
+                flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                padding: 10px 14px;
+                font-size: 12px;
+                font-weight: 700;
+                color: #374151;
+                text-decoration: none;
+                white-space: nowrap;
+                border-bottom: 2px solid transparent;
+                transition: color 0.2s, border-color 0.2s;
+                -webkit-tap-highlight-color: transparent;
+            }
+            #mobile-top-nav a:hover,
+            #mobile-top-nav a:active { color: #0B4619; border-bottom-color: #0B4619; }
+            #mobile-top-nav a i { font-size: 11px; color: #0B4619; }
+            /* hero/body에 top nav 높이만큼 패딩 추가 */
+            #hero {
+                padding-top: calc(var(--nav-h, 68px) + 42px + 44px) !important;
+            }
+        }
         @media (max-width: 767px) {
             .hamburger-btn { display: flex; }
         }
@@ -338,7 +383,7 @@
         }
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: calc(var(--nav-h) + 16px);
+            scroll-padding-top: calc(var(--nav-h) + 42px + 16px);
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
         }
@@ -373,7 +418,7 @@
             white-space: nowrap;
         }
         #mobile-menu {
-            top: calc(var(--nav-h) + env(safe-area-inset-top)) !important;
+            top: calc(var(--nav-h) + env(safe-area-inset-top) + 42px) !important;
             padding-left: var(--page-x) !important;
             padding-right: var(--page-x) !important;
         }
@@ -430,7 +475,7 @@
             min-height: 24px;
         }
         section[id], footer {
-            scroll-margin-top: calc(var(--nav-h) + 14px);
+            scroll-margin-top: calc(var(--nav-h) + 42px + 14px);
         }
         section[id] > .max-w-7xl,
         footer > .max-w-7xl {
@@ -493,7 +538,7 @@
             }
             #mobile-menu.open { display: flex !important; }
             #hero {
-                padding-top: calc(var(--nav-h) + 44px) !important;
+                padding-top: calc(var(--nav-h) + 42px + 44px) !important;
                 padding-bottom: 58px !important;
             }
             .slide-arrow { display: none !important; }
@@ -560,7 +605,7 @@
             }
             #hero {
                 min-height: 100svh !important;
-                padding-top: calc(var(--nav-h) + 38px) !important;
+                padding-top: calc(var(--nav-h) + 42px + 38px) !important;
                 padding-bottom: 44px !important;
             }
             #hero .slide-caption {
@@ -753,7 +798,7 @@
                 height: 42px !important;
             }
             #hero {
-                padding-top: calc(var(--nav-h) + 34px) !important;
+                padding-top: calc(var(--nav-h) + 42px + 34px) !important;
             }
             #txt-track .txt-item p {
                 font-size: clamp(22px, 8.4vw, 31px) !important;
@@ -2505,6 +2550,16 @@
         <a href="#contact"  class="mobile-menu-cta"  onclick="closeMobileMenu()"><i class="fa-solid fa-paper-plane"></i> 협업·파트너 문의하기</a>
     </div>
 
+    <!-- 모바일/태블릿 상단 카테고리 바 -->
+    <nav id="mobile-top-nav" aria-label="모바일 카테고리 메뉴">
+        <a href="#about"    onclick="closeMobileMenu()"><i class="fa-solid fa-building"></i> 회사소개</a>
+        <a href="#business" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i> 사업분야</a>
+        <a href="#products" onclick="closeMobileMenu()"><i class="fa-solid fa-box-open"></i> 제품·서비스</a>
+        <a href="#news"     onclick="closeMobileMenu()"><i class="fa-solid fa-newspaper"></i> 최신소식</a>
+        <a href="#ceo"      onclick="closeMobileMenu()"><i class="fa-solid fa-user-tie"></i> 대표소개</a>
+        <a href="#contact"  onclick="closeMobileMenu()" style="color:#0B4619;border-bottom-color:#0B4619;"><i class="fa-solid fa-paper-plane"></i> 문의하기</a>
+    </nav>
+
     <script>
     function toggleMobileMenu() {
         const btn  = document.getElementById('hamburger-btn');
@@ -3702,32 +3757,35 @@
     // ── 일반 카드 ──
     function makeCard(item, num, idx) {
         const c = cfg(item.category);
-        return `
-        <div class="ng-card" style="cursor:pointer;" onclick="openNewsModal(${idx})">
-            <div class="ng-top-bar" style="background:${c.bar};"></div>
-            ${(() => {
-                if (!item.image) return '';
-                const imgs = item.image.split(',').filter(u=>u.trim());
-                const first = imgs[0].trim();
-                const count = imgs.length;
-                return `<div style="position:relative;overflow:hidden;background:#f8f9fa;border-bottom:2px solid #f1f5f9;">
-                    <img src="${first}" alt="${item.title}" style="width:100%;height:180px;object-fit:cover;display:block;" onerror="this.parentElement.style.display='none'">
-                    ${count > 1 ? `<span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;">📷 ${count}</span>` : ''}
-                </div>`;
-            })()}
-            <div class="ng-body">
-                <p class="n-num">NO.${String(num).padStart(2,'0')}</p>
-                <span class="n-badge" style="background:${c.bg};color:${c.color};">
-                    <i class="fa-solid ${c.icon}" style="font-size:10px;"></i> ${item.category || '소식'}
-                </span>
-                <h3 class="n-title-sm">${item.title}</h3>
-                <p class="n-content-sm">${(item.content||'').replace(/\n/g,'<br>')}</p>
-            </div>
-            <div class="ng-footer">
-                <span class="n-date"><i class="fa-regular fa-calendar"></i> ${fmtDate(item.date)}</span>
-                <span class="n-link" style="cursor:pointer;">보기 <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></span>
-            </div>
-        </div>`;
+        var imgHtml = '';
+        if (item.image && item.image.trim()) {
+            var imgs = item.image.split(',').map(function(u){ return u.trim(); }).filter(Boolean);
+            var first = imgs[0];
+            var count = imgs.length;
+            imgHtml = '<div style="position:relative;overflow:hidden;background:#f8f9fa;border-bottom:2px solid #f1f5f9;height:180px;">'
+                + '<img src="' + first + '" alt="' + item.title + '"'
+                + ' style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"'
+                + ' loading="lazy" decoding="async"'
+                + ' onerror="this.closest(\'div\').style.display=\'none\'">'
+                + (count > 1 ? '<span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.60);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;">📷 ' + count + '</span>' : '')
+                + '</div>';
+        }
+        return '<div class="ng-card" style="cursor:pointer;" onclick="openNewsModal(' + idx + ')">'
+            + '<div class="ng-top-bar" style="background:' + c.bar + ';"></div>'
+            + imgHtml
+            + '<div class="ng-body">'
+            + '<p class="n-num">NO.' + String(num).padStart(2,'0') + '</p>'
+            + '<span class="n-badge" style="background:' + c.bg + ';color:' + c.color + ';">'
+            + '<i class="fa-solid ' + c.icon + '" style="font-size:10px;"></i> ' + (item.category || '소식')
+            + '</span>'
+            + '<h3 class="n-title-sm">' + item.title + '</h3>'
+            + '<p class="n-content-sm">' + (item.content||'').replace(/\n/g,'<br>') + '</p>'
+            + '</div>'
+            + '<div class="ng-footer">'
+            + '<span class="n-date"><i class="fa-regular fa-calendar"></i> ' + fmtDate(item.date) + '</span>'
+            + '<span class="n-link" style="cursor:pointer;">보기 <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></span>'
+            + '</div>'
+            + '</div>';
     }
 
     // ── 렌더링 ──
