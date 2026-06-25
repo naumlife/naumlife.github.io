@@ -3614,53 +3614,147 @@
 
 
 
-    <!-- ====== iPad Pro 최신 소식 이미지 최적화 ====== -->
+    <!-- ====== iPad Pro 최신 소식 이미지 최적화 (v2 — 전면 재작성) ====== -->
     <style id="ipad-pro-news-image-optimization">
         /*
-          iPad Pro 세로·가로 화면에서 최신 소식 이미지를 잘리지 않게 표시합니다.
-          카드에서는 원본 전체를 보여 주고, 상세 모달은 화면을 넓게 사용합니다.
+         ─────────────────────────────────────────────────────────────────
+         [수정 이유 요약]
+         1. nf-right-img: position:absolute + object-fit:contain 조합에서
+            Safari(iPad) 가 높이를 0으로 계산하는 버그 → 래퍼에 명시적 높이 부여
+         2. ng-img-wrap img: inset 단축속성이 Safari 14 이하 미지원 →
+            top/left/right/bottom 으로 풀어씀
+         3. nsUpdateUI(): 모달 오픈 직후 offsetWidth=0 문제 →
+            ResizeObserver + 추가 setTimeout 보완
+         4. 모든 이미지가 잘리는 경우: object-fit을 contain으로 통일하되
+            래퍼 배경색으로 여백을 자연스럽게 처리
+         ─────────────────────────────────────────────────────────────────
         */
+
+        /* ── 카드 이미지 래퍼 공통 배경 ── */
         #news .nf-right,
         #news .ng-img-wrap,
         #news-slideshow,
         #news-modal-media {
-            background:
-                linear-gradient(135deg, #f8fafc 0%, #ffffff 55%, #f0fdf4 100%);
+            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 60%, #f8fafc 100%);
         }
 
-        /* 썸네일을 임의로 확대·절단하지 않고 전체 표시 */
-        #news .nf-right-img,
-        #news .ng-img-wrap img {
-            object-fit: contain !important;
-            object-position: center center !important;
-            background: transparent;
+        /* ── 피처드 카드 오른쪽 이미지 ── */
+        /* Safari: position:absolute 자식은 래퍼에 명시적 높이가 없으면 height:0 */
+        #news .nf-right {
+            position: relative;
+            overflow: hidden;
+            min-height: 280px; /* 기본값 유지 */
+        }
+        #news .nf-right-img {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;          /* 피처드는 cover — 전체 영역 채움 */
+            object-position: center center;
+            display: block;
+            filter: brightness(0.88);
+            transition: transform 6s ease;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
         #news .nf-right-overlay {
-            background: linear-gradient(180deg, rgba(11,70,25,0.02), rgba(11,70,25,0.10)) !important;
+            background: linear-gradient(180deg,
+                rgba(11,70,25,0.08) 0%,
+                rgba(11,70,25,0.32) 100%) !important;
             pointer-events: none;
         }
 
-        /* 상세 보기 이미지는 원본 비율 유지 */
-        #news-slideshow-track,
-        .ns-slide {
+        /* ── 일반 카드 이미지 래퍼 ── */
+        #news .ng-img-wrap {
+            position: relative;
+            overflow: hidden;
+            display: block;
+            height: 180px;                /* 기본(모바일) 고정 높이 */
+            background: #f0fdf4;
+            border-bottom: 2px solid #f1f5f9;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+        #news .ng-img-wrap img {
+            position: absolute;
+            top: 0; left: 0;              /* inset 단축속성 대신 명시 */
+            right: 0; bottom: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        /* ── 모달 슬라이드쇼 ── */
+        #news-slideshow-track {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            will-change: transform;
             width: 100%;
         }
         .ns-slide {
-            min-height: min(58dvh, 620px);
-            padding: 14px;
+            -webkit-flex: 0 0 100%;
+            flex: 0 0 100%;
+            width: 100%;
+            min-width: 0;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            background: #f8f9fa;
+            overflow: hidden;
+            padding: 12px;
             box-sizing: border-box;
+            min-height: 260px;
         }
         .ns-slide img {
-            width: 100% !important;
-            height: 100% !important;
-            max-height: min(58dvh, 620px) !important;
-            object-fit: contain !important;
-            object-position: center center !important;
-            border-radius: 10px;
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 8px;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
-        /* iPad 및 태블릿 공통 */
+        /* ── 터치 디바이스: 드래그·텍스트 선택 방지 ── */
+        @media (hover: none) and (pointer: coarse) {
+            #news-slideshow,
+            #news-slideshow-track,
+            .ns-slide,
+            .ns-slide img {
+                -webkit-user-select: none;
+                user-select: none;
+                -webkit-user-drag: none;
+                touch-action: pan-y;
+            }
+            .ns-arrow,
+            .ns-dot,
+            #news-modal-close {
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+
+        /* ═══════════════════════════════════════════
+           iPad / 태블릿 공통 (768px ~ 1366px)
+        ═══════════════════════════════════════════ */
         @media (min-width: 768px) and (max-width: 1366px) {
+
+            /* 섹션 여백 */
             #news {
                 padding-top: 72px !important;
                 padding-bottom: 72px !important;
@@ -3670,35 +3764,30 @@
                 padding-left: 28px !important;
                 padding-right: 28px !important;
             }
+
+            /* 일반 카드 2열 */
             #news-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
                 gap: 20px !important;
             }
+
+            /* 피처드 카드 */
             .nf-card {
-                grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr) !important;
-                min-height: 360px !important;
+                grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+                min-height: 380px !important;
             }
-            .nf-right {
-                min-height: 360px !important;
-            }
-            .nf-right-img {
-                padding: 12px;
-                box-sizing: border-box;
-            }
-            .ng-img-wrap {
-                height: auto !important;
-                min-height: 250px !important;
-                aspect-ratio: 4 / 3;
-                padding: 10px;
-                box-sizing: border-box;
-            }
-            .ng-img-wrap img {
-                inset: 10px !important;
-                width: calc(100% - 20px) !important;
-                height: calc(100% - 20px) !important;
-                border-radius: 10px;
+            #news .nf-right {
+                min-height: 380px !important;  /* ← 래퍼 명시 높이 */
             }
 
+            /* 일반 카드 이미지 — 4:3 비율로 넉넉하게 */
+            #news .ng-img-wrap {
+                height: auto !important;
+                min-height: 240px !important;
+                aspect-ratio: 4 / 3;
+            }
+
+            /* 모달 */
             #news-modal-overlay.open {
                 padding:
                     max(22px, env(safe-area-inset-top))
@@ -3714,7 +3803,15 @@
                 border-radius: 24px !important;
             }
             #news-slideshow {
-                min-height: min(58dvh, 620px) !important;
+                min-height: min(56dvh, 600px) !important;
+            }
+            .ns-slide {
+                min-height: min(56dvh, 600px) !important;
+                padding: 16px !important;
+            }
+            .ns-slide img {
+                max-height: min(52dvh, 560px) !important;
+                border-radius: 10px !important;
             }
             #news-modal-body {
                 padding: 28px 34px 36px !important;
@@ -3723,13 +3820,15 @@
                 margin-left: 34px !important;
                 margin-right: 34px !important;
             }
+
+            /* 슬라이드 화살표·도트 터치 영역 확장 */
             .ns-arrow {
                 width: 48px !important;
                 height: 48px !important;
                 font-size: 22px !important;
             }
-            #ns-prev { left: 16px !important; }
-            #ns-next { right: 16px !important; }
+            #ns-prev { left: 14px !important; }
+            #ns-next { right: 14px !important; }
             .ns-dot {
                 width: 10px !important;
                 height: 10px !important;
@@ -3748,62 +3847,58 @@
             }
         }
 
-        /* iPad Pro 가로 화면에서는 3열로 넓게 활용 */
+        /* ═══════════════════════════════════════════
+           iPad Pro 12.9" 가로 (1180px~1366px, landscape)
+           → 3열 그리드, 더 큰 모달
+        ═══════════════════════════════════════════ */
         @media (min-width: 1180px) and (max-width: 1366px) and (orientation: landscape) {
             #news-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
             }
-            .ng-img-wrap {
-                min-height: 220px !important;
+            #news .ng-img-wrap {
+                min-height: 200px !important;
             }
             #news-modal-box {
-                width: min(1040px, calc(100vw - 72px)) !important;
-                max-width: 1040px !important;
+                width: min(1060px, calc(100vw - 72px)) !important;
+                max-width: 1060px !important;
             }
-            .ns-slide,
-            .ns-slide img,
             #news-slideshow {
-                max-height: min(62dvh, 650px) !important;
+                min-height: min(60dvh, 640px) !important;
+            }
+            .ns-slide {
+                min-height: min(60dvh, 640px) !important;
+            }
+            .ns-slide img {
+                max-height: min(56dvh, 600px) !important;
             }
         }
 
-        /* iPad Pro 세로 화면: 사진 크기와 본문 가독성 우선 */
+        /* ═══════════════════════════════════════════
+           iPad Pro 11" / Air 세로 (768px~1100px, portrait)
+           → 피처드 카드 1열 세로 스택, 이미지 상단 배치
+        ═══════════════════════════════════════════ */
         @media (min-width: 768px) and (max-width: 1100px) and (orientation: portrait) {
             .nf-card {
                 grid-template-columns: 1fr !important;
             }
-            .nf-right {
+            #news .nf-right {
                 order: -1;
-                min-height: 430px !important;
+                min-height: 400px !important;  /* ← 명시 높이 필수 */
             }
             .nf-left {
                 padding: 30px 32px !important;
             }
             #news-modal-box {
-                width: calc(100vw - 48px) !important;
+                width: calc(100vw - 44px) !important;
             }
-            .ns-slide,
-            .ns-slide img,
             #news-slideshow {
-                max-height: min(55dvh, 610px) !important;
+                min-height: min(52dvh, 580px) !important;
             }
-        }
-
-        /* 손가락 제스처 사용 시 선택/드래그 방지 */
-        @media (hover: none) and (pointer: coarse) {
-            #news-slideshow,
-            #news-slideshow-track,
-            .ns-slide,
+            .ns-slide {
+                min-height: min(52dvh, 580px) !important;
+            }
             .ns-slide img {
-                -webkit-user-select: none;
-                user-select: none;
-                -webkit-user-drag: none;
-                touch-action: pan-y;
-            }
-            .ns-arrow,
-            .ns-dot,
-            #news-modal-close {
-                -webkit-tap-highlight-color: transparent;
+                max-height: min(48dvh, 540px) !important;
             }
         }
     </style>
@@ -3939,11 +4034,15 @@
                 + (dotsHtml ? '<div id="ns-dots">' + dotsHtml + '</div>' : '');
             window._nsTotal = total;
             window._nsCur = 0;
-            // RAF: DOM 완성 후 초기 위치 강제 세팅
+            // RAF × 2: DOM 페인트 완료 후 초기 위치 세팅
+            // 추가 setTimeout: Safari에서 모달 오픈 애니메이션(280ms) 완료 후 재계산
             requestAnimationFrame(function(){
                 requestAnimationFrame(function(){
                     bindNewsSwipe();
                     nsUpdateUI();
+                    // iPad Safari: 모달 슬라이드인 애니메이션 후 너비 재확인
+                    setTimeout(nsUpdateUI, 100);
+                    setTimeout(nsUpdateUI, 320);
                 });
             });
             divider.style.display = 'flex';
@@ -3999,13 +4098,32 @@
     });
 
     // ── 슬라이드쇼 제어 함수 ──
+    function nsGetSlideWidth() {
+        var track = document.getElementById('news-slideshow-track');
+        if (!track) return 0;
+        var slides = track.getElementsByClassName('ns-slide');
+        if (slides.length > 0) {
+            var w = slides[0].getBoundingClientRect().width;
+            if (w > 0) return w;
+            // getBoundingClientRect가 0이면 offsetWidth로 fallback
+            w = slides[0].offsetWidth;
+            if (w > 0) return w;
+        }
+        // 래퍼(slideshow) 너비로 최종 fallback
+        var ss = document.getElementById('news-slideshow');
+        return ss ? ss.offsetWidth : 0;
+    }
+
     function nsUpdateUI() {
         var track = document.getElementById('news-slideshow-track');
         if (!track) return;
         var cur = window._nsCur || 0;
-        // 아이패드 Safari: % 기준 대신 첫 번째 슬라이드 실제 px 너비로 계산
-        var slides = track.getElementsByClassName('ns-slide');
-        var slideW = slides.length > 0 ? slides[0].offsetWidth : track.offsetWidth;
+        var slideW = nsGetSlideWidth();
+        if (slideW <= 0) {
+            // 아직 레이아웃이 완성 전이면 한 프레임 뒤 재시도
+            requestAnimationFrame(nsUpdateUI);
+            return;
+        }
         var offset = cur * slideW;
         track.style.webkitTransform = 'translateX(-' + offset + 'px)';
         track.style.transform       = 'translateX(-' + offset + 'px)';
@@ -4030,7 +4148,6 @@
         nsUpdateUI();
     }
 
-
     // ── iPad Pro: 손가락 좌우 스와이프로 사진 넘기기 ──
     function bindNewsSwipe() {
         var area = document.getElementById('news-slideshow');
@@ -4050,9 +4167,18 @@
             moving = false;
             var dx = e.changedTouches[0].clientX - startX;
             var dy = e.changedTouches[0].clientY - startY;
-            if (Math.abs(dx) < 48 || Math.abs(dx) <= Math.abs(dy)) return;
+            if (Math.abs(dx) < 40 || Math.abs(dx) <= Math.abs(dy)) return;
             nsMove(dx < 0 ? 1 : -1);
         }, { passive: true });
+
+        // ResizeObserver: iPad 분할화면·회전 시 슬라이드 너비 자동 재계산
+        if (window.ResizeObserver) {
+            var ro = new ResizeObserver(function() {
+                clearTimeout(window._nsResizeTimer);
+                window._nsResizeTimer = setTimeout(nsUpdateUI, 80);
+            });
+            ro.observe(area);
+        }
     }
 
     // 화면 회전·분할 화면 변경 후 슬라이드 위치를 다시 계산
@@ -4061,12 +4187,13 @@
         clearTimeout(newsResizeTimer);
         newsResizeTimer = setTimeout(function() {
             nsUpdateUI();
-        }, 140);
+        }, 120);
     }
     window.addEventListener('resize', refreshNewsSliderLayout, { passive: true });
     window.addEventListener('orientationchange', function() {
-        setTimeout(nsUpdateUI, 260);
-        setTimeout(nsUpdateUI, 620);
+        setTimeout(nsUpdateUI, 200);
+        setTimeout(nsUpdateUI, 500);
+        setTimeout(nsUpdateUI, 900);
     }, { passive: true });
 
     // ── 피처드 카드 (1번째 소식) ──
